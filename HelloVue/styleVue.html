@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <title>动态绑定class</title>
+  <style>
+    .active{
+      color:red;
+    }
+    .fontStyle{
+        font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <h3>v-bind动态绑定class</h3>
+    <!-- <h2 class="active">{{message}}</h2>
+    <h2 :class="active">{{message}}</h2> -->
+
+    <!-- 动态绑定class对象用法  -->
+    <!-- <h2 :class="{key1:value1,key2:value2}">{{message}}</h2>
+    <h2 :class="{类名1:true,类名2:boolean}">{{message}}</h2> -->
+    <h2 class="title" :class="{active:isActive}">{{message}}</h2>
+    <h2 class="title" :class="getClasses()">{{message}}</h2>
+    <button @click="change">点击变色</button>
+
+  </div>
+  <div id="app1">
+      <h3> v-bind动态绑定class(数组用法)</h3> 
+        <!-- 加上单引号当成字符串 -->
+        <h2 class="title" :class="['active','fontStyle']">{{message}}</h2>
+        <!-- 不加会被当成变量 -->
+        <h2 class="title" :class="[active,fontStyle]">{{message}}</h2>
+        <h2 class="title" :class="getClasses()">{{message}}</h2> 
+  </div>
+  <div id="app3">
+    <h3> v-for和v-bind结合</h3> 
+      <!-- 加上单引号当成字符串 -->
+      <h2 class="title" :class="['active','fontStyle']">{{message}}</h2>
+      <!-- 不加会被当成变量 -->
+      <h2 class="title" :class="[active,fontStyle]">{{message}}</h2>
+      <h2 class="title" :class="getClasses()">{{message}}</h2> 
+</div>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"VUE",
+        active:"active",
+        isActive:true
+      },
+      methods: {
+        change(){
+          this.isActive = !this.isActive
+        },
+        getClasses(){
+          return {active:this.isActive}
+        }
+      },
+    })
+    const app1 = new Vue({ 
+      el:"#app1",
+      data:{
+        message:"hello vue style",
+        active:"aaaa",
+        fontStyle:'bbbb'
+      },
+      methods: {
+        getClasses(){
+          return [this.active,this.fontStyle]
+        }
+      },
+    })
+  </script>
+</body>
+</html>

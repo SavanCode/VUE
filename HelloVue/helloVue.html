@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>HelloVuejs</title>
+    <style>
+        [v-cloak]{
+          background-color: blueviolet;
+          display:none; /*这里comment掉会更加清晰*/
+        }
+      </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <p>{{name}}</p>
+    </div>
+    <div id="forLopp"> 
+        <p>{{name}}</p>
+        <ul>
+            <li v-for="(item, index) in message" :key="index">{{item}}</li>
+          </ul>
+    </div>
+    <div id="counter"> 
+        <p>{{name}}</p> 
+        <p>{{count}}</p>
+         <button @click="add">+1</button>
+         <button @click="count=0">reset</button>
+         <button v-on:click="minus">-1</button>
+
+         <p>use compute</p>
+         <p>after computed {{newMessage}}</p>
+         <button @click="reverse">点击改变name属性并且调用computed函数</button>
+        <p>computed 中getter setter</p>
+        <p>{{fullname}}</p> 
+
+    </div>
+    <div id="watch-example">
+        <p>
+          Ask a yes/no question:
+          <input v-model="question">
+        </p>
+        <p>{{ answer }}</p>
+      </div>
+    <div id="html" v-cloak>
+        <h2>使用v-html，直接插入html</h2>
+        <h2 v-html="href"></h2>
+        <h2>使用v-text，以文本形式显示,会覆盖</h2>
+        <h2 v-text="message">你看不到我</h2>
+        <h2>使用v-pre,不会解析</h2>
+        <h2 v-pre>{{message}}</h2> <p>这是解析的我： {{message}}</p>
+    </div>
+    <div id="img">
+            <!-- 正确的做法使用v-bind指令 -->
+            <img v-bind:src="imgURL" alt="">
+            <a v-bind:href="aHerf"></a>
+            <!-- 语法糖写法 -->
+            <img :src="imgURL" alt="">
+            <a :href="aHerf"></a>
+    </div>
+    <div id="watch-example">
+  <p>
+    Ask a yes/no question:
+    <input v-model="question">
+  </p>
+  <p>{{ answer }}</p>
+</div>
+</body>
+<script>
+    const app1= new Vue({
+        el:"#app",
+        data:{
+            message:"hello vueJs",
+            name:"nameing"
+        }
+    })
+    const app2= new Vue({
+        el:"#forLopp",
+        data:{
+            message:["hello vueJs", "hello vueJs","hello vueJs","hello vueJs","hello vueJs"],
+            name:"forLopp"
+        }
+    })
+    const app3= new Vue({
+        el:"#counter",
+        data:{
+            name:"counter",
+            count:99,
+            firstName:"FirstName",
+            lastName:"LastName"
+        },
+        computed: { //立即执行
+            newMessage: function () { 
+                console.log("calling computed")
+                return this.name.split('').reverse().join('')
+            },
+            //getter
+            fullname:function(){
+                console.log("getting fullname ing")
+                return this.firstName+" "+this.lastName
+            },
+             // setter
+            setName: function (newValue) { 
+                var names = newValue.split(' ')
+                this.firstName = names[0]
+                this.lastName = names[names.length - 1]
+            }
+        },
+        methods: {
+            add:function(){
+                console.log(this,this.count)
+                console.log(app3,app3.count)
+                this.count++;
+            },
+            minus(){
+                this.count--;
+            }, 
+            reverse(){
+                this.name="newname"
+              console.log(this.newMessage) //这里直接返回结果的哟 不用执行？
+            }
+        },
+    });
+    /*
+    var watchExampleVM = new Vue({
+        el: '#watch-example',
+        data: {
+            question: '',
+            answer: 'I cannot give you an answer until you ask a question!'
+        },
+        watch: {
+            // 如果 `question` 发生改变，这个函数就会运行
+            question: function (newQuestion, oldQuestion) {
+            this.answer = 'Waiting for you to stop typing...'
+            this.debouncedGetAnswer()
+            }
+        },
+        created: function () {
+            // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+            // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+            // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+            // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+            // 请参考：https://lodash.com/docs#debounce
+            this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+        },
+        methods: {
+            getAnswer: function () {
+            if (this.question.indexOf('?') === -1) {
+                this.answer = 'Questions usually contain a question mark. ;-)'
+                return
+            }
+            this.answer = 'Thinking...'
+            var vm = this
+            axios.get('https://yesno.wtf/api')
+                .then(function (response) {
+                vm.answer = _.capitalize(response.data.answer)
+                })
+                .catch(function (error) {
+                vm.answer = 'Error! Could not reach the API. ' + error
+                })
+            }
+        }
+    });
+    */
+    //在vue解析前，div中有一个属性cloak
+    //在vue解析之后，div中没有一个属性v-cloak
+    //这里实际上除了这个timeout之外，可以清晰看到犹豫链接没有加载出来 而会需要用到cloak
+    //如果不要display为none，则会清晰地看到 连接百度一下的弹出
+    //使用 v-cloak 解決 Vue Instance 完成編譯前顯示變數的問題。
+    setTimeout(() => {
+        const app4=new Vue({
+        el:"#html",
+        data:{
+            href:"<a href='http://www.baidu.com'>百度一下</a>",
+            message:"你只能看到我"
+        }
+    })
+    }, 1000); 
+    const app5 = new Vue({
+      el:"#img",
+      data:{
+        message:"img动态用法",
+        imgURL:"https://cn.bing.com/th?id=OIP.NaSKiHPRcquisK2EehUI3gHaE8&pid=Api&rs=1",
+        aHerf:"http://www.baidu.com"
+      }
+    })  
+</script>
+</html>
