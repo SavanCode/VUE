@@ -31,6 +31,59 @@
     </label>
     <div>你选择的性别是：{{sex}}</div> 
   </div>
+  <div id="checkbox">
+    <!-- checkbox单选框 -->
+    <h2>单选框</h2>
+    <label for="agree">
+      <input type="checkbox" id="agree" v-model="isAgree">同意协议
+    </label>
+
+    <div>你选择的结果是：{{isAgree}}</div>
+
+    <button :disabled="!isAgree">下一步</button>
+    <!-- checkbox多选框 -->
+    <h2>多选框</h2>
+
+      <label :for="item" v-for="(item, index) in oriHobbies" :key="index">
+        <input type="checkbox" name="hobby" :value="item" :id="item" v-model="hobbies">{{item}}
+      </label>
+      <!-- <input type="checkbox" name="hobby" value="篮球" v-model="hobbies">篮球
+      <input type="checkbox" name="hobby" value="足球" v-model="hobbies">足球
+      <input type="checkbox" name="hobby" value="羽毛球"  v-model="hobbies">羽毛球
+      <input type="checkbox" name="hobby" value="乒乓球"  v-model="hobbies">乒乓球 -->
+
+    <div>你的爱好是：{{hobbies}}</div>
+
+  </div>
+  <div id="select">
+    <!-- select单选 -->
+    <select name="fruit" v-model="fruit">
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+    <h2>你选择的水果是：{{fruit}}</h2>
+
+    <!-- select多选 -->
+    <select name="fruits" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+    <h2>你选择的水果是：{{fruits}}</h2>
+  </div>
+  <div id="app3">
+    <h2>v-model修饰符</h2>
+    <h3>lazy,默认情况是实时更新数据，加上lazy，从输入框失去焦点，按下enter都会更新数据</h3>
+    <input type="text" v-model.lazy="message">
+    <div>{{message}}</div>
+    <h3>修饰符number,默认是string类型，使用number赋值为number类型</h3>
+    <input type="number" v-model.number="age">
+    <div>{{age}}--{{typeof age}}</div>
+    <h3>修饰符trim:去空格</h3>
+    <input type="text" v-model.trim="name">
+
+  </div>
 </body>
 <script>
     var app= new Vue({
@@ -39,7 +92,7 @@
             message:""
         }
     })
-    const app2 = new Vue({
+    var app2 = new Vue({
       el:"#app2",
       data:{
         message:""
@@ -51,11 +104,38 @@
         }
       }
     })
-    const radio = new Vue({
+    var radio = new Vue({
       el:"#radio",
       data:{
         message:"zzz",
         sex:"男"
+      },
+
+    })
+    var checkbox = new Vue({
+      el:"#checkbox",
+      data:{
+        message:"zzz",
+        isAgree:false,
+        hobbies:[],
+        oriHobbies:["篮球","足球","羽毛球","乒乓球"]
+      },
+
+    })
+    var select = new Vue({
+      el:"#select",
+      data:{
+        fruit:"苹果",
+        fruits:[]
+      },
+
+    })    
+    var app3 = new Vue({
+      el:"#app3",
+      data:{
+        message:"zzz",
+        age:18,
+        name:"ttt"
       },
 
     })
