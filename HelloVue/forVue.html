@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>for in VUE</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+          <li v-for="(value,key,index) in user" >{{key+"-"+value+"-"+index}}</li>
+        </ul>
+      </div>
+      <div id="app2">
+        <!-- 不加key如果要插入f依次改变 -->
+        <ul>
+          <li v-for="item in letters">{{item}}</li>
+        </ul>
+        <button @click="add1">没有key</button>
+        <!-- 加key如果要插入f使用diff算法高效,如果使用index做key一直变，所以item如果唯一可以使用item-->
+        <ul>
+            <li v-for="item in letters1" :key="item">{{item}}</li>
+        </ul>
+        <button @click="add2">有key</button>
+      </div>
+      <div id="app3">
+        <!-- 数组的响应式方法 -->
+        <ul>
+          <li v-for="item in letters">{{item}}</li>
+        </ul>
+        <button @click="btn1">push</button><br>
+        <button @click="btn2">通过索引值修改数组</button>
+      </div>
+</body>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+        user:{
+            name:"zzz",
+            height:188,
+            age:24
+        }
+        }
+    })
+    const app2 = new Vue({
+      el:"#app2",
+      data:{
+        letters:['a','b','c','d','e'],
+        letters1:['a','b','c','d','e']
+      },
+      methods: {
+        add1(){
+          this.letters.splice(2,0,'f')
+        },
+        add2(){
+          this.letters1.splice(2,0,'f') //这里重复的key添加会有error
+        }
+      }
+    })
+    const app3 = new Vue({
+      el:"#app3",
+      data:{
+        letters:['a','b','c','d','e']
+      },
+      methods: {
+        btn1(){
+          //1.push
+          this.letters.push('f')
+          //2.pop()删除最后一个元素
+          //this.letters.pop()
+          //3.shift()删除第一个
+          //this.letters.shift()
+          //4.unshift()添加在最前面,可以添加多个
+          //this.letters.unshift('aaa','bbb','ccc')
+          //5.splice():删除元素/插入元素/替换元素
+          //splice(1,1)再索引为1的地方删除一个元素,第二个元素不传，直接删除后面所有元素
+          //splice(index,0,'aaa')再索引index后面删除0个元素，加上'aaa',
+          //splice(1,1,'aaa')替换索引为1的后一个元素为'aaa'
+          // this.letters.splice(2,0,'aaa')
+          //6.sort()排序可以传入一个函数
+          //this.letters.sort()
+          //7.reverse()反转
+          // this.letters.reverse()
+
+        },
+        btn2(){
+          this.letters[0]='f'
+        }
+      }
+    })
+</script>
+</html>

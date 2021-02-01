@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>防止组件复用，加上key 如果没有加key他不会重新渲染</p>
+        <span v-if="num<5">
+          <label for="username">用户账号</label>
+          <input type="text" id="username" placeholder="请输入用户名" key="username">
+        </span>
+        <span v-else-if="num===5">
+            <label for="email">用户邮箱</label>
+            <input type="text" id="email" placeholder="请输入用户邮箱" key="email" >
+        </span>
+        <span v-else="">
+            <label for="email">用户电话</label>
+            <input type="text" id="phone" placeholder="请输入用户电话" key="phone">
+        </span>
+        <button @click="num++">切换类型</button>
+      </div>
+      <div id="app2">
+        <h2 v-show="flag">v-show只是操作元素的style属性display，都没会被创建</h2>
+        <h2 v-if="flag">v-if是新增和删除dom元素</h2>
+        https://zhuanlan.zhihu.com/p/38179618
+      </div>
+</body>
+<script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        num:2
+      },
+      watch:{
+          num:function(newnum, oldnum){
+            console.log("newnum,newnum="+newnum+",oldnum="+oldnum) 
+        },
+      }
+    })
+    const app2 = new Vue({
+      el:"#app2",
+      data:{
+        flag:true
+      }
+    })
+</script>
+</html>

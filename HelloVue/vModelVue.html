@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>vModel 的使用 数据绑定</title>
+</head>
+<body>
+   <div id="app">
+       <p>v-model简单例子</p>
+    <input type="text" v-model="message"/>
+    <p>{{message}}</p>
+   </div>
+
+   <div id="app2">
+    <p>v-model 实现</p>
+    <p>
+        实现双向绑定需要是用v-bind(数据的联系)和v-on(事件触发)
+    </p>
+    <input type="text" :value="message" @input="valueChange($event)">
+    <p>{{message}}</p>
+</div>
+<div id="radio">
+    <!-- name属性radio互斥 使用v-model可以不用name就可以互斥 -->
+    <label for="male">
+      <input type="radio" id="male" name="sex" value="男" v-model="sex">男
+    </label>
+    <label for="female">
+        <input type="radio" id="female" name="sex" value="女" v-model="sex">女
+    </label>
+    <div>你选择的性别是：{{sex}}</div> 
+  </div>
+</body>
+<script>
+    var app= new Vue({
+        el:"#app",
+        data:{
+            message:""
+        }
+    })
+    const app2 = new Vue({
+      el:"#app2",
+      data:{
+        message:""
+      },
+      methods:{
+        valueChange(event){
+          console.log(event);
+          this.message = event.target.value
+        }
+      }
+    })
+    const radio = new Vue({
+      el:"#radio",
+      data:{
+        message:"zzz",
+        sex:"男"
+      },
+
+    })
+</script>
+</html>
