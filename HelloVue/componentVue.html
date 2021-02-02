@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>vue自定义组件练习</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 这里是不能够 直接用大写的哦 如果命名用了大写 编译要用横杠链接 -->
+        <simple-vue></simple-vue>
+    </div> 
+    <script>
+    // 注册
+    Vue.component('simpleVue', {
+      template: '<h1>自定义组件!</h1>'
+    })
+    // 创建根实例
+    new Vue({
+      el: '#app'
+    })
+    </script>
+</body>
+</html>
