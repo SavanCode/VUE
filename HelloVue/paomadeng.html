@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>跑马灯</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{info}}</p>
+        <input type="button" value="开启" v-on:click="run">
+        <input type="button" value="停止" v-on:click="stop">
+    </div>
+       
+</body>
+<script>
+     var vm = new Vue({
+         el:'#app',
+         data:{
+            info:"啦啦啦啦啦~~~ 啦啦啦啦",
+            intervalId: null
+         },
+         methods: {
+             run(){
+                // 如果当前有定时器在运行，则直接return
+                if (this.intervalId != null) {
+                        return;
+                    }
+                // 开始定时器
+                this.intervalId = setInterval(() => {
+                    this.info = this.info.substring(1) + this.info.substring(0, 1);
+                }, 500);
+             },
+             stop(){
+                if (this.intervalId === null) {
+                        return;
+                    }
+                clearInterval(this.intervalId);
+                this.intervalId=null
+             }
+         },
+     })
+</script>
+</html>

@@ -26,6 +26,8 @@
 </head>
 <body>
     <div id="app">
+        搜索书本名含有 <input type="text" v-model="keyWord" />
+        <button type="reset" @click="clear">清空输入</button>
         <table>
             <thead>
               <th>&nbsp;</th>
@@ -36,7 +38,8 @@
               <th>操作</th>
             </thead>
             <tbody>
-              <tr v-for="(book, index) in books" :key="index">
+              <!-- <tr v-for="(book, index) in books" :key="index"> -->
+            <tr v-for="(book, index) in search()" :key="index" >
                 <td>{{index}}</td>
                 <td>{{book.name}}</td>
                 <td>{{book.beginDate}}</td>
@@ -50,6 +53,15 @@
               </tr>
             </tbody>
           </table>
+
+          <h3>增加新书</h3>
+          <form action="">
+              书籍名称 <input type="text" v-model="name" />
+              出版日期 <input type="text"  v-model="beginDate"/>
+              价格<input type="number" v-model="price">
+              <button type="submit" v-on:click.prevent="addBook">添加</button>
+          </form>
+
           <h3>总价：{{"￥"+ totalPrice }}</h3>
     </div> 
 </body>
@@ -57,6 +69,10 @@
     var app= new Vue({
         el:"#app",
         data:{ 
+            keyWord:"",
+            name:"",
+            beginDate:"",
+            price:"",
             books: [{
                 name: "《算法导论》",
                 beginDate: "2006-9",
@@ -108,7 +124,29 @@
                 ///console.log("before" + this.books.map(item=>item.name))
                this.books.splice(index,1)
                //console.log("after" + this.books.map(item=>item.name))
-            }
+            },
+            addBook(){
+                let newbook={
+                    name:this.name,
+                    beginDate:this.beginDate,
+                    //price:Number.parseFloat(this.price).toFixed(2),
+                    price:Number.parseInt(this.price),
+                    quantity: 1
+                }
+                this.books.push(newbook)
+                console.log(newbook)
+                this.name=""
+                this.beginDate=""
+                this.price=""
+            },
+            search() {
+                return this.books.filter(item => {
+                return item.name.includes(this.keyWord) != false;
+                }); 
+            },
+            clear(){
+                this.keyWord=""
+            }  
         }
     })
 </script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{ info }}</p> 
+    console data get <button @click="anotherGet">点击get console</button> <br>
+    console data post <button @click="anotherPost">点击post console</button> <br>
+    <input type="text" v-model="citySearch" placeholder="请输入想查询的城市">
+    <button @click="getInfo">点击查询</button>
+</div>
+<script type = "text/javascript">
+Vue.prototype.$http = axios;
+let app=new Vue({
+  el: '#app',
+  data :{
+    info:"",
+    city:"沈阳",
+    citySearch:'',
+    mylist:'',
+    yesday:''
+  },
+  mounted () {
+   // 发送get请求
+    // 参数1: 必填，字符串，请求的数据接口的url地址，例如请求地址：http://www.baidu.com?id=200
+    // 参数2：可选，请求参数和请求头内容，json对象，要提供给数据接口的参数
+    axios.get(' http://wthrcdn.etouch.cn/weather_mini?city='+this.city,{ // http://www.baidu.com
+
+    }).then(response=>{ // 请求成功以后的回调函数
+            console.log("请求成功");
+            this.info=response.data; // 获取服务端提供的数据
+
+    }).catch(error=>{   // 请求失败以后的回调函数
+            console.log("请求失败");
+            this.info=error.response;  // 获取错误信息
+    });
+  },
+  methods: {
+    getInfo(){
+      axios.get('http://wthrcdn.etouch.cn/weather_mini',{
+                params: {
+                    'city': this.citySearch
+                }
+                }
+            ).then(
+                response=>{
+                    this.mylist = response.data.data.forecast;
+                    this.yesday = response.data.data.yesterday;
+                    console.log(this.mylist)
+                }
+            ).catch(error=>{
+                this.is_show = true;
+                this.war = '请求失败'
+                }
+
+            )
+    },
+    async anotherGet(){ 
+      const {data}= await this.$http.get(' http://www.liulongbin.top:3005/api/getprodlist')
+      console.log(data)
+    },
+    async anotherPost(){ 
+      const {data}= await this.$http.post(' http://www.liulongbin.top:3005/api/addproduct',{name:'aa'})
+      console.log(data)
+    }
+  },
+})
+</script>
+</body>
+</html>
