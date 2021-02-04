@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>axios</title>
+</head>
+<body>
+    <div id="app">
+        <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>ctime</th>
+                <th>name</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(value,key,index) in list" >
+                <td>{{value.id}}</td>
+                <td>{{value.ctime}}</td>
+                <td>{{value.name}}</td> 
+            </tr>
+        </tbody>
+    </table>
+        <input type="text" v-model="newName" />
+        <button mat-button @click="addThis">add</button>
+    </div>
+      
+
+    <p>这里是利用尚硅谷的例子</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<script>
+    Vue.prototype.$http = axios;
+    let app=new Vue({
+  el: '#app',
+  data :{ 
+      list:[],
+      newName:""
+  },
+  created() { 
+    this.anotherGet();
+  },
+  methods: {
+    async anotherGet(){ 
+      const {data}= await this.$http.get(' http://www.liulongbin.top:3005/api/getprodlist')
+      if(data.status===0){ 
+          console.log(data.message)
+          this.list = data.message
+        }
+     
+    },
+    async anotherPost(input){ 
+      const {data}= await this.$http.post(' http://www.liulongbin.top:3005/api/addproduct',{name:input})
+      console.log(data)
+      if(data.status===1){
+        alert(data.message)
+      }else if(data.status===0){
+        alert(data.message)
+      }
+      this.newName=""
+    }, 
+    addThis(){
+        this.anotherPost(this.newName)
+    }
+  },
+})
+</script>
+</body>
+</html>

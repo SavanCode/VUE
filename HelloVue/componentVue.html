@@ -7,19 +7,134 @@
     <title>vue自定义组件练习</title>
 </head>
 <body>
-    <div id="app">
-        <!-- 这里是不能够 直接用大写的哦 如果命名用了大写 编译要用横杠链接 -->
-        <simple-vue></simple-vue>
-    </div> 
-    <script>
-    // 注册
-    Vue.component('simpleVue', {
-      template: '<h1>自定义组件!</h1>'
-    })
-    // 创建根实例
-    new Vue({
-      el: '#app'
-    })
-    </script>
+  <div id="app">
+    <!-- 这里是不能够 直接用大写的哦 如果命名用了大写 编译要用横杠链接 -->
+    <mysimple-vue></mysimple-vue>
+   <simple-vue></simple-vue>
+    
+
+   <input type="button" value="change mode" @click="flag=!flag"></input>
+   <login v-if="flag"></login>
+   <register v-else="flag"></register> 
+   
+   <component :is="'register'"></component>
+  </div> 
+  <div id="app1">
+    <div>
+      <input v-model="parentMsg">
+      <br>
+          <!-- 这里变量要换写的方式 -->
+      <child v-bind:props-message="parentMsg"></child>
+    </div>
+  </div>
+  <div id="app2">
+          <!-- 这里变量要换写的方式 -->
+      <child2 v-bind:msgobj="msgObj"></child2>
+  </div>
+  <div id="app3">
+    <hr>
+    父组件
+    <!-- 父组件向子组件传递方法v-on 传递数据v-bind-->
+     <com1 @func="show"></com1>
+  </div>
+  <div id="refSample">
+    <button @click="getInfo" ref="btn">点击获取元素内容</button>
+    <h3 ref="myh3">这是myh3{{ msg }}</h3>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+
+const componentContent = Vue.extend({
+   template: '<h1>自定义组件!</h1>'
+})
+
+Vue.component('mysimpleVue', componentContent)
+
+Vue.component('login', {
+  template:'<h3>login</h3>'
+})
+Vue.component('register', {
+  template:'<h3>register</h3>'
+})
+
+
+const app = new Vue({
+  el: '#app',
+   data:{
+     flag:false
+  },
+  components:{//局部组件创建
+    simpleVue:componentContent
+  }
+})
+const app1=new Vue({
+  el: '#app1',
+  data: {
+	parentMsg: '父组件内容'
+  },
+    methods:{},
+    components:{
+        'child': {
+          // 声明 props
+          props: ['propsMessage'],
+          // 同样也可以在 vm 实例中像 “this.message” 这样使用
+          template: '<span>{{ propsMessage }}</span>'
+        }
+    }
+})
+
+const app2=new Vue({
+  el: '#app2',
+  data:{
+    msgObj:{
+        number:'1',
+        rank:'1'
+    }
+  },
+    components:{
+      'child2':{
+        // 声明 props
+        props: ['msgobj'],
+        // 同样也可以在 vm 实例中像 "this.message" 这样使用
+        template:'<span>{{ JSON.stringify(msgobj) }}</span>'
+      }
+    }
+})
+const app3=new Vue({
+  el:"#app3",
+  data:{},
+  methods: {
+    show(){
+      console.log("父组件的button")
+    }
+  },
+  components:{
+    'com1':{
+      template:'<div><button @click="btnClick">这是子元素</button><button @click="btnClick2">这是子元素</button></div>',
+      methods:{
+        btnClick(){
+          console.log("子组件的button")
+        },
+        btnClick2(){
+          this.$emit('func')
+        }
+      },
+    }
+  }
+})
+const refsample= new Vue({
+  el:'#refSample',
+  data:{
+    msg:"sample"
+  },
+  methods: {
+    getInfo(){
+      console.log(this.$refs)
+      console.log(this.$refs.myh3.innerHTML)
+      this.$refs.myh3.msg='123321'
+    }
+  },
+})
+</script>
 </body>
 </html>
