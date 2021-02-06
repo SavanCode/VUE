@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>slot</title>
+</head> 
+<body> 
+    <div id="app">
+        <cpn></cpn>
+        <cpn> 
+           <!-- 利用template的目的是获取子组件的pLanguage  slot-scope是给slot的整个对象命名  slot.data就是取到自组建的data-->
+          <template slot-scope="slot">
+              <span v-for="item in slot.data">{{item}} - </span>
+              <br>
+            <!-- <span>{{slot.data.join(' - ')}}</span> -->
+          </template>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <!-- data绑定本身template里面的data -->
+           <slot :data="pLanguages"><li v-for="item in pLanguages">{{item}}</li></slot>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template:'#cpn',
+            data(){
+                return{
+                   pLanguages: ['javascript','c++','go','java']
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isShow:false
+            },
+            methods: {},
+            components:{
+                cpn
+            }
+        });
+    </script>
+</body>
+</html>
