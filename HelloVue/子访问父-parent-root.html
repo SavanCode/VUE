@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <title>子访问父-parent-root</title>
+</head>
+<body>
+    	<!-- 开发的时候用的很少 -->
+
+		<template id="cpn">
+			<div>
+				<div>我是子组件</div>
+				<ccpn></ccpn>
+			</div>			
+		</template>
+		<template id="ccpn">
+			<div>
+				<div>我是子子组件</div>
+				<button @click="btnClick">按钮</button>
+			</div>
+		</template>
+		<div id="app">
+			
+				<cpn></cpn>
+			
+		</div>
+        <script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				components: {
+					cpn: {
+						template: "#cpn",
+						data() {
+							return {
+								name: 'cpn name'
+							}
+						},
+						components: {
+							ccpn: {
+								template: "#ccpn",
+								methods: {
+									btnClick() {
+										//1.访问父组件 $parent
+										console.log(this.$parent);
+										
+										// 2.访问根组件
+										console.log(this.$root);
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+		</script>
+</body>
+</html>
