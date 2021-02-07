@@ -1,6 +1,6 @@
 # myvue
 
-> A Vue.js project
+> A Vue.js 自动创建project 然后增加最基本的router逻辑
 
 ## Build Setup
 
