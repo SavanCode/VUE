@@ -44,7 +44,8 @@
           Docs for This Template
         </a>
       </li>
-    </ul>
+    </ul> 
+   <router-view></router-view>
   </div>
 </template>
 

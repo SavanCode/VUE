@@ -1,11 +1,12 @@
 <template>
-  <div>this is about
-  <p>这是一个about页面</p></div>
+  <div>
+      <h1>404 not found</h1>
+  </div>
 </template>
 
 <script>
 export default {
- name: 'About'
+
 }
 
 </script>
