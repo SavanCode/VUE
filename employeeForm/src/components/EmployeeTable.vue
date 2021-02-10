@@ -11,10 +11,20 @@
       </thead>
       <tbody>
         <tr  v-for="(employee,index) in employees" :key="employee.id">
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.email }}</td>
-          <td>
-            <button>Edit</button>
+          <td v-if="editing === employee.id">
+            <input type="text" v-model="employee.name" />
+          </td>
+          <td v-else>{{ employee.name }}</td>
+          <td v-if="editing === employee.id">
+            <input type="text" v-model="employee.email" />
+          </td>
+          <td v-else>{{ employee.email }}</td>
+          <td v-if="editing === employee.id">
+                <button @click="editEmployee(employee)">Save</button>
+                <button class="muted-button" @click="editing = null">Cancel</button>
+          </td>
+          <td v-else>
+            <button @click="editMode(employee.id)">Edit</button>
             <button @click="$emit('delete', employee.id)">Delete</button>
           </td>
         </tr>
@@ -37,6 +47,21 @@ export default {
         }],
           required: true //在使用组件必传值
           }
+    },
+    data(){
+      return{
+        editing:null
+      }
+    },
+    methods: {
+      editMode(id) {
+        this.editing = id
+      },
+      editEmployee(employee) {
+        if (employee.name === '' || employee.email === '') return
+        this.$emit('edit', employee.id, employee)
+        this.editing = null
+      }
     }
 }
 

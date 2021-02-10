@@ -5,7 +5,7 @@
    <employee-form @add="addEmployee" />
 
     <h1>Employees Table</h1>
-    <employee-table :employees="employees" @delete="deleteEmployee"/>
+    <employee-table :employees="employees" @edit="editEmployee" @delete="deleteEmployee"/>
     <!-- <router-view/> -->
     <!-- <button @click="addEmployee">add</button> -->
   </div>
@@ -61,6 +61,11 @@ export default {
       console.log("deleting")
       this.employees = this.employees.filter(
         item => item.id !== id
+      )
+    },
+    editEmployee(id, updatedEmployee) {
+      this.employees = this.employees.map(employee =>
+        employee.id === id ? updatedEmployee : employee
       )
     }
   }
