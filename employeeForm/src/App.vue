@@ -5,9 +5,9 @@
    <employee-form @add="addEmployee" />
 
     <h1>Employees Table</h1>
-    <employee-table :employees="employees"/>
+    <employee-table :employees="employees" @delete="deleteEmployee"/>
     <!-- <router-view/> -->
-    <button @click="addEmployee">add</button>
+    <!-- <button @click="addEmployee">add</button> -->
   </div>
 </template>
 
@@ -56,6 +56,12 @@ export default {
       this.employees = [...this.employees, employee]
       console.log('adding',newEmployee)
       console.log('done, now: ',this.employees)
+    },
+    deleteEmployee(id){
+      console.log("deleting")
+      this.employees = this.employees.filter(
+        item => item.id !== id
+      )
     }
   }
 }
