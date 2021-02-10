@@ -10,8 +10,8 @@
     <div id="app">
         <cpn></cpn>
         <cpn> 
-           <!-- 利用template的目的是获取子组件的pLanguage  slot-scope是给slot的整个对象命名  slot.data就是取到自组建的data-->
-          <template slot-scope="slot">
+           <!-- 利用template的目的是获取v-子组件的pLanguage  slot-scope是给slot的整个对象命名  slot.data就是取到自组建的data-->
+          <template v-slot="slot">
               <span v-for="item in slot.data">{{item}} - </span>
               <br>
             <!-- <span>{{slot.data.join(' - ')}}</span> -->
