@@ -40,5 +40,8 @@ export default {
 .submitBtn{
     font-size: larger;
     padding: 10px;
+    color: white;
+    background-color: #2cc28a;
+    border: none
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div> 
-          <transition-group class="todotable" tag="ul" name="list"> 
-          <li v-for="todo in todoList" :key="todo.id" @click="$emit('changeStatus', todo.id)">
+      <transition-group class="todotable" tag="ul" name="list"> 
+          <li v-for="todo in todoList" :key="todo.id" @click="$emit('changeStatus', todo.id)"  >
               <div class="list"> 
-             <span :class="{finishStyle:todo.finish}">  {{todo.content}} </span> <span> <button  @click="$emit('delete', todo.id)" >delete</button> </span>
+             <span :class="{finishStyle:todo.finish}">  {{todo.content}} </span> <span> <button  @click="$emit('delete', todo.id)" >X</button> </span>
             </div>
           </li>
       </transition-group>
@@ -26,7 +26,7 @@ export default {
     },
     mounted() {
         console.log(this.todoList)
-    },
+    }, 
 }
 
 </script>
@@ -34,8 +34,10 @@ export default {
 .todotable{
     list-style: none;
     line-height: 50px;
-    height: 50px; 
+    height: 50px;  
+    width: 50%;
     margin-left: auto;
+    margin-right: auto;
 }
 .list{
     display: flex;
@@ -60,4 +62,17 @@ export default {
 .finishStyle{
     text-decoration: line-through
 }
+button{
+    color: #e77348;
+    background-color: #2cc28a00;
+    border: none;
+    font-size: larger;
+    padding: 5px;
+}
+
+li:hover {
+	 background-color: rgba(0, 0, 0, 0.25);
+     color:white
+}
+ 
 </style>

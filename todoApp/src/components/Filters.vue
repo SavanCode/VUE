@@ -13,4 +13,10 @@ export default {
 
 </script>
 <style scoped>
+button{
+    color: white;
+    background-color: #e77348;
+    border: none;
+    padding: 5px;
+}
 </style>
