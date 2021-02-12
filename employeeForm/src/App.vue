@@ -3,9 +3,9 @@
     <img src="./assets/logo.png">
 
    <employee-form @add="addEmployee" />
-
+    <search-bar @search="setKeyword"></search-bar>
     <h1>Employees Table</h1>
-    <employee-table :employees="employees" @edit="editEmployee" @delete="deleteEmployee"/>
+    <employee-table :employees="filteredResult" @edit="editEmployee" @delete="deleteEmployee"/>
     <!-- <router-view/> -->
     <!-- <button @click="addEmployee">add</button> -->
   </div>
@@ -15,12 +15,14 @@
 // @用来引用src文件夹
 import EmployeeTable from '@/components/EmployeeTable.vue'
 import EmployeeForm from '@/components/EmployeeForm.vue'
+import SearchBar from '@/components/SearchBar.vue'
 
 export default {
   name: 'app',
   components:{
     EmployeeTable,
-    EmployeeForm
+    EmployeeForm,
+    SearchBar
   },
   //这里的app也只是一个component哦 所以还是用函数， 这里的数据写死 传给form
   data(){
@@ -41,13 +43,27 @@ export default {
               //   name: 'Dinesh Chugtai',
               //   email: 'dinesh@piedpiper.com',
               // },
-            ]
+            ],
+      keyword:''
       }
   },
-  mounted() {
+  created(){
      console.log('now: ',this.employees)
      this.getEmployees()
-  }, 
+  }
+  , 
+  computed:{
+    filteredResult: function() { 
+      //console.log('now keyword',this.keyword)
+      if(this.keyword===''){
+        return this.employees
+      }else{
+        return this.employees.filter(employee => {  
+          return  employee.name.toLowerCase().includes(this.keyword.toLowerCase())==true });
+      }
+    }
+  }
+  ,
   methods: {
     // addEmployee: function(employee) {
     //   console.log('addEmployee')
@@ -115,6 +131,10 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    setKeyword:function(keyword){
+      console.log("searching",keyword)
+      this.keyword=keyword
     }
   }
 }
