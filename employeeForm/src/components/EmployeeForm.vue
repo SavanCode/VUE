@@ -7,9 +7,9 @@
          <p v-if="success" class="success-message"> Employee successfully added</p>
       <form @submit.prevent="handleSubmit"> 
             <label>Employee name</label>
-            <input type="text" placeholder="please enter a new name" v-model="employee.name" ref="start" /> 
+            <input type="text" placeholder="please enter a new name" v-model="employee.name" ref="start" @focus="clearStatus"  @keypress="clearStatus" :class="{ 'has-error': submitting && invalidEmail }"/> 
             <label>Employee Email</label>
-            <input type="email" placeholder="please enter a vaild email" v-model="employee.email" />
+            <input type="email" placeholder="please enter a vaild email" v-model="employee.email" @focus="clearStatus"  @keypress="clearStatus" :class="{ 'has-error': submitting && invalidEmail }" />
             <button type="submit">Add Employee</button>
       </form>
   </div>
@@ -84,5 +84,8 @@ form {
     font-size: x-large;
     text-align: center;
     color: #29de7d;
+  }
+  .has-error{
+    /* 因为使用了简单的引入css 所以这里不用写 https://unpkg.com/primitive-ui/dist/css/main.css*/
   }
 </style>
