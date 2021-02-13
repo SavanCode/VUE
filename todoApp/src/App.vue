@@ -35,6 +35,17 @@ export default {
             ]
     }
   },
+  mounted() {
+    
+    if(localStorage.getItem('todoList')) {
+      try {
+        this.todoList = JSON.parse(localStorage.getItem('todoList'));
+      } catch(e) {
+        console.log(e)
+        //localStorage.removeItem('todoList');
+      }
+    }
+  },
   methods:{
     addItem:function(newItem){
       console.log('adding')
@@ -42,14 +53,18 @@ export default {
       const id = lastId + 1;
       const newTodo = { ...newItem, id };
       this.todoList = [...this.todoList, newTodo]
-      console.log('adding',newTodo)
+      //console.log('adding',newTodo)
       console.log('done, now: ',this.todoList)
+      let parsed = JSON.stringify(this.todoList);
+      localStorage.setItem('todoList', parsed);
     },
     deleteItem:function(id){
       console.log("deleting")
       this.todoList = this.todoList.filter(
         item => item.id !== id
       )
+      let parsed = JSON.stringify(this.todoList);
+      localStorage.setItem('todoList', parsed);
     },
     handleFinish:function(id){
       console.log("finish")
@@ -58,12 +73,18 @@ export default {
           if(item.id === id){item.finish=!item.finish}
         }
       )
+      let parsed = JSON.stringify(this.todoList);
+      localStorage.setItem('todoList', parsed);
     },
     clearDoneItem:function(){
       this.todoList=this.todoList.filter(item => item.finish!== true)
+      let parsed = JSON.stringify(this.todoList);
+      localStorage.setItem('todoList', parsed);
     },
     clearAllItem:function(){
       this.todoList=[]
+      let parsed = JSON.stringify(this.todoList);
+      localStorage.setItem('todoList', parsed);
     }
   }
 }

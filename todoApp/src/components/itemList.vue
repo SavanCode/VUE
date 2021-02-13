@@ -1,7 +1,7 @@
 <template>
   <div> 
       <transition-group class="todotable" tag="ul" name="list"> 
-          <li v-for="todo in todoList" :key="todo.id" @click="$emit('changeStatus', todo.id)"  >
+          <li v-for="todo in todoList" :key="todo.id" @click="$emit('changeStatus', todo.id)">
               <div class="list"> 
              <span :class="{finishStyle:todo.finish}">  {{todo.content}} </span> <span> <button  @click="$emit('delete', todo.id)" >X</button> </span>
             </div>
