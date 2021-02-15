@@ -1,6 +1,8 @@
 # vuex01
 
 > A Vue.js project
+最基本的Vuex的运用 counter
+![]（pic.png）
 
 ## Build Setup
 

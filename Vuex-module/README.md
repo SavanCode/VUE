@@ -1,6 +1,8 @@
 # vuex-module
 
 > A Vue.js project
+两个module在Vuex中的调用
+![](pic.png)
 
 ## Build Setup
 
