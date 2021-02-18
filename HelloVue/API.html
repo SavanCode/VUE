@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <template>
+            <!--添加批量价格更新-->
+            <p>
+                <input v-model.number="price">
+                <button @click="batchUpdate">批量更新价格</button>
+            </p>
+            <div class="course-list" v-else>
+                <div
+                    v-for="c in courses" :key="c.name">
+                    <!--添加批量价格更新-->
+                    {{ c.name }}  - ￥{{c.price}}
+                </div>
+            </div>
+        </template>
+        <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+        <script>
+            function getCourses(){
+                return new Promise(resolve => {
+                    setTimeout(() => { // 修改返回数据结构为对象 
+                        resolve([{ name: 'web全栈' }, { name: 'web高级' }]) }, 200); 
+                        }) 
+                    }
+            const app = new Vue({
+                data() {
+                    return {
+                        price: 0 // 增加价格数据
+                    }
+                },
+                methods: { 
+                    // 添加批量价格更新方法 
+                    batchUpdate() { 
+                        this.courses.forEach(c => { 
+                        // c.price = this.price; // no ok 
+                        Vue.set(c, 'price', this.price); })}  // ok  
+                    }, 
+                })
+         </script> 
+    </body>
+</html>
+
