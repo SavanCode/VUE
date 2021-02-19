@@ -1,6 +1,8 @@
 <template>
   <div class="BtnSpace">
-      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius']">{{name}}</button><button class="right_radius blackBtn">..</button><button :style="{'display': search ? 'inline-block':'none'}" class="searchBtn"><i class="icon iconfont icon-icon-test"></i>查询</button>
+      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius']">{{name}}</button>
+      <button class="right_radius blackBtn"><i class="icon iconfont icon-Dots"></i></button>
+      <button :style="{'display': search ? 'inline-block':'none'}" class="searchBtn"><i class="icon iconfont icon-icon-test"></i>查询</button>
   </div>
 </template>
 
@@ -80,7 +82,11 @@ border-bottom-right-radius: 6px;
 .blackBtn{
   height: 30px; 
   background-color: darkgray;
+  display: flex;
+  flex-direction: column-reverse;
 }
-
+.icon-Dots{
+  font-size: x-small;
+}
 
 </style>
