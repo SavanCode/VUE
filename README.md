@@ -16,3 +16,6 @@ router 的练习 跳转，传参，拦截保护
 
 ## Vuex01
 基本的Vuex练习 - 计数器
+
+## Vuex-module
+modeule 数据更新的例子
