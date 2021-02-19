@@ -1,6 +1,6 @@
 <template>
   <div class="BtnSpace">
-      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius']">{{name}}</button>
+      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius', spacing ? 'spacing':'']">{{name}}</button>
       <button class="right_radius blackBtn"><i class="icon iconfont icon-Dots"></i></button>
       <button :style="{'display': search ? 'inline-block':'none'}" class="searchBtn"><i class="icon iconfont icon-icon-test"></i>查询</button>
   </div>
@@ -27,6 +27,10 @@ export default {
       font:{
         type:String,
         default:''
+      },
+      spacing:{
+        type:Boolean,
+        default:false
       }
     }
 }
@@ -43,8 +47,8 @@ export default {
     /* padding: 5px 30px; */
     border-style: solid;
     /* border-radius: 5px; */
-    min-width: 171px;
-    width: 171px;
+    min-width: 131px;
+    width: 131px;
     height: 30px; 
 }
 .yellow{
@@ -52,13 +56,14 @@ export default {
     /* padding: 5px 30px; */
     border-style: solid;
     /* border-radius: 5px; */
-    min-width: 171px; 
-    width: 171px;
+    min-width: 131px;
+    width: 131px;
     height: 30px; 
 }
 .searchBtn{
   /* padding:5px 5px */
     height: 30px; 
+    border-radius: 10px;
 }
 .black{
   back:black;
@@ -88,5 +93,7 @@ border-bottom-right-radius: 6px;
 .icon-Dots{
   font-size: x-small;
 }
-
+.spacing{
+  letter-spacing: 5px
+}
 </style>

@@ -2,12 +2,12 @@
   <div class="controlPad">  
     <div class="col1">
        <Btn name="工艺制作单"  class="addMargin"  type="1" :search="true"/>
-       <Btn name="成品订单" type="1" :search="true"/>
-       <Btn name="加工订单" class="clearMargin" type="1" :search="true"/>
+       <Btn name="成品订单" type="1" :search="true" :spacing="true"/>
+       <Btn name="加工订单" class="clearMargin" type="1" :search="true" :spacing="true"/>
         <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
        <Btn name="销售发货计划" class="clearMargin" type="2"/>
        <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
-       <Btn name="销售发货" class="clearMargin" type="1" :search="true"/>
+       <Btn name="销售发货" class="clearMargin" type="1" :search="true" :spacing="true"/>
        <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
        <Btn name="订单进度查询" class="clearMargin" type="1"/>
     </div>
@@ -15,11 +15,11 @@
       <div> <i class="icon iconfont icon-right"></i> </div>
     </div>
     <div class="col3">
-      <Btn name="国内客户" type="1" :search="true"/>
+      <Btn name="国内客户" type="1" :search="true" :spacing="true"/>
       <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
-      <Btn name="国内订单" type="1" />
+      <Btn name="国内订单" type="1" :spacing="true"/>
       <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
-      <Btn name="营销发货" type="1" />
+      <Btn name="营销发货" type="1"  :spacing="true" />
       <p class="arrow"> <i class="icon iconfont icon-xiangxiajiantou"></i> </p>
       <Btn name="订单发货进度" type="2" />
     </div>
@@ -72,7 +72,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 .arrow{
-  text-align: center !important;
+  /* text-align: center !important; */
+  padding-left: 50px;
 }
 .col2{
     /* margin-block: auto; */
