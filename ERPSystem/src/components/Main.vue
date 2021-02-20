@@ -80,10 +80,10 @@ export default {
     margin-top: 180px;
 }
 .icon-right{
-    font-size: 50px;
+    font-size: 10vw;
 }
 .icon-xiangxiajiantou{
-    font-size: xx-large;
+    font-size: 5vw;
 }
 .clearMargin{
   margin: 10px 0 !important

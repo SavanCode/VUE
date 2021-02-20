@@ -25,29 +25,36 @@ export default {
     PaperClip
   }, 
   // data() {
-  //   return {
-  //     // 自适应~~ 等会回来补
+  //   return { 
   //     screenWidth: ''
   //   };
   // },
-  // methods:{
-  //   mounted () {
-  //     const that = this 
-  //     window.onresize = () => {
-  //         return (() => {
-  //             window.screenWidth = document.body.clientWidth
-  //             that.screenWidth = window.screenWidth
-  //         })()
-  //       }
-  //   }
-  // }
+  methods:{
+    // mounted () {
+    //   const that = this 
+    //   window.onresize = () => {
+    //       return (() => {
+    //           window.screenWidth = document.body.clientWidth
+    //           that.screenWidth = window.screenWidth
+    //       })()
+    //     }
+    // } 
+      mounted: function() {
+        // 页面开始加载时修改font-size
+        var html = document.getElementsByTagName("html")[0];
+        var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+        // 这里的750是指设计图的大小,自己根据实际情况改变
+        html.style.fontSize = oWidth / 750 * 100 + "px";
+        console.log('rem:', html.style.fontSize);
+    }
+  }
 }
 </script>
 
 <style>
 #app {
   /* 1024 */
-  min-width: 1124px; 
+  min-width: 800px; 
   min-height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -62,5 +69,24 @@ export default {
 }
 .main{
   flex:1 0 auto
+}
+
+/* 手机屏幕的字体大小 */
+@media screen and (max-width: 768px) {
+  #app {
+    font-size: 0.05rem !important;
+  }
+}
+/* 笔记本电脑的字体大小 */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #app {
+    font-size: 0.8rem !important;
+  }
+}
+/* 台式电脑显示器屏幕字体大小 */
+@media screen and (min-width: 1024px) {
+  #app {
+    font-size: 2rem !important;
+  }
 }
 </style>

@@ -59,8 +59,12 @@ export default {
   margin: 0 0 0 50px;
 }
 img {
-  width: 70px;
-  height: 70px;
+  /* width: 70px;
+  height: 70px; */
+  width: 10vw;
+  height: 10vw;
+  max-width: 135px;
+  max-height: 135px;
 }
 p {
   text-align: center;

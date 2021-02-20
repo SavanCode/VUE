@@ -57,18 +57,18 @@ export default {
 .brand{
     font-weight: bold;
     color: blue; 
-    font-size: 25px;
-    line-height: 25px;
+    /* font-size: 25px; */
+    /* line-height: 25px; */
 }
 .title{
-    font-size: 25px;
-    line-height: 25px;
+    /* font-size: 25px; */
+    /* line-height: 25px; */
     font-family: cursive;
     font-weight: bolder;
 }
 .titleRight > p{
-    font-size: 15px;
-    line-height: 15px;
+    /* font-size: 15px;
+    line-height: 15px; */
     margin-right:20px
 }  
 .icon-delete{

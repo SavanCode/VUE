@@ -44,29 +44,45 @@ export default {
 }
 .blue{
     background-color: rgb(130 225 255);
-    /* padding: 5px 30px; */
     border-style: solid;
-    /* border-radius: 5px; */
-    min-width: 131px;
-    width: 131px;
-    height: 30px; 
+    /* min-width: 131px;
+    width: 131px; */
+    width: 10vw;
+    /* height: 30px;  */
+    height:2vw;
+    min-height:30px;
+    display: block;/*重要的*/
+    overflow: hidden;
+    white-space: nowrap;/* 换行不显示*/
+    text-overflow:ellipsis;/*这行以上必要*/
 }
 .yellow{
     background-color: yellow;
-    /* padding: 5px 30px; */
     border-style: solid;
-    /* border-radius: 5px; */
-    min-width: 131px;
-    width: 131px;
-    height: 30px; 
+    /* min-width: 131px;
+    width: 131px; */
+    width: 10vw;
+    /* height: 30px;  */
+    height:2vw;
+    min-height:30px;
+    display: block;/*重要的*/
+    overflow: hidden;
+    white-space: nowrap;/* 换行不显示*/
+    text-overflow:ellipsis;/*这行以上必要*/
 }
 .searchBtn{
-  /* padding:5px 5px */
-    height: 30px; 
+    /* height: 30px;  */
+    height:2vw;
+    min-height: 30px;
     border-radius: 10px;
+    display: block;/*重要的*/
+    overflow: hidden;
+    white-space: nowrap;/* 换行不显示*/
+    text-overflow:ellipsis;/*这行以上必要*/
+    width: 5vw;
 }
 .black{
-  back:black;
+  color:black;
 }
 .red{
   color: red
@@ -85,7 +101,9 @@ border-bottom-left-radius: 0px;
 border-bottom-right-radius: 6px;
 }
 .blackBtn{
-  height: 30px; 
+  /* height: 30px;  */
+  height:2vw;
+  min-height:30px;
   background-color: darkgray;
   display: flex;
   flex-direction: column-reverse;
@@ -95,5 +113,24 @@ border-bottom-right-radius: 6px;
 }
 .spacing{
   letter-spacing: 5px
+}
+
+
+@media screen and (max-width: 768px) {
+  button {
+    font-size: 1vw !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  button {
+    font-size: 1vw  !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  button {
+    font-size: 1vw !important;
+  }
 }
 </style>
