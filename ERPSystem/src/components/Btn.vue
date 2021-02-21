@@ -2,7 +2,7 @@
   <div class="BtnSpace">
       <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius', spacing ? 'spacing':'']" :style="{ width: btnWidth +'px',fontSize:fontSize+'px',height:btnHeight+'px'}">{{name}}</button>
       <button class="right_radius blackBtn" :style="{height:btnHeight+'px'}"><i class="icon iconfont icon-Dots"></i></button>
-      <button :style="{'display': search ? 'inline-block':'none', fontSize:fontSize+'px',height:btnHeight+'px'}" class="searchBtn"><i class="icon iconfont icon-icon-test"></i>查询</button>
+      <button :style="{'display': search ? 'inline-block':'none', fontSize:fontSize+'px',height:btnHeight+'px'}" class="searchBtn"><i class="icon iconfont icon-icon-test"  :style="{fontSize:fontSize+'px'}"></i>查询</button>
   </div>
 </template>
 
@@ -81,31 +81,22 @@ export default {
   align-items: center; 
 }
 .blue{
-    background-color: rgb(130 225 255);
-    border-style: solid; 
-    min-height:30px;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow:ellipsis;
+    background-color: rgb(130 225 255); 
 }
 .yellow{
-    background-color: yellow;
+    background-color: yellow; 
+}
+.searchBtn{   
+    border-radius: 10px; 
+}
+.blue, .yellow, .searchBtn{
     border-style: solid; 
     min-height:30px;
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
-}
-.searchBtn{  
-    min-height: 30px;
-    border-radius: 10px;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow:ellipsis; 
-}
+  }
 .black{
   color:black;
 }

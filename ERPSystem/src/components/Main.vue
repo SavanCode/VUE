@@ -70,7 +70,7 @@ export default {
 
 </script>
 <style scoped>
- .controlPad{
+.controlPad{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
