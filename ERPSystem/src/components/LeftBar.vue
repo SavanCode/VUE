@@ -1,6 +1,6 @@
 <template>
   <div class="leftBar">
-    <div>
+    <div ref="option">
       <img
         src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
         alt=""
@@ -48,9 +48,28 @@
 <script>
 export default {
   data() {
-    return {};
+    return {  
+       width:0,
+       height:0
+    };
   },
-};
+  mounted () {
+    this.observeSize()
+  },
+  methods: {
+    observeSize () {
+      const ro = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+          const { width, height } = entry.contentRect
+          this.width = width
+          this.height = height
+          this.$emit('changed',width)
+        })
+      })
+      ro.observe(this.$refs.option)
+    }
+  }
+}
 </script>
 <style scoped>
 .leftBar {
@@ -59,10 +78,6 @@ export default {
   margin: 0 0 0 50px;
 }
 img {
-  /* width: 70px;
-  height: 70px; */
-  width: 10vw;
-  height: 10vw;
   max-width: 135px;
   max-height: 135px;
 }

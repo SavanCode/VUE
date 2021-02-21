@@ -1,11 +1,11 @@
 <template>
-  <div id="app"> 
+  <div id="app" :style="{ fontSize: fontSize +'px' }"> 
     <!-- <router-view/> -->
-      <Nav/>
+      <Nav :defaultSize="fontSize"/>
     <div class="content">
-      <left-bar/>
-      <paper-clip/>
-      <Main class="main"/>
+      <left-bar @changed="setOptionSize"/>
+      <paper-clip :optionSize="optionWidth"/>
+      <Main class="main" :windowWidth="window.width"/>
     </div>
   </div>
 </template>
@@ -24,37 +24,71 @@ export default {
     Main,
     PaperClip
   }, 
-  // data() {
-  //   return { 
-  //     screenWidth: ''
-  //   };
-  // },
-  methods:{
-    // mounted () {
-    //   const that = this 
-    //   window.onresize = () => {
-    //       return (() => {
-    //           window.screenWidth = document.body.clientWidth
-    //           that.screenWidth = window.screenWidth
-    //       })()
-    //     }
-    // } 
-      mounted: function() {
-        // 页面开始加载时修改font-size
-        var html = document.getElementsByTagName("html")[0];
-        var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-        html.style.fontSize = oWidth / 750 * 100 + "px";
-        console.log('rem:', html.style.fontSize);
+  data() {
+    return { 
+      fontSize: 0,
+      optionWidth:0,
+      window: {
+          width: 0,
+          height: 0, 
+        }
+    };
+  },
+  provide () {
+    return {
+      window: this.window
     }
-  }
+  },
+  created() {
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
+  },
+  destroyed() {
+      window.removeEventListener('resize', this.handleResize);
+  },
+  methods:{
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight; 
+    },
+    setOptionSize:function(width){
+      console.log(width)
+      this.optionWidth=width
+    }
+  }, 
+  computed: {
+    getHeight(){
+      return this.window.height;
+    },
+    getWidth(){
+      console.log(this)
+      return this.window.width;
+    }, 
+  },
+  watch: {
+        // getHeight(newval,oldval) {  },
+        getWidth(newval,oldval) {
+          //console.log(newval,oldval) 
+          if(newval=== oldval){
+              return
+          }
+          if(newval < 768){
+            this.fontSize = 10
+          }else if(768 < newval && newval<=1024){
+            this.fontSize = 15
+          }else if(newval > 1024){
+            this.fontSize = 30
+          }
+        }
+    }
 }
 </script>
 
 <style>
-#app {
-  /* 1024 */
-  min-width: 800px; 
-  min-height: 100%;
+
+#app { 
+  height: 100%;
+  min-width: 800px; /* 1024 */
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 
@@ -67,25 +101,6 @@ export default {
   flex-direction: row;
 }
 .main{
-  flex:1 0 auto
-}
-
-/* 手机屏幕的字体大小 */
-@media screen and (max-width: 768px) {
-  #app {
-    font-size: 0.05rem !important;
-  }
-}
-/* 笔记本电脑的字体大小 */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  #app {
-    font-size: 0.8rem !important;
-  }
-}
-/* 台式电脑显示器屏幕字体大小 */
-@media screen and (min-width: 1024px) {
-  #app {
-    font-size: 2rem !important;
-  }
+  flex:1 0.5 auto
 }
 </style>

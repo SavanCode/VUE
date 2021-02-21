@@ -7,22 +7,28 @@
     <div class="titleRight"> 
        <p> <a :href="link"> {{link}} </a></p>
         <p><a :href="qq">QQ:{{qq}} </a></p> 
-        <i @click="close" class="icon iconfont icon-delete"></i>
-        <!-- <button @click="close"><i class="icon iconfont icon-delete "></i></button> -->
+         <i @click="close" class="icon iconfont icon-delete" :style="{ fontSize: defaultSize*2 +'px',marginTop:defaultSize/2+'px' }"></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name:'N6av',
+  name:'Nav',
   data() {
-    return {
+    return { 
       brand: '博宁软件',
       title:'博宁服饰ERP管理系统',
       link:'www.goingt.com',
       qq:'7471561651064'
     };
+  },
+  props: { 
+      defaultSize: {
+        type: Number,
+        default: 0,
+        required: true 
+      },
   },
   methods: {
     close() {
@@ -36,7 +42,6 @@ export default {
 .nav{
     font-family: Avenir, Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    /* padding-top: 30px; */
     display:flex;
     flex-flow: row; 
     justify-content: space-between;
@@ -46,7 +51,7 @@ export default {
 .titleLeft, .titleRight{
     display:flex;
     flex-direction:row;
-    flex: 1 0 auto;
+    flex: 1 0.5 auto;
 }
 .titleLeft > p {
     margin-left:50px
@@ -56,23 +61,16 @@ export default {
 }
 .brand{
     font-weight: bold;
-    color: blue; 
-    /* font-size: 25px; */
-    /* line-height: 25px; */
+    color: blue;  
 }
-.title{
-    /* font-size: 25px; */
-    /* line-height: 25px; */
+.title{ 
     font-family: cursive;
     font-weight: bolder;
 }
-.titleRight > p{
-    /* font-size: 15px;
-    line-height: 15px; */
+.titleRight > p{ 
     margin-right:20px
 }  
-.icon-delete{
-    font-size: 50px;
+.icon-delete{ 
     background-image: -webkit-linear-gradient(90deg, #28bb59 0%, #ffffff 94%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
