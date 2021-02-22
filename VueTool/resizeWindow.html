@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <title>resize Window</title>
+  </head>
+  <body >
+    <div id="app">
+    <h3 class="title is-3">
+        Width: {{ window.width }} px<br/>
+        Height: {{ window.height }} px
+    </h3>
+</div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          window: {
+            width: 0,
+            height: 0,
+          },
+        },
+        created() {
+          window.addEventListener("resize", this.handleResize);
+          this.handleResize();
+        },
+        destroyed() {
+          window.removeEventListener("resize", this.handleResize);
+        },
+        methods: {
+          handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+          },
+        },
+        computed: {
+          getHeight() {
+            return this.window.height;
+          },
+          getWidth() {
+            console.log(this);
+            return this.window.width;
+          },
+        },
+        watch: {
+            //下面可以进行立马进行数据处理
+            getHeight(newval,oldval) { 
+
+             },
+            getWidth(newval,oldval) {
+                //console.log(newval,oldval)  
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

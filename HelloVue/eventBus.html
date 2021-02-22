@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>eventBus</title>
+  </head>
+  <body>
+    <h1>Vue Event Bus</h1>
+
+    <div id="cart">{{counter}}</div>
+
+    <div id="widget">
+      <button @click="increment">Increment</button>
+    </div>
+
+    <script>
+      const EventBus = new Vue();
+
+      const cart = new Vue({
+        el: "#cart",
+        data() {
+          return {
+            counter: 1,
+          };
+        },
+        mounted() {
+          EventBus.$on("increment", () => {
+            this.counter++;
+          });
+        },
+      }); 
+
+      const widget = new Vue({
+        el: "#widget",
+        methods: {
+          increment() {
+            EventBus.$emit("increment");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
