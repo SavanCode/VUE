@@ -1,46 +1,11 @@
 <template>
   <div class="leftBar">
-    <div ref="option">
+    <div ref="option"  v-for="(item, index) in leftBarOptions" :key="index">
       <img
         :src="imgUrl"
         alt=""
       /> 
-      <p>{{leftBarOptions[0]}}</p>
-    </div>
-    <div>
-      <img
-        :src="imgUrl"
-        alt=""
-      /> 
-      <p>{{leftBarOptions[1]}}</p>
-    </div>
-    <div>
-      <img
-        :src="imgUrl"
-        alt=""
-      /> 
-      <p>{{leftBarOptions[2]}}</p>
-    </div>
-    <div>
-      <img
-        :src="imgUrl"
-        alt=""
-      /> 
-      <p>{{leftBarOptions[3]}}</p>
-    </div>
-    <div>
-      <img
-        :src="imgUrl"
-        alt=""
-      /> 
-      <p>{{leftBarOptions[4]}}</p>
-    </div>
-    <div>
-      <img
-       :src="imgUrl"
-        alt=""
-      /> 
-      <p>{{leftBarOptions[5]}}</p>
+      <p>{{item}}</p>
     </div>
   </div>
 </template>
@@ -61,7 +26,7 @@ export default {
           this.$store.dispatch('setOptionWidth', width);
         })
       })
-      ro.observe(this.$refs.option)
+      ro.observe(this.$refs.option[0])
     }
   },
   computed:{

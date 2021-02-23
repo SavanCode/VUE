@@ -32,10 +32,7 @@ export default {
   computed:{
   ...mapGetters([
       'fontSize','nav'
-  ]),
-  // navObj:function() {
-  //           return this.$store.state.nav;
-  //       }  
+  ]), 
   }
 };
 </script> 
