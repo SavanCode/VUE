@@ -42,8 +42,6 @@ export default {
 
 <style scoped>
 .nav{
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    color: #2c3e50;
     display:flex;
     flex-flow: row; 
     justify-content: space-between;

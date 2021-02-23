@@ -4,48 +4,42 @@
       <img
         :src="imgUrl"
         alt=""
-      />
-      <!-- <p>基础管理</p> -->
+      /> 
       <p>{{leftBarOptions[0]}}</p>
     </div>
     <div>
       <img
         :src="imgUrl"
         alt=""
-      />
-      <!-- <p>业务管理</p> -->
+      /> 
       <p>{{leftBarOptions[1]}}</p>
     </div>
     <div>
       <img
         :src="imgUrl"
         alt=""
-      />
-      <!-- <p>生产管理</p> -->
+      /> 
       <p>{{leftBarOptions[2]}}</p>
     </div>
     <div>
       <img
         :src="imgUrl"
         alt=""
-      />
-      <!-- <p>采购管理</p> -->
+      /> 
       <p>{{leftBarOptions[3]}}</p>
     </div>
     <div>
       <img
         :src="imgUrl"
         alt=""
-      />
-      <!-- <p>仓库管理</p> -->
+      /> 
       <p>{{leftBarOptions[4]}}</p>
     </div>
     <div>
       <img
        :src="imgUrl"
         alt=""
-      />
-      <!-- <p>财务管理</p> -->
+      /> 
       <p>{{leftBarOptions[5]}}</p>
     </div>
   </div>

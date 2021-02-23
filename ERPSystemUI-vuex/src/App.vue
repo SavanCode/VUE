@@ -1,6 +1,5 @@
 <template>
   <div id="app" :style="{ fontSize: fontSize +'px' }"> 
-    <!-- <router-view/> -->
       <Nav/>
     <div class="content">
       <left-bar />
@@ -43,24 +42,24 @@ export default {
       'window', 
       'fontSize'
     ]), 
-    WindowWidth(){ 
-      return this.$store.state.window.width;
-    }, 
+    // WindowWidth(){ 
+    //   return this.$store.state.window.width;
+    // }, 
   },
-  watch: {
-        WindowWidth(newval,oldval) {
-          if(newval=== oldval){
-              return
-          }
-          if(newval < 768){
-             this.$store.dispatch('setFontSize', 10);
-          }else if(768 < newval && newval<=1024){
-             this.$store.dispatch('setFontSize', 15);
-          }else if(newval > 1024){
-             this.$store.dispatch('setFontSize', 30);
-          }
-        }
-    }
+  // watch: {
+  //       WindowWidth(newval,oldval) {
+  //         if(newval=== oldval){
+  //             return
+  //         }
+  //         if(newval < 768){
+  //            this.$store.dispatch('setFontSize', 10);
+  //         }else if(768 < newval && newval<=1024){
+  //            this.$store.dispatch('setFontSize', 15);
+  //         }else if(newval > 1024){
+  //            this.$store.dispatch('setFontSize', 30);
+  //         }
+  //       }
+  //   }
 }
 </script>
 
@@ -68,7 +67,7 @@ export default {
 
 #app { 
   height: 100%;
-  min-width: 800px; /* 1024 */
+  min-width: 800px; 
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 

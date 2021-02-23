@@ -1,8 +1,8 @@
 <template>
   <div class="BtnSpace">
-      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius', spacing ? 'spacing':'']" :style="{ width: btnWidth +'px',fontSize:fontSize+'px',height:btnHeight+'px'}">{{name}}</button>
+      <button :class="[type==1 ? 'blue':'yellow',font? 'red': 'black','left_radius', spacing ? 'spacing':'']" :style="{ width: btnWidth +'px',fontSize:btnFontSize+'px',height:btnHeight+'px'}">{{name}}</button>
       <button class="right_radius blackBtn" :style="{height:btnHeight+'px'}"><i class="icon iconfont icon-Dots"></i></button>
-      <button :style="{'display': search ? 'inline-block':'none', fontSize:fontSize+'px',height:btnHeight+'px'}" class="searchBtn"><i class="icon iconfont icon-icon-test"  :style="{fontSize:fontSize+'px'}"></i>查询</button>
+      <button :style="{'display': search ? 'inline-block':'none', fontSize:btnFontSize+'px',height:btnHeight+'px'}" class="searchBtn"><i class="icon iconfont icon-icon-test"  :style="{fontSize:btnFontSize+'px'}"></i>查询</button>
   </div>
 </template>
 
@@ -32,33 +32,12 @@ export default {
       spacing:{
         type:Boolean,
         default:false
-      },
-      optionSize:{
-        type: Number,
-        default: 20,
       }, 
     },
     computed:{
       ...mapGetters([
-        'window', 
-      ]),
-      btnWidth:function(){
-        if(this.window.width<1200){
-            return this.window.width/20
-        }else{
-          return this.window.width/10
-        } 
-      },
-      btnHeight:function(){
-        if(this.window.width<600){
-            return this.window.height/60
-        }else{
-          return this.window.height/20
-        } 
-      }, 
-      fontSize:function(){ 
-        return this.window.width/100
-      }
+        'window','btnWidth','btnHeight','btnFontSize'
+      ]), 
     }
 }
 

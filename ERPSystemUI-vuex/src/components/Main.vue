@@ -1,6 +1,6 @@
 
 <template>
-  <div class="controlPad" ref="board">  
+  <div class="controlPad" >  
     <div class="col1">
        <Btn name="工艺制作单"  class="addMargin"  type="1" :search="true" />
        <Btn name="成品订单" type="1" :search="true" :spacing="true"/>
@@ -55,14 +55,8 @@ export default {
   }, 
   computed:{
     ...mapGetters([
-      'window', 
-    ]),
-    rightArrowWidth:function(){
-      return this.window.width/10
-    },
-    downArrowWidth:function(){
-      return this.window.width/20
-    }
+      'window', 'rightArrowWidth','downArrowWidth'
+    ]), 
   } 
 }
 
