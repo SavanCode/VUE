@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>eventBus</title>
+  </head>
+  <style>
+      .component{
+        border: 1px solid #000;
+        padding: 10px;
+        margin: 10px;
+        color: blue;
+        }
+  </style>
+  <body>
+    <div id="app">
+  
+        <my-component1> 
+        </my-component1>
+        <my-component2> 
+        </my-component2> 
+    </div>
+
+    <script type="text/x-template" id="my-component1">
+        <div class="component">
+          <span>Child1:</span>
+          <input type="text" v-model="message">
+          <button @click="emit2Child2">更新Child2</button>
+        </div>
+      </script>
+      
+      <script type="text/x-template" id="my-component2">
+        <div class="component">
+          <span>Child2:</span>
+          <input type="text" v-model="message">
+        </div>
+      </script>
+      
+    <script>
+      // Event Bus
+        var bus = new Vue();
+
+        Vue.component('my-component1',{
+        template:'#my-component1',
+        data: function(){
+            return {
+            message: '這是 Child1 的預設內容'
+            }
+        },
+        methods:{
+            emit2Child2(){
+            bus.$emit('update', this.message);
+            }
+        }
+        })
+
+
+        Vue.component('my-component2',{
+        template:'#my-component2',
+        data: function(){
+            return {
+            message: '這是 Child2 的預設內容'
+            }
+        },
+        created(){
+            // var self = this;
+            // 注意這裡是 callback function， this 不會是原本的 this。
+            // 除了在外部另外宣告外，也可使用箭頭函式避掉。
+            // bus.$on('update', function(value){
+            //   self.message = value;
+            // })
+            bus.$on('update', (value)=>{
+            this.message = value;
+            })
+        }
+        })
+        // 父層
+        var vm = new Vue({
+        el: '#app',
+        data:{
+            
+        },
+        methods:{
+            
+        }
+        })
+    </script>
+  </body>
+</html>
