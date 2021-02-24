@@ -3,13 +3,12 @@
    <p>Home Page</p>    
    <el-button type="primary" @click="test()">测试</el-button>
     <el-button type="primary" @click="getUser()">获取用户信息</el-button>
-    <!-- <el-button type="primary" @click="getMenu()">获取菜单信息</el-button> -->
+    <el-button type="primary" @click="getMenu()">获取菜单信息</el-button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-//import mock from "../mock/mock.js";
+import axios from "axios"; 
 export default {
   name: "Home",
   methods: {
@@ -25,14 +24,25 @@ export default {
     }, 
     getUser() {
       axios
-        .get("http://localhost:8080/user")
+        .get("/user")
         .then(function(res) {
           console.log(res.data);
           alert(JSON.stringify(res.data));
         })
         .catch(function(res) {
           alert(res);
-        });
+        }); 
+    },
+    getMenu() {
+      axios
+        .get("/menu")
+        .then(function(res) {
+          console.log(res.data);
+          alert(JSON.stringify(res.data));
+        })
+        .catch(function(res) {
+          alert(res);
+        }); 
     }
 
     
