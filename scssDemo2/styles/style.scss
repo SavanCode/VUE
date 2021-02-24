@@ -1,0 +1,7 @@
+@import 'themable';
+
+// @include themable(theme-1, #f7eb80, #497265, #82aa91, #fff, #bc6a49);
+// @include themable(theme-2, #e4ada7, #d88880, #cc6359, #fff, #481b16);
+ 
+ @include themable(theme-1, $theme-1);
+ @include themable(theme-2, $theme-2);
