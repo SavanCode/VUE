@@ -6,11 +6,14 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import './mock/mock'
-// require('./mock/mock')
+// require('./mock/mock') 这样引入也是可以的
+import api from './http/index'
+
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
-
+Vue.use(api)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
