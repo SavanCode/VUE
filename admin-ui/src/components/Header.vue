@@ -32,8 +32,8 @@
              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
              <span> {{username}} </span>
           </span> -->
-          <div class="block el-dropdown-link">
-            <span class="demonstration">默认</span>
+          <div class="userinfo el-dropdown-link">
+            <span >默认</span>
             <el-image class="avatarImg" :src="avatar"></el-image>
           </div>
           <el-dropdown-menu slot="dropdown">
@@ -62,16 +62,21 @@
   }
 </script>
 <style lang="scss" scoped> 
-.userAvatar{
-  height:30px
+.avatarImg{
+  height:30px;
+  width:30px;
+  padding: 0 10px;
 }
 .avatar{
-  height: 60px;
+  height: $navHeight;
   background-color:$bgColor;
   padding: 10px 0; 
 }
 .avatarDropdown{
-  color: rgb(255, 255, 255) ! important;
-      font-size: 24px;
+  color: $white ! important;
+  font-size: 24px;
+}
+.userinfo{
+  @extend %align-center;
 }
 </style>

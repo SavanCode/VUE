@@ -1,7 +1,7 @@
 <template>
   <el-row class="tac">
-     <el-col :span="24"> 
-        <img class="logo" src="@/assets/logo.png" />
+     <el-col :span="24" class="logo"> 
+        <img class="logoImg" src="@/assets/logo.png" />
       </el-col>
     <el-col :span="24">
       <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" unique-opened router
@@ -49,8 +49,9 @@
     }
   }
 </script>
-<style>
-.logo{
-  height:60px
+<style lang="scss">
+.logo, .logoImg{
+  height:$navHeight;
+  background-color:$bgColor;
 }
 </style>
