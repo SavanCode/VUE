@@ -4,9 +4,10 @@
     <h2>Essential Links</h2> 
 
 <!-- gutter = column gap -->
-    <el-row :gutter="10">
+    <el-row :gutter="10"> 
       <el-col :span="7">
-        <el-input placeholder="请输入品牌名称" size="mini">
+        
+        <el-input v-model="input" placeholder="请输入品牌名称"size="mini">
           <template slot="prepend">品牌名称：</template>
         </el-input>
       </el-col>
