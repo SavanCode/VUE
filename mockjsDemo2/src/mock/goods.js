@@ -1,10 +1,10 @@
-import Mock from 'mockjs'
+import Mock from 'mockjs' 
 
 // 通过 Mock.mock() 来模拟API接口
 Mock.mock('/api/goodslist', 'get', {
   status: 200,
   message: '获取商品列表成功！',
-  'data|5-10': [
+  'data|10': [//5-10
     {
       id: '@increment(1)', // 自增的Id值
       // 'id|+1': 0, // 这也是在模拟一个自增长的 Id 值
@@ -15,6 +15,7 @@ Mock.mock('/api/goodslist', 'get', {
     }
   ]
 })
+ 
 
 Mock.mock('/api/addgoods', 'post', function(option) {
   // 这里的 option 是请求相关的参数
