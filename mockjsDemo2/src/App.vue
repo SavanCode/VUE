@@ -56,7 +56,9 @@ export default {
         this.$http.get('/getlist').then(res => {
           console.log(res)
           this.list = res.data.arr;
-        });
+        }).catch((err) => {
+          console.log(err)
+        })
       },
      delItemById(id){
         this.$http.post('/delitem',{
@@ -66,7 +68,9 @@ export default {
         }).then(res => {
            //console.log(res)
            this.list=res.data.data
-        });
+        }).catch((err) => {
+          console.log(err)
+        })
       }, 
       addItem(){ 
         this.$http.post('/addItem',{
@@ -76,7 +80,10 @@ export default {
         }).then(res => {
              console.log("添加成功",res);
             this.list = res.data.data;
-        });
+        }).catch((err) => {
+          console.log(err)
+        })
+
         this.obj={ 
           id: 0,
           name: '',
@@ -92,7 +99,9 @@ export default {
         }).then(function(res){
           console.log("更新数据",res);
           that.list = res.data.data;
-        });
+        }).catch((err) => {
+          console.log(err)
+        })
       } 
   }
 }

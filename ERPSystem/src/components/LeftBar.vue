@@ -1,47 +1,7 @@
 <template>
   <div class="leftBar">
-    <div ref="option">
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>基础管理</p>
-    </div>
-    <div>
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>业务管理</p>
-    </div>
-    <div>
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>生产管理</p>
-    </div>
-    <div>
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>采购管理</p>
-    </div>
-    <div>
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>仓库管理</p>
-    </div>
-    <div>
-      <img
-        src="https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png"
-        alt=""
-      />
-      <p>财务管理</p>
-    </div>
+     <div v-for="menu in menuList" :ref="menu.ref"><img :src="menu.menuIcon" alt=""/>
+      <p>{{menu.menuLabel}}</p></div>
   </div>
 </template>
 
@@ -50,7 +10,34 @@ export default {
   data() {
     return {  
        width:0,
-       height:0
+       height:0,
+       menuList: [
+        {
+          menuLabel: '基础管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png',
+          ref: 'option'
+        },
+        {
+          menuLabel: '业务管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png'
+        },
+        {
+          menuLabel: '生产管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png'
+        },
+        {
+          menuLabel: '采购管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png'
+        },
+        {
+          menuLabel: '仓库管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png'
+        },
+        {
+          menuLabel: '财务管理',
+          menuIcon: 'https://dyltqmyl993wv.cloudfront.net/assets/stacks/erpnext/img/erpnext-stack-220x234.png'
+        },
+      ]
     };
   },
   mounted () {
@@ -66,7 +53,7 @@ export default {
           this.$emit('changed',width)
         })
       })
-      ro.observe(this.$refs.option)
+      ro.observe(this.$refs.option[0])
     }
   }
 }

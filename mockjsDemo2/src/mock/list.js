@@ -2,12 +2,14 @@ import Mock from 'mockjs'
 import { Random } from 'mockjs'
 
 var arr = [];
+var max=0;
 for(let i = 0 ; i < 10 ; i++){
     let newArticleObject = {
         name: Random.cname(),
         content: Random.csentence(5,10),
         id: i
     }
+    max++
     arr.push(newArticleObject);  //将模拟的数据放到数组中
 } 
 
@@ -37,11 +39,12 @@ Mock.mock('/addItem', 'post', function(option) {
     console.log(option)
     let inputObj =JSON.parse(option.body).params.obj
     let newItem={
-      id:arr.length,
+      id:max,
       name:inputObj.name,
       content: inputObj.content,
     }
     arr.push(newItem)
+    max++
   
     return Mock.mock({
       status: 200,
