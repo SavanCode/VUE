@@ -1,6 +1,6 @@
 # mockjs_demo2
 
-> A Vue.js project
+稍微整理的mock，传输数据 axios， 有对数据增删改
 
 ## Build Setup
 

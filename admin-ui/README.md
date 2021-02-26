@@ -1,9 +1,7 @@
 # admin-ui
 
-> A Vue.js project
-
-## Build Setup
 运用了 element-ui scss 
+等装了axios mockjs router的绑定跳转 导航守卫 login状态的管理 （！这里没有用vuex）
 
 ``` bash
 # install dependencies

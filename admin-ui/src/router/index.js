@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import NotFound from '@/components/404'
+import Main from '@/components/Main'
+import Menu from '@/components/Menu'
+import User from '@/components/User'
 
 Vue.use(Router)
 
@@ -11,7 +14,12 @@ const router = new Router({
         {
             path: '/',
             name: 'Home',
-            component: Home
+            component: Home,
+            children:[
+                {path:'/main',component:Main,name:'系统介绍'},
+                {path:'/user',component:User,name:'用户管理'},
+                {path:'/menu',component:Menu,name:'菜单管理'},
+            ]
         }, {
             path: '/login',
             name: 'Login',

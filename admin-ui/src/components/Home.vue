@@ -5,7 +5,9 @@
   <el-container>
     <el-header style="padding: 0;"> <myheader></myheader> </el-header>
     <el-main>
-       <router-view></router-view>  
+      <transition name="fade" mode="out-in">
+         <router-view></router-view>
+      </transition>
     </el-main>
   </el-container>
 </el-container>
@@ -24,6 +26,15 @@ export default {
   components: {
     'navmenu': NavMenu,
     'myheader': Header
+  },
+  mounted() {
+    var user=sessionStorage.getItem("user");
+    if(user){
+        this.userName = user;
+        this.userAvatar=''//userImg require('url')
+    }else{
+      $router.push('login')
+    }
   },
   methods: { 
   }

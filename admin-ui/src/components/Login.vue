@@ -70,6 +70,7 @@ export default {
 </script>
 <style scoped>
 .container{ 
+  margin-top: 50px;
     margin: auto;
     width: 300px;
     border-radius: 5px;

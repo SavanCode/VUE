@@ -1,6 +1,6 @@
 # mockjs_demo1
 
-> A Vue.js project
+最基本的mock配置 生成随机数据 展示数据
 
 ## Build Setup
 
