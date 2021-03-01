@@ -6,21 +6,21 @@ import router from './router'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
-import './mock/mock'
-//import store from './store/store'
-//import axios from 'axios'
-import api from './http/index'
+import axios from './config/axios'
+import './mock'
+import store from './store/store'
+// import axios from 'axios'
+// import api from './http/index'
 
 Vue.config.productionTip = false
 //Vue.prototype.$http = axios
-Vue.use(api)
+//Vue.use(api)
 Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  //store,
+  store,
   render: h => h(App)
 }).$mount('#app')

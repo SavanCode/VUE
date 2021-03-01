@@ -90,15 +90,17 @@
                             text: '登录中,请稍后。。。',
                             spinner: "el-icon-loading"
                         });
-                        this.$store.dispatch("GenerateSalt", this.loginForm.name).then((salt) => {
-                            this.$store.dispatch("GenerateToken", {salt, user: this.loginForm}).then(() => {
-                                this.$router.push({path: '/'}).then(() => loading.close());
-                            }).catch(() => {
-                                loading.close();
-                            });
-                        }).catch(() => {
-                            loading.close();
-                        });
+                         this.$store.dispatch("GenerateSalt", this.loginForm.name).then((salt) => {
+                             console.log(salt)
+                        //     this.$store.dispatch("GenerateToken", {salt, user: this.loginForm}).then(() => {
+                        //         this.$router.push({path: '/'}).then(() => loading.close());
+                        //     }).catch(() => {
+                        //         loading.close();
+                        //     });
+                        // }).catch(() => {
+                        //     loading.close();
+                         });
+                        loading.close();
                     }
                 });
             }

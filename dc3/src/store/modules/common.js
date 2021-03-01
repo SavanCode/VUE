@@ -1,7 +1,7 @@
-
+import website from '@/config/website'
 const common = {
     state: {
-        website: 'webName',
+        website: website,
     },
     mutations: {}
 };
