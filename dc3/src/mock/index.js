@@ -1,10 +1,17 @@
 import Mock from 'mockjs'
-import * as login from './modules/login' 
-import * as salt from './modules/salt'
+import * as login from './modules/user/login' 
+import * as salt from './modules/user/salt'
+import * as generateToken from './modules/user/generateToken'
+import * as cancel from './modules/user/cancel'
+import * as check from './modules/user/check' 
+
 // 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
 // 2. 开启/关闭[业务模块中某个请求]拦截, 通过函数返回对象中的[isOpen属性]设置.
 fnCreate(login, true)
 fnCreate(salt, true)
+fnCreate(generateToken, true)
+fnCreate(check, true)
+fnCreate(cancel, true)
 
 /**
  * 创建mock模拟数据

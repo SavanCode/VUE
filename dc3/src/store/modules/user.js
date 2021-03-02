@@ -10,15 +10,15 @@ const user = {
     },
     actions: {
         GenerateSalt({commit}, name) {
-            console.log('GenerateSalt')
+            //console.log('GenerateSalt')
             return new Promise((resolve, reject) => {
                 generateSalt(name).then(res => {
-                    console.log('generateSalt res.data::',res.data);
+                    //console.log('generateSalt res.data::',res.data);
                     commit('SET_SALT', res.data);
                     commit('SET_USER', name);
                     resolve(res.data);
                 }).catch(error => {
-                    console.log('generateSalt error::', error);
+                    //console.log('generateSalt error::', error);
                     reject(error);
                 })
             });
@@ -28,8 +28,10 @@ const user = {
                 name: form.user.name,
                 password: md5(md5(form.user.password) + form.salt)
             };
+            //console.log('user',user);
             return new Promise((resolve, reject) => {
                 generateToken(user).then(res => {
+                    console.log('generateToken',res.data);
                     const data = res.data;
                     commit('SET_TOKEN', data);
                     resolve();
@@ -39,8 +41,10 @@ const user = {
             });
         },
         ClearToken({commit}) {
+            //console.log('ClearToken');
             return new Promise((resolve, reject) => {
                 cancelToken(getStore({name: 'user'})).then((res) => {
+                    //console.log('ClearToken',res);
                     commit('REMOVE_SALT');
                     commit('REMOVE_USER');
                     commit('REMOVE_TOKEN');
@@ -53,6 +57,7 @@ const user = {
     },
     mutations: {
         SET_SALT: (state, salt) => {
+            //console.log('salt',salt)
             state.salt = salt;
             setStore({name: 'salt', content: state.salt});
         },

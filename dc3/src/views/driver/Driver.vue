@@ -132,7 +132,8 @@
                             current: page.currentPage,
                             size: page.pageSize
                         }
-                    }, this.query)).then(list => {
+                    }, this.query)).then(list => { 
+                        //console.log('list then:::',list.data);
                         const data = list.data;
                         this.page.total = data.total;
                         driverApi.status(Object.assign({
@@ -141,12 +142,16 @@
                                 size: page.pageSize
                             }
                         }, this.query)).then(statuses => {
+                            //console.log('statuses then:::',statuses);
                             this.listData = data.records.map(d => {
                                 d.status = statuses.data[d.serviceName] === true;
+                                //console.log(d.status);
+                                //console.log(statuses.data[d.serviceName]);
                                 return d;
                             });
                         });
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     }).finally(() => {
                         this.loading = false;
                     });

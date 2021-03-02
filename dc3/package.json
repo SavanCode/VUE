@@ -12,14 +12,17 @@
   "dependencies": {
     "@antv/l7": "^2.3.9",
     "@antv/l7-maps": "^2.3.9",
+    "@smallwei/avue": "^2.8.1",
     "axios": "^0.21.1",
     "element-ui": "^2.15.1",
+    "gemini-scrollbar": "^1.5.3",
     "js-md5": "^0.7.3",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
     "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",
     "vue": "^2.5.2",
+    "vue-gemini-scrollbar": "^2.0.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.6.2"
   },

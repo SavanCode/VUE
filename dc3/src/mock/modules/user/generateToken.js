@@ -1,14 +1,14 @@
 // 登录接口
-export function login () {
+export function generateToken () {
     return {
       // isOpen: false,
-      url: 'http://localhost:8080/login',
+      url: 'user_api/auth/token/generate',
       type: 'post',
       data: {
-        'msg': 'success',
+        'message': 'success',
         'code': 0,
+        'ok':true,
         'data': {
-          'token': '4344323121398'
           // 其他数据
         }
       }

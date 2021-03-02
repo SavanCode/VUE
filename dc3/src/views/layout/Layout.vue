@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header">
             <el-col :span="4" class="header_item">
-                <img class="logo" src="images/logo/logo.png">
+                <img class="logo" src="../../../dist/images/logo/logo.png">
             </el-col>
             <el-col :span="16" class="header_item">
                 <el-menu class="menu"
@@ -38,7 +38,7 @@
                 <el-dropdown class="avatar_item" @command="handleCommand">
                     <span class="el-dropdown-link">
                         <el-avatar>
-                            <img src="images/common/avatar.png">
+                            <img src="../../../dist/images/common/avatar.png">
                         </el-avatar>
                     </span>
                     <el-dropdown-menu slot="dropdown">

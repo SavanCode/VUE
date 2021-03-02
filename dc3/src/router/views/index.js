@@ -15,42 +15,42 @@ export default [
                 },
                 component: () => import('@/views/home/Home')
             },
-            // {
-            //     name: 'driver',
-            //     path: '/driver',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '驱动'
-            //     },
-            //     component: () => import('@/views/driver/Driver')
-            // },
-            // {
-            //     name: 'driverAttribute',
-            //     path: '/driverAttribute',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '驱动属性'
-            //     },
-            //     component: () => import('@/views/driver/DriverAttribute')
-            // },
-            // {
-            //     name: 'pointAttribute',
-            //     path: '/pointAttribute',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '位号属性'
-            //     },
-            //     component: () => import('@/views/point/PointAttribute')
-            // },
-            // {
-            //     name: 'profile',
-            //     path: '/profile',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '模版'
-            //     },
-            //     component: () => import('@/views/profile/Profile')
-            // },
+            {
+                name: 'driver',
+                path: '/driver',
+                meta: {
+                    isAuth: true,
+                    title: '驱动'
+                },
+                component: () => import('@/views/driver/Driver')
+            },
+            {
+                name: 'driverAttribute',
+                path: '/driverAttribute',
+                meta: {
+                    isAuth: true,
+                    title: '驱动属性'
+                },
+                component: () => import('@/views/driver/DriverAttribute')
+            },
+            {
+                name: 'pointAttribute',
+                path: '/pointAttribute',
+                meta: {
+                    isAuth: true,
+                    title: '位号属性'
+                },
+                component: () => import('@/views/point/PointAttribute')
+            },
+            {
+                name: 'profile',
+                path: '/profile',
+                meta: {
+                    isAuth: true,
+                    title: '模版'
+                },
+                component: () => import('@/views/profile/Profile')
+            },
             // {
             //     name: 'driverInfo',
             //     path: '/driverInfo',

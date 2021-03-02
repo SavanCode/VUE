@@ -210,15 +210,18 @@
                         const data = res.data;
                         this.page.total = data.total;
                         this.listData = data.records;
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     }).finally(() => {
                         this.loading = false;
                     });
                 },
                 driver() {
                     dictionaryApi.driverDictionary().then(res => {
+                        console.log(res.data);
                         this.findObject(this.listOption.column,'driverId').dicData = res.data;
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     });
                 },
                 listAdd(row, done, loading) {

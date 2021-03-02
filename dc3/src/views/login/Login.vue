@@ -91,14 +91,14 @@
                             spinner: "el-icon-loading"
                         });
                          this.$store.dispatch("GenerateSalt", this.loginForm.name).then((salt) => {
-                             console.log(salt)
-                        //     this.$store.dispatch("GenerateToken", {salt, user: this.loginForm}).then(() => {
-                        //         this.$router.push({path: '/'}).then(() => loading.close());
-                        //     }).catch(() => {
-                        //         loading.close();
-                        //     });
-                        // }).catch(() => {
-                        //     loading.close();
+                             console.log('salt',salt)
+                            this.$store.dispatch("GenerateToken", {salt, user: this.loginForm}).then(() => {
+                                this.$router.push({path: '/'}).then(() => loading.close());
+                            }).catch(() => {
+                                loading.close();
+                            });
+                        }).catch(() => {
+                            loading.close();
                          });
                         loading.close();
                     }
