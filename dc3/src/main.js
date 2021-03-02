@@ -13,6 +13,8 @@ import './mock/modules/manager/dictionaryApi'
 import './mock/modules/manager/driverAttributeApi'
 import './mock/modules/manager/pointAttribute'
 import './mock/modules/manager/profileApi'
+import './mock/modules/manager/driverInfo'
+//driverInfo
  
 
 import store from './store/store'

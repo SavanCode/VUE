@@ -51,24 +51,24 @@ export default [
                 },
                 component: () => import('@/views/profile/Profile')
             },
-            // {
-            //     name: 'driverInfo',
-            //     path: '/driverInfo',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '驱动配置'
-            //     },
-            //     component: () => import('@/views/driver/DriverInfo')
-            // },
-            // {
-            //     name: 'point',
-            //     path: '/point',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '位号'
-            //     },
-            //     component: () => import('@/views/point/Point')
-            // },
+            {
+                name: 'driverInfo',
+                path: '/driverInfo',
+                meta: {
+                    isAuth: true,
+                    title: '驱动配置'
+                },
+                component: () => import('@/views/driver/DriverInfo')
+            },
+            {
+                name: 'point',
+                path: '/point',
+                meta: {
+                    isAuth: true,
+                    title: '位号'
+                },
+                component: () => import('@/views/point/Point')
+            },
             // {
             //     name: 'group',
             //     path: '/group',

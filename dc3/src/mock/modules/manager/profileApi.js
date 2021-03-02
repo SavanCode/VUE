@@ -2,11 +2,13 @@ import Mock from 'mockjs'
 import { Random } from 'mockjs'
 import '../../extends'
 
-
+var arr=[];
 function newArr(length){
-    let arr=[];
+    console.log("newing")
+    arr=[]
     for(let i = 0 ; i < length ; i++){
         let newArticleObject = Mock.mock({ 
+            id:i,
             name:'@name()',
             driverId:'@driverId()',
             displayName: '@displayName()', 
@@ -19,6 +21,7 @@ function newArr(length){
         })
         arr.push(newArticleObject);  
     } 
+    console.log(arr)
     return arr
 }
   
@@ -29,8 +32,11 @@ Mock.mock('manager_api/manager/profile/list', 'post', function(option){
     //console.log('私有'.localeCompare('公有', 'zh'))
     let {share,name}=JSON.parse(option.body); 
     // let driverId=JSON.parse(option.body).driverId; 
-     
-    let arr = newArr(total)
+    if(total!==arr.length){
+        arr = newArr(total)
+    } 
+    
+
     //filter 不是很好
     if(name){
         arr= arr.filter(item=> item.name===name)
@@ -53,9 +59,26 @@ Mock.mock('manager_api/manager/profile/list', 'post', function(option){
   })
  
   Mock.mock('manager_api/manager/profile/update', 'post', function(option){
-    let total=JSON.parse(option.body).profile;   
-       
-  
+    console.log(JSON.parse(option.body).description)  
+    let {name:newName,share:newShare,driverId:newDriverId,description:newDes,$index:index}=JSON.parse(option.body);
+    
+    arr[index].name=newName;
+    arr[index].share=newShare;
+    arr[index].driverId=newDriverId;
+    arr[index].description=newDes;
+    //console.log(arr)
+     return { 
+             status: 200,
+             message: '获取列表成功！',
+             ok:true,  
+         }
+   }) 
+
+Mock.mock(/\/profile\/delete/, 'post', function(option){
+    
+    const res = /\/profile\/delete\/(\d+)/.exec(option.url)
+    console.log('remove id::',res[1])  
+    arr.splice(res[1],1) 
      return { 
              status: 200,
              message: '获取列表成功！',
