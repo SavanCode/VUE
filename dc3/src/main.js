@@ -14,8 +14,12 @@ import './mock/modules/manager/driverAttributeApi'
 import './mock/modules/manager/pointAttribute'
 import './mock/modules/manager/profileApi'
 import './mock/modules/manager/driverInfo'
-//driverInfo
- 
+import './mock/modules/manager/point'
+import './mock/modules/manager/group' 
+import './mock/modules/manager/deviceApi' 
+import './mock/modules/manager/pointInfoApi' 
+import './mock/modules/data/pointValueApi' 
+import './mock/modules/data/deviceEvent' 
 
 import store from './store/store'
 import './plugins/element/element.js'

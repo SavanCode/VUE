@@ -179,6 +179,7 @@
                 },
                 pointAttribute() {
                     dictionaryApi.pointAttributeDictionary().then(res => {
+                        //console.log("pointAttributeId::::::",res.data)
                         this.findObject(this.listOption.column,'pointAttributeId').dicData = res.data;
                     }).catch(() => {
                     });

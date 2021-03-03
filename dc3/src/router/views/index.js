@@ -69,51 +69,51 @@ export default [
                 },
                 component: () => import('@/views/point/Point')
             },
-            // {
-            //     name: 'group',
-            //     path: '/group',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '分组'
-            //     },
-            //     component: () => import('@/views/group/Group')
-            // },
-            // {
-            //     name: 'device',
-            //     path: '/device',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '设备'
-            //     },
-            //     component: () => import('@/views/device/Device')
-            // },
-            // {
-            //     name: 'pointInfo',
-            //     path: '/pointInfo',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '位号配置'
-            //     },
-            //     component: () => import('@/views/point/PointInfo')
-            // },
-            // {
-            //     name: 'pointValue',
-            //     path: '/pointValue',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '数据'
-            //     },
-            //     component: () => import('@/views/point/PointValue')
-            // },
-            // {
-            //     name: 'deviceEvent',
-            //     path: '/deviceEvent',
-            //     meta: {
-            //         isAuth: true,
-            //         title: '事件'
-            //     },
-            //     component: () => import('@/views/event/DeviceEvent')
-            // }
+            {
+                name: 'group',
+                path: '/group',
+                meta: {
+                    isAuth: true,
+                    title: '分组'
+                },
+                component: () => import('@/views/group/Group')
+            },
+            {
+                name: 'device',
+                path: '/device',
+                meta: {
+                    isAuth: true,
+                    title: '设备'
+                },
+                component: () => import('@/views/device/Device')
+            },
+            {
+                name: 'pointInfo',
+                path: '/pointInfo',
+                meta: {
+                    isAuth: true,
+                    title: '位号配置'
+                },
+                component: () => import('@/views/point/PointInfo')
+            },
+            {
+                name: 'pointValue',
+                path: '/pointValue',
+                meta: {
+                    isAuth: true,
+                    title: '数据'
+                },
+                component: () => import('@/views/point/PointValue')
+            },
+            {
+                name: 'deviceEvent',
+                path: '/deviceEvent',
+                meta: {
+                    isAuth: true,
+                    title: '事件'
+                },
+                component: () => import('@/views/event/DeviceEvent')
+            }
         ]
     }
 ]

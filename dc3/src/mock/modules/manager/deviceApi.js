@@ -1,26 +1,25 @@
 import Mock from "mockjs";
-import { newArr, filter } from "../../extends";
 import "../../extends";
+import { newArr, filter } from "../../extends";
 import moment from "moment";
-
 var arr = [];
 
-Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
+Mock.mock("manager_api/manager/device/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
+  let { profileId, name, groupId } = JSON.parse(option.body);
 
-  let { profileId, driverAttributeId } = JSON.parse(option.body);
   if (total !== arr.length) {
     arr = newArr(total);
   }
-
+ 
   if (profileId) {
     arr = arr.filter(item => item.profileId === profileId);
   }
-  if (driverAttributeId) {
-    arr = arr.filter(
-      item =>
-        item.driverAttributeId.localeCompare(driverAttributeId, "zh") === 0
-    );
+  if (name) {
+    arr = arr.filter(item => item.name === name);
+  }
+  if (groupId) {
+    arr = arr.filter(item => item.groupId === groupId);
   }
 
   return {
@@ -34,23 +33,46 @@ Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
   };
 });
 
-Mock.mock("manager_api/manager/driverInfo/update", "post", function(option) {
-  console.log(JSON.parse(option.body));
+Mock.mock("manager_api/manager/device/status", "post", {
+  status: 200,
+  message: "获取列表成功！",
+  ok: true,
+  data: {
+    0: "MAINTAIN",
+    1: "ONLINE",
+    2: "FAULT",
+    3: "MAINTAIN",
+    4: "ONLINE",
+    5: "FAULT",
+    6: "MAINTAIN",
+    7: "ONLINE",
+    8: "FAULT",
+    9: "MAINTAIN",
+    10: "ONLINE",
+    11: "FAULT"
+  }
+});
+
+Mock.mock("manager_api/manager/device/update", "post", function(option) {
+  console.log(JSON.parse(option.body).description);
   let {
     profileId,
-    driverAttributeId,
+    name,
+    groupId,
+    multi,
     description,
-    value,
     $index: index
   } = JSON.parse(option.body);
 
   Object.assign(arr[index], {
     profileId,
-    driverAttributeId,
+    name,
+    groupId,
+    multi,
     description,
-    value,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
   }); 
+
   return {
     status: 200,
     message: "获取列表成功！",
@@ -58,15 +80,16 @@ Mock.mock("manager_api/manager/driverInfo/update", "post", function(option) {
   };
 });
 
-Mock.mock("manager_api/manager/driverInfo/add", "post", function(option) {
-  let { profileId, driverAttributeId, value, description } = JSON.parse(
+Mock.mock("manager_api/manager/device/add", "post", function(option) {
+  let { profileId, name, groupId, multi, description } = JSON.parse(
     option.body
   );
 
   var obj = {
     profileId,
-    driverAttributeId,
-    value,
+    name,
+    groupId,
+    multi,
     description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
     createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
@@ -80,8 +103,8 @@ Mock.mock("manager_api/manager/driverInfo/add", "post", function(option) {
   };
 });
 
-Mock.mock(/\/driverInfo\/delete/, "post", function(option) {
-  const res = /\/driverInfo\/delete\/(\d+)/.exec(option.url);
+Mock.mock(/\/device\/delete/, "post", function(option) {
+  const res = /\/device\/delete\/(\d+)/.exec(option.url);
   console.log("remove id::", res[1]);
   arr.splice(res[1], 1);
   return {

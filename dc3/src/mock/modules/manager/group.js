@@ -1,30 +1,20 @@
 import Mock from "mockjs";
-import { newArr } from "../../extends";
 import "../../extends";
+import { newArr, filter } from "../../extends";
 import moment from "moment";
 
-let arr = [];
+var arr = [];
 
-Mock.mock("manager_api/manager/profile/list", "post", function(option) {
+Mock.mock("manager_api/manager/group/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
-
-  let { share, name, driverId } = JSON.parse(option.body);
-
+  let { name } = JSON.parse(option.body);
   if (total !== arr.length) {
     arr = newArr(total);
   }
 
-  //filter 不是很好
   if (name) {
     arr = arr.filter(item => item.name === name);
   }
-  if (share != null) {
-    arr = arr.filter(item => item.share === share);
-  }
-  if (driverId) {
-    arr = arr.filter(item => item.driverId === driverId);
-  }
-
   return {
     status: 200,
     message: "获取列表成功！",
@@ -36,19 +26,16 @@ Mock.mock("manager_api/manager/profile/list", "post", function(option) {
   };
 });
 
-Mock.mock("manager_api/manager/profile/update", "post", function(option) {
+Mock.mock("manager_api/manager/group/update", "post", function(option) {
   console.log(JSON.parse(option.body).description);
-  let { name, share, driverId, description, $index: index } = JSON.parse(
-    option.body
-  );
+  let { name, description, $index: index } = JSON.parse(option.body);
 
   Object.assign(arr[index], {
     name,
-    share,
-    driverId,
     description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
   });
+
   return {
     status: 200,
     message: "update列表成功！",
@@ -56,14 +43,11 @@ Mock.mock("manager_api/manager/profile/update", "post", function(option) {
   };
 });
 
-Mock.mock("manager_api/manager/profile/add", "post", function(option) {
-  console.log(JSON.parse(option.body));
-  let { name, share, driverId, description } = JSON.parse(option.body);
+Mock.mock("manager_api/manager/group/add", "post", function(option) {
+  let { name, description } = JSON.parse(option.body);
 
   var obj = {
     name,
-    share,
-    driverId,
     description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
     createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
@@ -72,18 +56,18 @@ Mock.mock("manager_api/manager/profile/add", "post", function(option) {
   arr.push(obj);
   return {
     status: 200,
-    message: "add列表成功！",
+    message: "获取列表成功！",
     ok: true
   };
 });
 
-Mock.mock(/\/profile\/delete/, "post", function(option) {
-  const res = /\/profile\/delete\/(\d+)/.exec(option.url);
+Mock.mock(/\/group\/delete/, "post", function(option) {
+  const res = /\/group\/delete\/(\d+)/.exec(option.url);
   console.log("remove id::", res[1]);
   arr.splice(res[1], 1);
   return {
     status: 200,
-    message: "delete列表成功！",
+    message: "删除group成功！",
     ok: true
   };
 });

@@ -240,6 +240,8 @@
                             }
                         }, this.query)).then(statuses => {
                             this.listData = data.records.map(d => {
+                                //console.log(statuses.data,d.id);
+                                //console.log("statuses.data[d.id]::::",statuses.data[d.id]);
                                 d.status = statuses.data[d.id] || "OFFLINE";
                                 return d;
                             });
@@ -257,13 +259,15 @@
                 group() {
                     dictionaryApi.groupDictionary().then(res => {
                         this.findObject(this.listOption.column, 'groupId').dicData = res.data;
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     });
                 },
                 profile() {
                     dictionaryApi.profileDictionary().then(res => {
                         this.findObject(this.listOption.column, 'profileId').dicData = res.data;
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     });
                 },
                 listAdd(row, done, loading) {
