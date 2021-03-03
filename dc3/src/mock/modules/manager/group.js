@@ -27,7 +27,7 @@ Mock.mock("manager_api/manager/group/list", "post", function(option) {
 });
 
 Mock.mock("manager_api/manager/group/update", "post", function(option) {
-  console.log(JSON.parse(option.body).description);
+  //console.log(JSON.parse(option.body).description);
   let { name, description, $index: index } = JSON.parse(option.body);
 
   Object.assign(arr[index], {

@@ -14,6 +14,17 @@ Mock.mock("data_api/data/deviceEvent/list", "post", function(option) {
     arr = newArr(total);
   }
 
+  //由于这里的type又重新定义 所以重新替换一下数据 'STATUS', 'LIMIT', 'ERROR'
+  arr.filter(item => {
+    if(item.id<5){
+        item.type= 'STATUS'
+    }else if(item.id<15 && item.id>=10){
+      item.type= 'LIMIT'
+    }else if(item.id>=15){
+      item.type= 'ERROR'
+    } 
+    })
+
   if (deviceId) {
     arr = arr.filter(item => item.deviceId === deviceId);
   }
@@ -21,7 +32,7 @@ Mock.mock("data_api/data/deviceEvent/list", "post", function(option) {
     arr = arr.filter(item => item.pointId === pointId);
   }
   if (startTime && endTime) {
-    //arr.filter(item => {console.log(moment(Date.parse(item.originTime)).format('YYYY-MM-DD') ) })
+    
     arr = arr.filter(item =>
       moment(
         moment(Date.parse(item.originTime)).format("YYYY-MM-DD")
