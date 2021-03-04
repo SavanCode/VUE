@@ -1,8 +1,9 @@
 import Mock from "mockjs";
 import "../../extends";
-import { newArr, filter } from "../../extends";
+import { newArr, newObj } from "../../extends";
 import moment from "moment";
-var arr = [];
+
+let arr = [];
 
 Mock.mock("manager_api/manager/device/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
@@ -11,7 +12,7 @@ Mock.mock("manager_api/manager/device/list", "post", function(option) {
   if (total !== arr.length) {
     arr = newArr(total);
   }
- 
+
   if (profileId) {
     arr = arr.filter(item => item.profileId === profileId);
   }
@@ -71,7 +72,7 @@ Mock.mock("manager_api/manager/device/update", "post", function(option) {
     multi,
     description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  }); 
+  });
 
   return {
     status: 200,
@@ -85,15 +86,16 @@ Mock.mock("manager_api/manager/device/add", "post", function(option) {
     option.body
   );
 
-  var obj = {
-    profileId,
-    name,
-    groupId,
-    multi,
-    description,
+  var obj = newObj({
+    id: arr.length,
+    profileId: profileId,
+    name: name,
+    groupId: groupId,
+    multi: multi,
+    description: description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
     createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  };
+  });
 
   arr.push(obj);
   return {

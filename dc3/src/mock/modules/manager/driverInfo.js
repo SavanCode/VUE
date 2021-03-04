@@ -1,9 +1,9 @@
 import Mock from "mockjs";
-import { newArr, filter } from "../../extends";
+import { newArr, filter, newObj } from "../../extends";
 import "../../extends";
 import moment from "moment";
 
-var arr = [];
+let arr = [];
 
 Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
@@ -35,7 +35,7 @@ Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
 });
 
 Mock.mock("manager_api/manager/driverInfo/update", "post", function(option) {
-  console.log(JSON.parse(option.body));
+  //console.log(JSON.parse(option.body));
   let {
     profileId,
     driverAttributeId,
@@ -50,10 +50,10 @@ Mock.mock("manager_api/manager/driverInfo/update", "post", function(option) {
     description,
     value,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  }); 
+  });
   return {
     status: 200,
-    message: "获取列表成功！",
+    message: "update列表成功！",
     ok: true
   };
 });
@@ -63,19 +63,20 @@ Mock.mock("manager_api/manager/driverInfo/add", "post", function(option) {
     option.body
   );
 
-  var obj = {
-    profileId,
-    driverAttributeId,
-    value,
-    description,
-    updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
-    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  };
+  var obj = newObj({
+    id: arr.length,
+    profileId: profileId,
+    driverAttributeId: driverAttributeId,
+    value: value,
+    description: description,
+    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
+    updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
+  });
 
   arr.push(obj);
   return {
     status: 200,
-    message: "获取列表成功！",
+    message: "add列表成功！",
     ok: true
   };
 });

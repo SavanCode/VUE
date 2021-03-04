@@ -1,8 +1,9 @@
 import Mock from "mockjs";
 import "../../extends";
-import { newArr, filter } from "../../extends";
+import { newArr, newObj } from "../../extends";
 import moment from "moment";
-var arr = [];
+
+let arr = [];
 
 Mock.mock("manager_api/manager/pointInfo/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
@@ -65,15 +66,16 @@ Mock.mock("manager_api/manager/pointInfo/add", "post", function(option) {
     option.body
   );
 
-  var obj = {
-    deviceId,
-    pointId,
-    value,
-    pointAttributeId,
-    description,
+  let obj = newObj({
+    id: arr.length,
+    deviceId: deviceId,
+    pointId: pointId,
+    value: value,
+    pointAttributeId: pointAttributeId,
+    description: description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
     createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  };
+  });
 
   arr.push(obj);
   return {

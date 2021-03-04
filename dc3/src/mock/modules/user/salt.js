@@ -10,7 +10,6 @@ export function salt () {
         'ok':true,
         'data': {
           'salt': '4344323121398'
-          // 其他数据
         }
       }
     }

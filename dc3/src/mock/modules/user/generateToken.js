@@ -9,6 +9,7 @@ export function generateToken () {
         'code': 0,
         'ok':true,
         'data': {
+          'token': '4344323121398'
           // 其他数据
         }
       }

@@ -1,5 +1,5 @@
 import Mock from "mockjs";
-import { newArr } from "../../extends";
+import { newArr, newObj } from "../../extends";
 import "../../extends";
 import moment from "moment";
 
@@ -37,7 +37,7 @@ Mock.mock("manager_api/manager/profile/list", "post", function(option) {
 });
 
 Mock.mock("manager_api/manager/profile/update", "post", function(option) {
-  console.log(JSON.parse(option.body).description);
+  //console.log(JSON.parse(option.body).description);
   let { name, share, driverId, description, $index: index } = JSON.parse(
     option.body
   );
@@ -57,17 +57,17 @@ Mock.mock("manager_api/manager/profile/update", "post", function(option) {
 });
 
 Mock.mock("manager_api/manager/profile/add", "post", function(option) {
-  console.log(JSON.parse(option.body));
+  //console.log(JSON.parse(option.body));
   let { name, share, driverId, description } = JSON.parse(option.body);
-
-  var obj = {
-    name,
-    share,
-    driverId,
-    description,
-    updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
-    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  };
+  let obj = newObj({
+    id: arr.length,
+    name: name,
+    share: share,
+    driverId: driverId,
+    description: description,
+    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
+    updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
+  });
 
   arr.push(obj);
   return {
@@ -79,7 +79,7 @@ Mock.mock("manager_api/manager/profile/add", "post", function(option) {
 
 Mock.mock(/\/profile\/delete/, "post", function(option) {
   const res = /\/profile\/delete\/(\d+)/.exec(option.url);
-  console.log("remove id::", res[1]);
+  //console.log("remove id::", res[1]);
   arr.splice(res[1], 1);
   return {
     status: 200,

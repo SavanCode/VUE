@@ -1,7 +1,8 @@
 import Mock from "mockjs";
 import "../../extends";
-import { newArr,filter} from "../../extends";
+import { newArr,filter,newObj} from "../../extends";
 import moment from "moment";
+
 var arr = [];
 
 Mock.mock("manager_api/manager/point/list", "post", function(option) {
@@ -77,7 +78,7 @@ Object.assign(arr[index], {
 
   return {
     status: 200,
-    message: "获取列表成功！",
+    message: "update列表成功！",
     ok: true
   };
 });
@@ -98,22 +99,23 @@ Mock.mock("manager_api/manager/point/add", "post", function(option) {
     description
   } = JSON.parse(option.body);
   
-  var obj = {
-    profileId,
-    name,
-    type,
-    rw,
-    accrue,
-    base,
-    multiple,
-    format,
-    minimum,
-    maximum,
-    unit,
-    description,
+  var obj = newObj({
+    id: arr.length,
+    profileId:profileId,
+    name:name,
+    type:type,
+    rw:rw,
+    accrue:accrue,
+    base:base,
+    multiple:multiple,
+    format:format,
+    minimum:minimum,
+    maximum:maximum,
+    unit:unit,
+    description:description,
+    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS"),
-    createTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  };
+  });
 
   arr.push(obj);
   return {

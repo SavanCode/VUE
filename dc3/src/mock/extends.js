@@ -2,58 +2,65 @@
 import Mock from "mockjs";
 import { Random } from "mockjs";
 
+export function newObj(...para) {
+  //console.log(para)
+  let newArticleObject = Mock.mock({
+    "rawValue|1-100.1-10": 1,
+    "calculateValue|1-100.1-10": 1,
+    serviceName: "@serviceName()",
+    status: "15161",
+    driverAttributeId: "@displayName()",
+    deviceId: "@deviceId()",
+    pointId: "@pointId()",
+    profileId: "@name()",
+    content: Random.csentence(5, 10),
+    pointAttributeId: "@pointAttributeId()",
+    name: "@name()",
+    host: "127.1.2.3",
+    port: Random.natural(0, 10000),
+    groupId: "@groupId()",
+    "confirm|1": [false, true], //['未确定', '已确定'],
+    "rw|1": [0, 1, 2], //['只读', '只写','读写'],
+    "accrue|1": [false, true], //['累计', '不累计'],
+    driverId: "@driverId()",
+    "multi|1": [false, true], //["单点数据", "结构数据"],
+    //"status|1":['在线','离线','维护','故障'],
+    "interval|1-100": 100,
+    "base|1-100": 100,
+    "multiple|1-100": 100,
+    format: "%.3f",
+    minimum: -999999,
+    maximum: 999999,
+    unit: "default",
+    displayName: "@displayName()",
+    "share|1": [false, true], //['共有', '私有'],
+    type: "@type()",
+    //type:STATUS,LIMIT,ERROR deviceEvents
+    value: "15161",
+    description: Random.csentence(5, 10),
+    confirmTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    originTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    updateTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    createTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS")
+  });
+  Object.assign(newArticleObject, para[0]);
+  //console.log(newArticleObject)
+  return newArticleObject;
+}
+
 export function newArr(length) {
   console.log("newing");
   let arr = [];
   for (let i = 0; i < length; i++) {
-    let newArticleObject = Mock.mock({
-      id: i,
-      "rawValue|1-100.1-10": 1,
-      "calculateValue|1-100.1-10": 1,
-      serviceName: "@serviceName()",
-      status: "15161",
-      driverAttributeId: "@displayName()",
-      deviceId: "@deviceId()",
-      pointId: "@pointId()",
-      profileId: "@name()",
-      content: Random.csentence(5, 10),
-      pointAttributeId: "@pointAttributeId()",
-      name: "@name()",
-      host: "127.1.2.3",
-      port: Random.natural(0, 10000),
-      groupId: "@groupId()",
-      "confirm|1": [false, true], //['未确定', '已确定'],
-      "rw|1": [0, 1, 2], //['只读', '只写','读写'],
-      "accrue|1": [false, true], //['累计', '不累计'],
-      driverId: "@driverId()",
-      "multi|1": ["单点数据", "结构数据"],
-      //"status|1":['在线','离线','维护','故障'],
-      "interval|1-100": 100,
-      "base|1-100": 100,
-      "multiple|1-100": 100,
-      format: "%.3f",
-      minimum: -999999,
-      maximum: 999999,
-      unit: "default",
-      displayName: "@displayName()",
-      "share|1": [false, true], //['共有', '私有'],
-      type: "@type()",
-      //type:STATUS,LIMIT,ERROR deviceEvents
-      value: "15161",
-      description: Random.csentence(5, 10),
-      confirmTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
-      originTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
-      updateTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
-      createTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS")
-    });
+    let newArticleObject = newObj({ id: i });
     arr.push(newArticleObject);
   }
-  console.log(arr);
+  //console.log(arr);
   return arr;
 }
 
 export function filter(array, ...info) {
-  console.log(array, arguments);
+  console.log(array, info);
 }
 
 Random.extend({
