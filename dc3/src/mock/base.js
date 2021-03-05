@@ -1,35 +1,12 @@
 // 导入 模拟假数据的包
 import Mock from "mockjs";
 import { Random } from "mockjs";
-import data from "base"
 
-var arr=[];
+var data=[];
 const baseNum=80
-
-//1.这里的引入是引入不进来正确的data
-//console.log("date",data)
-
-//2.这样生成的数据不能使用mock自定义函数
-//生成出来不对，但是base里我也一样生成 这样newwarr是可以直接生成正确函数的
-arr=newArr()
-console.log("extends中生成的arr",newArr())
-
-//由于是export了newArr 所以在Api里面直接call newArr也是可以的 
-
-function getter(){ 
-  //console.log(arr)
-  return arr
-}
-
- function update(index,obj){ 
-    Object.assign(arr[index], obj);
-}
- function del(index){
-  arr= arr.filter(item=>item.id!=index)
-}
- function add(obj){
-  arr.push(obj)
-}
+ 
+data=newArr(); 
+ 
 
 //创建一个带有数据对象，参数为特定的数据
  function newObj(...para) {
@@ -73,25 +50,22 @@ function getter(){
     updateTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
     createTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS")
   });
-  if(para){
-    Object.assign(newArticleObject, para[0]);
-  } 
+  Object.assign(newArticleObject, para[0]);
   return newArticleObject;
 }
 
 //创建数据array
- function newArr() {
-   let arr=[]
+function newArr() {
   console.log("newing"); 
+  let arr=[];
   for (let i = 0; i < baseNum; i++) {
     let newArticleObject = newObj({ id: i });
-    console.log(newArticleObject)
     arr.push(newArticleObject);
-  }  
+  } 
   return arr;
 }
 
-function filter(array, ...info) {
+export function filter(array, ...info) {
   console.log(array, info);
 }
 
@@ -210,4 +184,4 @@ Random.extend({
   }
 });
 
-export { getter, update, del,add,newObj,newArr,filter };
+export default data

@@ -37,7 +37,7 @@ axios.interceptors.response.use(res => {
     console.log(' axios.interceptors response',res)
     NProgress.done();
     const ok = res.data.ok || false, status = res.status || 200, message = res.data.message || 'Internal Server Error!';
-    console.log(ok,status,message);
+    //console.log(ok,status,message);
     if (!ok) {
         if (status === 401) {
             store.dispatch('ClearToken').then(() => router.push({path: '/login'}));

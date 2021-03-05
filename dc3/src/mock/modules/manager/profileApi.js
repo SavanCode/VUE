@@ -1,20 +1,22 @@
 import Mock from "mockjs";
-import { newArr, newObj } from "../../extends";
+import { newArr, newObj,getter,update,del,add } from "../../extends";
 import "../../extends";
-import moment from "moment";
-
-let arr = [];
+import data from "../../base"
+import moment from "moment"; 
+let arr=[]
 
 Mock.mock("manager_api/manager/profile/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
 
   let { share, name, driverId } = JSON.parse(option.body);
 
-  if (total !== arr.length) {
-    arr = newArr(total);
+  
+  if (arr.length===0) {
+    arr= getter() //这里生成的不能用自定义mock函数
+    //arr=data //这里生成的没问题 外部base文件引入
+    //arr=newArr() // 这里生成的也没问题
   }
 
-  //filter 不是很好
   if (name) {
     arr = arr.filter(item => item.name === name);
   }
@@ -31,24 +33,30 @@ Mock.mock("manager_api/manager/profile/list", "post", function(option) {
     ok: true,
     data: {
       total,
-      records: arr
+      records: arr //arr.slice(0,total)
     }
   };
 });
 
 Mock.mock("manager_api/manager/profile/update", "post", function(option) {
-  //console.log(JSON.parse(option.body).description);
   let { name, share, driverId, description, $index: index } = JSON.parse(
     option.body
   );
+  update(index,{
+      name,
+      share,
+      driverId,
+      description,
+      updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
+    })
+  // Object.assign(arr[index], {
+  //   name,
+  //   share,
+  //   driverId,
+  //   description,
+  //   updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
+  // });
 
-  Object.assign(arr[index], {
-    name,
-    share,
-    driverId,
-    description,
-    updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-  });
   return {
     status: 200,
     message: "update列表成功！",

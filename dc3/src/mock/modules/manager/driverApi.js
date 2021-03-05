@@ -11,8 +11,8 @@ Mock.mock("manager_api/manager/driver/list", "post", function(option) {
 
   if (total !== arr.length) {
     arr = newArr(total);
-  }
-
+  } 
+  
   if (name) {
     arr = arr.filter(item => item.name === name);
   }

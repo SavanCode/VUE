@@ -39,7 +39,7 @@ export const getStore = (params = {}) => {
     if (isNull(obj)) obj = window.localStorage.getItem(name);
     if (isNull(obj)) return;
     try {
-        console.log(obj)
+        //console.log(obj)
         obj = JSON.parse(obj);
     } catch(error) {
         console.error(error);
