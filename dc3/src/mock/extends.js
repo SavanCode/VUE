@@ -22,7 +22,7 @@ console.log("extends中生成的arr",newArr())
 //由于是export了newArr 所以在Api里面直接call newArr也是可以的 
 
 
-//然后 我看了官方的export解释 我怀疑是不是本身因为function的export 导致了在当前模块不可用 
+//3.然后 我看了官方的export解释 我怀疑是不是本身因为function的export 导致了在当前模块不可用 
 //所以我又在文件中创建了下面的
 //发现也不对啊~~~~ /(ㄒoㄒ)/~~
 console.log("extends中arr1生成的arr",newArr1())

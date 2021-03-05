@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 import { newArr, newObj,getter,update,del,add } from "../../extends";
-import "../../extends";
+//import "../../extends";
 import data from "../../base"
 import moment from "moment"; 
 let arr=[]
@@ -11,7 +11,7 @@ Mock.mock("manager_api/manager/profile/list", "post", function(option) {
   let { share, name, driverId } = JSON.parse(option.body);
 
   
-  if (arr.length===0) {
+  if (arr.length===0) { 
     arr= getter() //这里生成的不能用自定义mock函数 错误数据
     //arr=data //这里生成的没问题 外部base文件引入 正确数据
     //arr=newArr() // 这里生成的也没问题 正确数据
