@@ -6,6 +6,11 @@ import data from "base"
 var arr=[];
 const baseNum=80
 
+//这里判断生成的mock数据对不对 
+//看网页中的模板 或者输出的name 属性 
+//是不是["host", "port", "password", "username"];中的一个
+//如果输出的是人名就是有问题的 或者说别的函数没有执行
+
 //1.这里的引入是引入不进来正确的data
 //console.log("date",data)
 
@@ -15,6 +20,70 @@ arr=newArr()
 console.log("extends中生成的arr",newArr())
 
 //由于是export了newArr 所以在Api里面直接call newArr也是可以的 
+
+
+//然后 我看了官方的export解释 我怀疑是不是本身因为function的export 导致了在当前模块不可用 
+//所以我又在文件中创建了下面的
+//发现也不对啊~~~~ /(ㄒoㄒ)/~~
+console.log("extends中arr1生成的arr",newArr1())
+
+function newObj1(...para) {
+  //console.log(para)
+  let newArticleObject = Mock.mock({
+    "rawValue|1-100.1-10": 1,
+    "calculateValue|1-100.1-10": 1,
+    serviceName: "@serviceName()",
+    status: "15161",
+    driverAttributeId: "@displayName()",
+    deviceId: "@deviceId()",
+    pointId: "@pointId()",
+    profileId: "@name()",
+    content: Random.csentence(5, 10),
+    pointAttributeId: "@pointAttributeId()",
+    name: "@name()",
+    host: "127.1.2.3",
+    port: Random.natural(0, 10000),
+    groupId: "@groupId()",
+    "confirm|1": [false, true], //['未确定', '已确定'],
+    "rw|1": [0, 1, 2], //['只读', '只写','读写'],
+    "accrue|1": [false, true], //['累计', '不累计'],
+    driverId: "@driverId()",
+    "multi|1": [false, true], //["单点数据", "结构数据"],
+    //"status|1":['在线','离线','维护','故障'],
+    "interval|1-100": 100,
+    "base|1-100": 100,
+    "multiple|1-100": 100,
+    format: "%.3f",
+    minimum: -999999,
+    maximum: 999999,
+    unit: "default",
+    displayName: "@displayName()",
+    "share|1": [false, true], //['共有', '私有'],
+    type: "@type()",
+    //type:STATUS,LIMIT,ERROR deviceEvents
+    value: "15161",
+    description: Random.csentence(5, 10),
+    confirmTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    originTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    updateTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS"),
+    createTime: Random.datetime("yyyy-MM-dd HH:mm:ss.SSS")
+  });
+  if(para){
+    Object.assign(newArticleObject, para[0]);
+  } 
+  return newArticleObject;
+}
+
+ function newArr1() {
+   let arr=[]
+  console.log("newing"); 
+  for (let i = 0; i < baseNum; i++) {
+    let newArticleObject = newObj1({ id: i });
+    arr.push(newArticleObject);
+  }  
+  return arr;
+}
+
 
 function getter(){ 
   //console.log(arr)
