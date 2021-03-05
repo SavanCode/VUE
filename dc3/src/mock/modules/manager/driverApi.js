@@ -9,9 +9,9 @@ Mock.mock("manager_api/manager/driver/list", "post", function(option) {
 
   let { name, serviceName, port, host } = JSON.parse(option.body);
 
-  if (total !== arr.length) {
+  if (arr.length===0) { 
     arr = newArr(total);
-  } 
+  }
   
   if (name) {
     arr = arr.filter(item => Object.is(item.name,name));
@@ -32,7 +32,7 @@ Mock.mock("manager_api/manager/driver/list", "post", function(option) {
     ok: true,
     data: {
       total,
-      records: arr
+      records: arr.slice(0,total)
     }
   };
 });

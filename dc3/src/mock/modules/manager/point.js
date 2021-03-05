@@ -3,17 +3,16 @@ import "../../extends";
 import { newArr,filter,newObj} from "../../extends";
 import moment from "moment";
 
-var arr = [];
+let arr = [];
 
 Mock.mock("manager_api/manager/point/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
 
   let { profileId, name, type, rw, accrue } = JSON.parse(option.body);
 
-  if (total !== arr.length) {
+  if (arr.length===0) { 
     arr = newArr(total);
-  } 
-
+  }
   if (profileId) {
     arr = arr.filter(item => Object.is(item.profileId,profileId));  
   }
@@ -37,7 +36,7 @@ Mock.mock("manager_api/manager/point/list", "post", function(option) {
     ok: true,
     data: {
       total,
-      records: arr
+      records: arr.slice(0,total)
     }
   };
 });

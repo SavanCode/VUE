@@ -10,7 +10,7 @@ Mock.mock("manager_api/manager/pointInfo/list", "post", function(option) {
 
   let { deviceId, pointId, pointAttributeId } = JSON.parse(option.body);
 
-  if (total !== arr.length) {
+  if (arr.length===0) { 
     arr = newArr(total);
   }
 
@@ -29,8 +29,8 @@ Mock.mock("manager_api/manager/pointInfo/list", "post", function(option) {
     message: "获取列表成功！",
     ok: true,
     data: {
-      total,
-      records: arr
+      total, 
+      records: arr.slice(0,total)
     }
   };
 });
@@ -53,7 +53,7 @@ Mock.mock("manager_api/manager/pointInfo/update", "post", function(option) {
     description: description,
     updateTime: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
   });
-  //console.log(arr)
+  
   return {
     status: 200,
     message: "获取列表成功！",

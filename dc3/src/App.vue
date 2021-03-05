@@ -6,7 +6,12 @@
 
 <script>
     export default {
-        name: "app"
+        name: "app",
+        // watch: {
+        //     "$router.name"(val) {
+        //         console.log(val)
+        //     }
+        // } 
     };
 </script>
 <style lang="scss">

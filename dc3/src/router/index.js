@@ -26,6 +26,10 @@ const router = new Router({
   routes: []
 });
 
+function stringISEmpty(token) {
+  return token || "" === token;
+}
+ 
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const meta = to.meta || {};

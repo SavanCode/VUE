@@ -2,12 +2,16 @@ import Mock from "mockjs";
 import { newArr } from "../../extends";
 import "../../extends";
  
+let arr=[];
+
 Mock.mock("manager_api/manager/driverAttribute/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
 
   let { displayName, name, type, driverId } = JSON.parse(option.body);
 
-  let arr = newArr(total);
+  if (arr.length===0) { 
+    arr = newArr(total);
+  }
   //filter 不是很好
   if (displayName) {
     arr = arr.filter(item => Object.is(item.displayName,displayName));  
@@ -28,7 +32,7 @@ Mock.mock("manager_api/manager/driverAttribute/list", "post", function(option) {
     ok: true,
     data: {
       total,
-      records: arr
+      records: arr.slice(0,total)
     }
   };
 });

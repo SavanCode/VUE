@@ -9,7 +9,8 @@ Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
   let total = JSON.parse(option.body).page.size;
 
   let { profileId, driverAttributeId } = JSON.parse(option.body);
-  if (total !== arr.length) {
+  
+  if (arr.length===0) { 
     arr = newArr(total);
   }
 
@@ -29,7 +30,7 @@ Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
     ok: true,
     data: {
       total,
-      records: arr
+      records: arr.slice(0,total)
     }
   };
 });

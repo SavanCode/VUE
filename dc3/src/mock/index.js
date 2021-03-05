@@ -6,7 +6,7 @@ import * as cancel from "./modules/user/cancel";
 import * as check from "./modules/user/check";
 
 Mock.setup({
-  timeout: 300, // 设置延迟响应，模拟向后端请求数据
+  timeout: 100, // 设置延迟响应，模拟向后端请求数据
 });
 
 // 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
