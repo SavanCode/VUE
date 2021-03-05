@@ -15,21 +15,21 @@ Mock.mock("manager_api/manager/point/list", "post", function(option) {
   } 
 
   if (profileId) {
-    arr = arr.filter(item => item.profileId === profileId);
+    arr = arr.filter(item => Object.is(item.profileId,profileId));  
   }
   if (name) {
-    arr = arr.filter(item => item.name === name);
+    arr = arr.filter(item => Object.is(item.name,name));  
   }
   if (type) {
     arr = arr.filter(item => item.type.includes(type));
   }
   if (rw != null) {
     //  0-只读 1-只写 2-读写
-    arr = arr.filter(item => item.rw === rw);
+    arr = arr.filter(item => Object.is(item.rw,rw));  
   }
   if (accrue != null) {
     //true-累计 false-不累计
-    arr = arr.filter(item => item.accrue === accrue);
+    arr = arr.filter(item => Object.is(item.accrue,accrue));  
   }
   return {
     status: 200,

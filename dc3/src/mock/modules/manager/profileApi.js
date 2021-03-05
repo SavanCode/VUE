@@ -12,19 +12,19 @@ Mock.mock("manager_api/manager/profile/list", "post", function(option) {
 
   
   if (arr.length===0) { 
-    arr= getter() //这里生成的不能用自定义mock函数 错误数据
-    //arr=data //这里生成的没问题 外部base文件引入 正确数据
-    //arr=newArr() // 这里生成的也没问题 正确数据
+    //arr= getter() //这里生成的不能用自定义mock函数 错误数据
+    //arr=data //这里生成的没问题 外部base文件引入 正确数据 调试的时候记得把extends中的引入关掉）
+    arr=newArr() // 这里生成的也没问题 正确数据
   }
 
-  if (name) {
-    arr = arr.filter(item => item.name === name);
+  if (name) { 
+    arr = arr.filter(item => Object.is(item.name,name)); 
   }
   if (share != null) {
-    arr = arr.filter(item => item.share === share);
+    arr = arr.filter(item => Object.is(item.share,share)); 
   }
   if (driverId) {
-    arr = arr.filter(item => item.driverId === driverId);
+    arr = arr.filter(item => Object.is(item.driverId,driverId)); 
   }
 
   return {

@@ -14,7 +14,7 @@ Mock.mock("manager_api/manager/group/list", "post", function(option) {
   }
 
   if (name) {
-    arr = arr.filter(item => item.name === name);
+    arr = arr.filter(item => Object.is(item.name,name)); 
   }
   return {
     status: 200,

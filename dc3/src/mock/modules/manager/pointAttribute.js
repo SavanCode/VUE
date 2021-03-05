@@ -11,16 +11,16 @@ Mock.mock("manager_api/manager/pointAttribute/list", "post", function(option) {
   let arr = newArr(total); 
 
   if (displayName) {
-    arr = arr.filter(item => item.displayName === displayName);
+    arr = arr.filter(item => Object.is(item.displayName,displayName)); 
   }
   if (name) {
-    arr = arr.filter(item => item.name === name);
+    arr = arr.filter(item => Object.is(item.name,name)); 
   }
   if (type) { 
     arr = arr.filter(item => item.type.includes(type));
   }
   if (driverId) { 
-    arr = arr.filter(item => item.driverId === driverId);
+    arr = arr.filter(item => Object.is(item.driverId,driverId)); 
   }
 
   return {

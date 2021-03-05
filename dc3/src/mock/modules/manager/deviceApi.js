@@ -14,13 +14,13 @@ Mock.mock("manager_api/manager/device/list", "post", function(option) {
   }
 
   if (profileId) {
-    arr = arr.filter(item => item.profileId === profileId);
+    arr = arr.filter(item => Object.is(item.profileId,profileId));
   }
   if (name) {
-    arr = arr.filter(item => item.name === name);
+    arr = arr.filter(item => Object.is(item.name,name));
   }
   if (groupId) {
-    arr = arr.filter(item => item.groupId === groupId);
+    arr = arr.filter(item => Object.is(item.groupId,groupId));
   }
 
   return {

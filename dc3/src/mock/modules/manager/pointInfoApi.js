@@ -15,13 +15,13 @@ Mock.mock("manager_api/manager/pointInfo/list", "post", function(option) {
   }
 
   if (deviceId) {
-    arr = arr.filter(item => item.deviceId === deviceId);
+    arr = arr.filter(item => Object.is(item.deviceId,deviceId)); 
   }
   if (pointId) {
-    arr = arr.filter(item => item.pointId === pointId);
+    arr = arr.filter(item => Object.is(item.pointId,pointId)); 
   }
   if (pointAttributeId) {
-    arr = arr.filter(item => item.pointAttributeId === pointAttributeId);
+    arr = arr.filter(item => Object.is(item.pointAttributeId,pointAttributeId)); 
   }
 
   return {

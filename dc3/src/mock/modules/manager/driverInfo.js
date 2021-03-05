@@ -13,8 +13,8 @@ Mock.mock("manager_api/manager/driverInfo/list", "post", function(option) {
     arr = newArr(total);
   }
 
-  if (profileId) {
-    arr = arr.filter(item => item.profileId === profileId);
+  if (profileId) { 
+    arr = arr.filter(item => Object.is(item.profileId,profileId)); 
   }
   if (driverAttributeId) {
     arr = arr.filter(

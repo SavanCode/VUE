@@ -1,7 +1,7 @@
 // 导入 模拟假数据的包
 import Mock from "mockjs";
 import { Random } from "mockjs";
-import data from "base"
+//import data from "./base"
 
 var arr=[];
 const baseNum=80
@@ -11,7 +11,7 @@ const baseNum=80
 //是不是["host", "port", "password", "username"];中的一个
 //如果输出的是人名就是有问题的 或者说别的函数没有执行
 
-//1.这里的引入是引入不进来正确的data
+//1.这里的引入是引入不进来正确的data 
 //console.log("date",data)
 
 //2.这样生成的数据不能使用mock自定义函数

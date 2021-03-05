@@ -14,15 +14,15 @@ Mock.mock("manager_api/manager/driver/list", "post", function(option) {
   } 
   
   if (name) {
-    arr = arr.filter(item => item.name === name);
+    arr = arr.filter(item => Object.is(item.name,name));
   }
   if (serviceName) {
-    arr = arr.filter(item => item.serviceName === serviceName);
+    arr = arr.filter(item => Object.is(item.serviceName,serviceName)); 
   }
-  if (port) {
-    arr = arr.filter(item => item.port === port);
+  if (port) { 
+    arr = arr.filter(item => Object.is(item.port,port));
   }
-  if (host) {
+  if (host) { 
     arr = arr.filter(item => item.host.includes(host));
   }
 
