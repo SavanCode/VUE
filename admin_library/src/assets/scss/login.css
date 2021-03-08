@@ -1,0 +1,52 @@
+.login .el-input__inner:hover {
+  border-color: #007c89;
+}
+
+.login .el-input__prefix {
+  background: #eeedea;
+  left: 0;
+  height: calc(100% - 2px);
+  left: 1px;
+  top: 1px;
+  border-radius: 3px;
+}
+
+.login .el-input__prefix .el-input__icon {
+  width: 30px;
+}
+
+.login .el-input input {
+  padding-left: 35px;
+}
+
+.login .el-card {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+h2 {
+  font-family: "Open Sans";
+  letter-spacing: 1px;
+  font-family: Roboto, sans-serif;
+  padding-bottom: 20px;
+}
+
+a {
+  color: #007c89;
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  color: #009cad;
+}
+
+.login .el-card {
+  width: 340px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=login.css.map */
