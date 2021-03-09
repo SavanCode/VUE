@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie'
-import website from "@/config/website";
 
-const keyName = website.key + '-';
+const keyName = 'key';
 const TokenKey = keyName + 'auth-token';
 
 // 360分钟，360 * 60 * 1000

@@ -10,11 +10,16 @@
         @submit.native.prevent="login"
       >
         <el-form-item prop="username">
-          <el-input @keyup.enter.native="handleLogin" v-model="model.username" placeholder="Username" prefix-icon="el-icon-user"></el-input>
+          <el-input
+            @keyup.enter.native="handleLogin"
+            v-model="model.username"
+            placeholder="Username"
+            prefix-icon="el-icon-user"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
-          @keyup.enter.native="handleLogin"
+            @keyup.enter.native="handleLogin"
             v-model="model.password"
             placeholder="Password"
             type="password"
@@ -28,23 +33,19 @@
             type="primary"
             @click.native.prevent="handleLogin"
             block
-          >Login</el-button>
+            >Login</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
   </div>
 </template>
 
-
 <script>
 export default {
   name: "login",
   data() {
-    return {
-      validCredentials: {
-        username: "lightscope",
-        password: "lightscope"
-      },
+    return { 
       model: {
         username: "",
         password: ""
@@ -59,7 +60,7 @@ export default {
           },
           {
             min: 4,
-            message: "密码长度最少为5位",
+            message: "用户名长度最少为5位",
             trigger: "blur"
           }
         ],
@@ -75,42 +76,24 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-    //   let valid = this.$refs.form.validate();
-    //   if (!valid) {
-    //     return;
-    //   }
-    //   this.loading = true;
-       
-    //   this.loading = false;
-    //   if (
-    //     this.model.username === this.validCredentials.username &&
-    //     this.model.password === this.validCredentials.password
-    //   ) {
-    //     this.$message.success("Login successfull");
-    //   } else {
-    //     this.$message.error("Username or password is invalid");
-    //   }
-            this.$refs.loginForm.validate(valid => {
-            if (valid) {
-                let loading = this.$loading({
-                    lock: true,
-                    text: '登录中,请稍后。。。',
-                    spinner: "el-icon-loading"
-                });
-                //     this.$store.dispatch("GenerateSalt", this.loginForm.name).then((salt) => {
-                //         console.log('salt',salt)
-                //     this.$store.dispatch("GenerateToken", {salt, user: this.loginForm}).then(() => {
-                //         this.$router.push({path: '/'}).then(() => loading.close());
-                //     }).catch(() => {
-                //         loading.close();
-                //     });
-                // }).catch(() => {
-                //     loading.close();
-                //     });
-                loading.close();
-            }
-        });
+    handleLogin() { 
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          let loading = this.$loading({
+            lock: true,
+            text: "登录中,请稍后。。。",
+            spinner: "el-icon-loading"
+          });  
+          
+          this.$store.dispatch("GenerateToken", {user: this.model}).then(() => {
+              this.$router.push({path: '/'}).then(() => loading.close());
+          }).catch((errror) => {
+            console.log(error)
+              loading.close();
+          });
+          loading.close();
+        }
+      });
     }
   }
 };
@@ -133,5 +116,5 @@ export default {
 }
 </style>
 <style lang="scss">
-    @import "~@/assets/scss/login.scss";
+@import "~@/assets/scss/login.scss";
 </style>
