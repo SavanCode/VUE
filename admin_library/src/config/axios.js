@@ -16,7 +16,6 @@ import {getStore} from "@/util/store";
 axios.interceptors.request.use(config => {
     console.log(' axios.interceptors request',config)
     config.headers['Content-Type'] = 'application/json';
-    config.headers['X-Auth-Salt'] = getStore({name: 'salt'}) || '';
     config.headers['X-Auth-User'] = getStore({name: 'user'}) || '';
     config.headers['X-Auth-Token'] = getStore({name: 'token'}) || '';
     return config;
@@ -36,7 +35,8 @@ axios.interceptors.response.use(res => {
         } else {
             failMessage(message);
         }
-        return Promise.reject(new Error(message));
+        //return Promise.reject(new Error(message));
+        return 
     }
 
     return res.data;

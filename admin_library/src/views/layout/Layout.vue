@@ -1,32 +1,31 @@
 <template>
-    <div class="container">
-        this is layout
-        <div class="body"> 
-                <router-view/> 
-        </div>
-    </div>
+     <el-container style="height: 100%">
+        <el-aside width="auto">
+            <common-aside></common-aside>
+        </el-aside> 
+        <el-container> 
+            <el-header>
+                <common-header></common-header>
+            </el-header>
+            <el-main>
+                <router-view/>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
-<style lang="scss">
-    body {
-        margin: 0;
-        min-width: 1366px;
-        min-height: 768px;
-    }
+<script>
+    import CommonAside from '@/components/layout/CommonAside'
+    import CommonHeader from "@/components/layout/CommonHeader";
 
-    .container {
-        color: #2c3e50;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    export default {
+        components: {
+            CommonAside,
+            CommonHeader
+        }
     }
-    .body {
-        top: 60px;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        padding: 4px 1px 4px 4px;
-        position: absolute;
-        background: #f0f2f5;
-    }
+</script>
+
+<style lang="scss">
+
 </style>

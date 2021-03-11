@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ViewsRouter from "./views/index";
 import CommonRouter from "./common/index";
-
+import { checkTokenValid } from "@/api/user";
+import store from "@/store";
+import { getStore } from "@/util/store";
 Vue.use(Router)
 
 const router = new Router({
@@ -21,6 +23,42 @@ const router = new Router({
   },
   mode:'history',
   routes: []
+});
+
+
+router.beforeEach((to, from, next) => {
+  const meta = to.meta || {};
+  if (meta.title) {
+    document.title = to.meta.title;
+  }
+  if (meta.isAuth !== true || from.name === "login") {
+    next();
+  } else {
+    const token = getStore({ name: "token" }), 
+      user = getStore({ name: "user" });
+    if (
+      "" === token ||
+      undefined === token ||
+      "" === user ||
+      undefined === user
+    ) {
+      next({ path: "/login" });
+      return;
+    }
+    checkTokenValid(user, token)
+      .then(res => {
+        if (res.ok) {
+          next();
+        } else {
+          throw new Error(res.message);
+        }
+      })
+      .catch(error => {
+        store.dispatch("ClearToken").then(() => {
+          next({ path: "/login" });
+        });
+      });
+  }
 });
 
 router.addRoutes([...CommonRouter, ...ViewsRouter]);

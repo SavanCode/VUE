@@ -87,7 +87,7 @@ export default {
           
           this.$store.dispatch("GenerateToken", {user: this.model}).then(() => {
               this.$router.push({path: '/'}).then(() => loading.close());
-          }).catch((errror) => {
+          }).catch((error) => {
             console.log(error)
               loading.close();
           });

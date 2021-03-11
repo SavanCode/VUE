@@ -8,15 +8,17 @@ const user = {
     },
     actions: {
       GenerateToken({ commit }, form) {
+        //console.log(form.user)
         let user = {
-          name: form.user.name, 
-        };
+          name: form.user.username, 
+        }; 
         return new Promise((resolve, reject) => {
           generateToken(user)
             .then(res => {
               console.log("generateToken res.data::", res.data);
               const data = res.data;
-              commit("SET_TOKEN", data); 
+              commit("SET_TOKEN", data.token); 
+              commit("SET_USER", data.user);
               resolve();
             })
             .catch(error => {

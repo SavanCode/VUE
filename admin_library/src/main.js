@@ -8,9 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css' //element-ui样式
 //import http from '@/api/config'  //axios
 import './mock'   // mockjs
 
-// 第三方包
-import ElementUI from 'element-ui'
-Vue.use(ElementUI)
+import '@/plugin/element.js'
 
 //Vue.prototype.$http = http
 Vue.config.productionTip = false
