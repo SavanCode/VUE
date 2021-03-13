@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios' 
 import router from '@/router'
 import store from '@/store';
 import {failMessage} from '@/util/util'
 import {getStore} from "@/util/store";
 
-//跨域请求，允许保存cookie
+// //跨域请求，允许保存cookie
 // axios.defaults.withCredentials = true;
 
 // //返回其他状态码
@@ -14,7 +14,7 @@ import {getStore} from "@/util/store";
 
 //HTTP Request拦截
 axios.interceptors.request.use(config => {
-    console.log(' axios.interceptors request',config)
+    console.log(' axios.interceptors request',config) 
     config.headers['Content-Type'] = 'application/json';
     config.headers['X-Auth-User'] = getStore({name: 'user'}) || '';
     config.headers['X-Auth-Token'] = getStore({name: 'token'}) || '';
@@ -35,8 +35,7 @@ axios.interceptors.response.use(res => {
         } else {
             failMessage(message);
         }
-        //return Promise.reject(new Error(message));
-        return 
+        return Promise.reject(new Error(message)); 
     }
 
     return res.data;

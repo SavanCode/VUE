@@ -5,7 +5,7 @@
         </el-aside> 
         <el-container> 
             <el-header>
-                <common-header></common-header>
+                <common-header :userName="user.userName" :admin="user.isAdmin"></common-header>
             </el-header>
             <el-main>
                 <router-view/>
@@ -22,6 +22,12 @@
         components: {
             CommonAside,
             CommonHeader
+        },
+        computed: {
+            //{ "isAdmin": false, "userName": "s11111" }
+            user() {
+            return this.$store.getters.user
+            }
         }
     }
 </script>

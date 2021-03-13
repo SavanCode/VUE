@@ -1,84 +1,52 @@
 <template>
-<div>
- 
-</el-radio-group>
-  <el-menu
-    :collapse="isCollapse"
-    :default-active="$route.path"
-    style="height: 100%;"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-  > 
-    <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
-      <i :class="'el-icon-' + item.icon"></i>
-      <span slot="title">{{ item.label }}</span>
-    </el-menu-item>
-    <el-submenu :index="item.label" v-for="(item, index) in hasChildren" :key="index">
-      <template slot="title">
-        <i :class="'el-icon-' + item.icon"></i>
-        <span slot="title">{{ item.label }}</span>
-      </template>
-      <el-menu-item-group>
-        <el-menu-item :index="subItem.path" v-for="(subItem, subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">
-          <i :class="'el-icon-' + subItem.icon"></i>
-          <span slot="title">{{ subItem.label }}</span>
-        </el-menu-item>
-      </el-menu-item-group>
-    </el-submenu>
-  </el-menu>
+<div> 
+     <el-menu
+      default-active="2"  
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      router>
+      <h3 class="title">系统后台</h3>
+      <el-menu-item  :index="item.url+''" v-for="item in menu" :key="item.id">
+        <i class="el-icon-menu"></i>
+        <span slot="title">{{item.label}}</span>
+      </el-menu-item> 
+    </el-menu>
   </div>
 </template>
-
 <script>
-export default {
-  //计算属性
+export default { 
   computed: {
-    //没有子菜单
-    noChildren() {
-      return this.menu.filter(item => !item.children)
-    },
-    //有子菜单 (这样设置会有一个问题 就是有子菜单的 永远会在没有子菜单的下面）
-    hasChildren() {
-      return this.menu.filter(item => item.children)
-    }
   },
   data() {
     return {
       isCollapse:false,
       menu: [
         {
-          path: '/user',
-          name: 'user',
-          label: '用户管理',
+          path: '/home',
+          name: 'home',
+          label: '主页中心',
           icon: 'user',
-          url: 'UserManage/UserManage'
+          url: '/home'
         },
         {
-          label: '其他',
-          icon: 'location',
-          children: [
-            {
-              path: '/page1',
-              name: 'page1',
-              label: '页面1',
-              icon: 'setting',
-              url: 'Other/PageOne'
-            },
-            {
-              path: '/page2',
-              name: 'page2',
-              label: '页面2',
-              icon: 'setting',
-              url: 'Other/PageTwo'
-            }
-          ]
+          path: '/booklist',
+          name: 'bookList',
+          label: '书库管理',
+          icon: 'user',
+          url: '/booklist'
+        },
+        {
+          path: '/studentlist',
+          name: 'studentlist',
+          label: '学生管理',
+          icon: 'user',
+          url: '/studentlist'
         }
       ]
     }
   },
-  methods: {
-    //跳转路由 根据名称跳转
+  methods: { 
     clickMenu(item) {
       this.$router.push({ name: item.name })
     },
@@ -88,3 +56,10 @@ export default {
   }
 }
 </script>
+
+<style>
+h3{
+    text-align: center;
+    color: aliceblue;
+}
+</style>

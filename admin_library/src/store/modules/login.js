@@ -15,7 +15,7 @@ const user = {
         return new Promise((resolve, reject) => {
           generateToken(user)
             .then(res => {
-              console.log("generateToken res.data::", res.data);
+              //console.log("generateToken res.data::", res.data);
               const data = res.data;
               commit("SET_TOKEN", data.token); 
               commit("SET_USER", data.user);
@@ -31,7 +31,7 @@ const user = {
         return new Promise((resolve, reject) => {
           cancelToken(getStore({ name: "user" }))
             .then(res => {
-              //console.log('ClearToken',res);
+              console.log('ClearToken',res);
               commit("REMOVE_USER");
               commit("REMOVE_TOKEN");
               resolve(res);

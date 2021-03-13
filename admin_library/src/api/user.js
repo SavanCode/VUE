@@ -8,9 +8,9 @@ export const generateToken = (user) => request({
 
 export const checkTokenValid = (user, token) => request({
     url: 'user_api/auth/token/check',
-    method: 'get',
+    method: 'post',
     params: {
-        username: user,
+        user,
         token
     }
 });

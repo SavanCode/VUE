@@ -44,9 +44,11 @@ router.beforeEach((to, from, next) => {
     ) {
       next({ path: "/login" });
       return;
-    }
+    };
+    console.log(user,token)
     checkTokenValid(user, token)
       .then(res => {
+        console.log(res)
         if (res.ok) {
           next();
         } else {
@@ -54,6 +56,7 @@ router.beforeEach((to, from, next) => {
         }
       })
       .catch(error => {
+        console.log(error)
         store.dispatch("ClearToken").then(() => {
           next({ path: "/login" });
         });
