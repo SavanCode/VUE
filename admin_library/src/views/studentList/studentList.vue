@@ -64,7 +64,7 @@
                             label: '用户姓名',
                             prop: 'Username',
                             span: 12,
-                            //search: true,
+                            search: true,
                             searchSpan: 12,
                             //type: 'tree',
                             //dicData: [],
@@ -122,6 +122,9 @@
                                     required: true,
                                     message: '请输入邮箱',
                                     trigger: 'blur'
+                                }, {
+                                    pattern: /^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$/,
+                                    message: '请输入 正确格式的邮箱'
                                 }
                             ]
                         },{

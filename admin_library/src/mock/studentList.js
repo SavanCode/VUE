@@ -8,7 +8,7 @@ let arr = []
 Mock.mock('student_api/student/studentList/list', 'post', option =>{
 
   let total = JSON.parse(option.body).page.size;
-  let { Sex , isActive } = JSON.parse(option.body);
+  let { Sex , isActive, Username } = JSON.parse(option.body);
 
   if (arr.length===0) { 
     arr = newArr(total);
@@ -16,12 +16,15 @@ Mock.mock('student_api/student/studentList/list', 'post', option =>{
  
 
 
-if (Sex != null) { 
+  if (Sex != null) { 
     Sex = Object.is(Sex,"false") ? false :true;
     arr = arr.filter(item => Object.is(item.Sex,Sex));  
   }
   if (isActive != null) { 
     arr = arr.filter(item => Object.is(item.isActive,isActive));  
+  }
+  if (Username) { 
+    arr = arr.filter(item => item.Username.includes(Username));  
   }
 
     return {
