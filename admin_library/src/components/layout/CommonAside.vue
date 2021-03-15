@@ -42,7 +42,29 @@ export default {
           label: '学生管理',
           icon: 'user',
           url: '/studentlist'
+        },
+        {
+          path: '/records',
+          name: 'records',
+          label: '借读记录管理',
+          icon: 'user',
+          url: '/records'
+        },
+        {
+          path: '/adminList',
+          name: 'adminList',
+          label: '员工管理',
+          icon: 'user',
+          url: '/adminList'
+        },
+        {
+          path: '/bookType',
+          name: 'bookType',
+          label: '书本类型管理',
+          icon: 'user',
+          url: '/bookType'
         }
+
       ]
     }
   },

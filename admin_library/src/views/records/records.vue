@@ -16,6 +16,7 @@
                        @refresh-change="refreshChange"
                        @size-change="sizeChange"
                        @current-change="currentChange"
+                       :beforeOpen="beforeOpen"
             >
             </avue-crud>
         </base-card>
@@ -23,9 +24,9 @@
 </template>
 
 <script>
-    import {bookListApi} from '@/api/book' 
-    import {dictionaryApi} from '@/api/dictionary'
+    import {recordsApi} from '@/api/records'  
     import {successMessage} from "@/util/util";
+    import moment from 'moment'
 
     export default {
         data() {
@@ -42,31 +43,41 @@
                     align: 'center',
                     column: [
                         {
-                            label: '书本编号',
-                            prop: 'Book_id',
+                            label: '借阅编号',
+                            prop: 'Record_id',
                             span: 24,
                             searchSpan: 12,
                             disabled: true,
                             rules: [
                                 {
                                     required: false,
-                                    message: '请选择书本编号',
+                                    message: '请输入借阅编号',
                                     trigger: 'blur'
+                                }
+                            ]
+                        },{
+                            label: '图书编号',
+                            prop: 'Book_id',
+                            span: 12,
+                            search: true,
+                            searchSpan: 12,
+                            rules: [
+                                {
+                                    required: true,
+                                    message: '请输入图书编号',
+                                    trigger: 'blur'//click
                                 }
                             ]
                         },{
                             label: '书名',
                             prop: 'Book_name',
                             span: 12,
-                            //search: true,
+                            search: true,
                             searchSpan: 12,
-                            //type: 'tree',
-                            //dicData: [],
-                           // defaultExpandAll: true,
                             rules: [
                                 {
                                     required: true,
-                                    message: '请选择属性',
+                                    message: '请输入书名',
                                     trigger: 'blur'//click
                                 }
                             ]
@@ -82,57 +93,59 @@
                                 }
                             ]
                         },{
-                            label: '类型',
-                            prop: 'Type_id',
+                            label: '读者编号',
+                            prop: 'User_id',
                             search: true,
-                            span: 12,
-                            type: 'tree',
-                            dicData: [],
-                           defaultExpandAll: true,
-                            rules: [
-                                {
-                                    //required: true,
-                                    message: '请选择书本类型',
-                                    trigger: 'cilck'
-                                }
-                            ]
-                        }, {
-                            label: '出版社',
-                            prop: 'Pub_company',
+                            searchSpan:12,
                             span: 12,
                             rules: [
                                 {
                                     required: true,
-                                    message: '请输入作者',
+                                    message: '请输入借书用户编号',
                                     trigger: 'blur'
                                 }
                             ]
                         },{
-                            label: '内容摘要',
-                            prop: 'Brief',
-                            width: 200,
-                            span: 24,
-                            type: 'textarea',
-                            overHidden: true,
+                            label: '借书日期',
+                            prop: 'Borrow_date',
+                            width: 155,
+                            span: 12, 
+                            type: 'date',
+                            disabled: true,
+                            format: 'yyyy-MM-dd',
+                            valueFormat: 'yyyy-MM-dd', 
+                        },{
+                            label: '预计归还日期',
+                            prop: 'Exp_return_date',
+                            width: 155,
+                            span: 12,  
+                            type: 'date',
+                            disabled: true,
+                            format: 'yyyy-MM-dd',
+                            valueFormat: 'yyyy-MM-dd'
+                        },{
+                            label: '实际归还日期',
+                            prop: 'Act_return_date',
+                            width: 155,
+                            span: 12, 
+                            type: 'date',
+                            format: 'yyyy-MM-dd',
+                            valueFormat: 'yyyy-MM-dd'
+                        }, {
+                            label: '罚款',
+                            prop: 'Penalty', 
+                            span: 12,
                             rules: [
                                 {
-                                    max: 380,
-                                    message: '最多输入380个字符',
+                                    required: true,
+                                    message: '请输入罚款金额',
                                     trigger: 'blur'
                                 }
                             ]
-                        }, {
-                            label: '出版时间',
-                            prop: 'PUB_DATE',
-                            width: 155,
-                            span: 12,
-                            disabled: true,
-                            type: 'date',
-                            format: 'yyyy-MM-dd HH:mm:ss',
-                            valueFormat: 'yyyy-MM-dd HH:mm:ss'
                         }
                     ]
-                }, 
+                },
+                loading: true,
                 page: {
                     total: 0,
                     pageSize: 20,
@@ -141,14 +154,13 @@
             }
         },
         created() {
-            this.getList(); 
-            this.getBookType();
+            this.getList();  
         },
         methods:
             {
                 getList(page) {
                     this.loading = true;
-                    bookListApi.list(Object.assign({
+                    recordsApi.list(Object.assign({
                         page: {
                             current: this.page.currentPage,
                             size: this.page.pageSize
@@ -159,18 +171,12 @@
                         this.page.total = data.total;
                         this.listData = data.records;
                     }).catch(() => {
-                    }).finally(() => { 
-                         this.loading = false;//
+                    }).finally(() => {
+                        this.loading = false;//
                     }); 
                 },
-                getBookType() {
-                    dictionaryApi.bookTypeDictionary().then(res => {
-                        this.findObject(this.listOption.column,'Type_id').dicData = res.data;
-                    }).catch(() => {
-                    });
-                },
                 listAdd(row, done, loading) {
-                    bookListApi.add(row).then(() => {
+                    recordsApi.add(row).then(() => {
                         loading();
                         this.list(this.page);
                         successMessage();
@@ -184,9 +190,8 @@
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'warning'
-                    }).then(() => {
-                        //console.log(row.Book_id)
-                        return bookListApi.delete(row.Book_id);
+                    }).then(() => { 
+                        return recordsApi.delete(row.Record_id);
                     }).then(() => {
                         this.getList(this.page);
                         successMessage();
@@ -194,7 +199,7 @@
                     });
                 },
                 listUpdate(row, index, done, loading) {
-                    bookListApi.update(row).then(() => {
+                    recordsApi.update(row).then(() => {
                         loading();
                         this.getList(this.page);
                         successMessage();
@@ -206,13 +211,11 @@
                 refreshChange() {
                     this.getList(this.page);
                 },
-                currentChange(page) { 
+                currentChange(page) {
                     this.page.currentPage = page;
                 },
-                sizeChange(pageSize) { 
+                sizeChange(pageSize) {
                     this.page.pageSize = pageSize;
-                    this.getList(this.page);
-                    done();
                 },
                 searchChange(params, done) {
                     this.query = params;
@@ -222,7 +225,30 @@
                 searchReset() {
                     this.query = {};
                     this.getList(this.page);
-                }
+                },
+                beforeOpen(done, type) {       
+                    //const { id } = this.$route.params;
+                    //console.log(this.$route.params) 
+
+                    if (["add"].includes(type)) {   
+                        let date=moment().format('YYYY-MM-DD HH:mm:ss')
+                        // this.$refs['crud'].$refs.dialogForm.$refs.tableForm
+                       // console.log(this.$refs.crud)
+                        setTimeout(() => {
+                            //$refs.dialogForm.$refs.tableForm.$refs.Borrow_date
+                        //this.$set(this.$refs.dialogForm.$refs.tableForm,'Borrow_date',date)
+                        //this.$refs.crud.$children[0].searchForm[valueKey] = data;  
+                        }, 300);       
+                        
+                        console.log("add")      
+                    }else if (["edit", "view"].includes(type)) {          
+                        // getNotice(this.form.id).then(res => {            
+                        //     this.form = res.data.data;          
+                        // });  
+                        console.log("edit view")            
+                    }        
+                    done();
+                }, 
             }
     }
 </script>

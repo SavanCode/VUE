@@ -1,16 +1,16 @@
 import Mock from "mockjs"; 
 
 let arr = [];
-const baseNum = 80;
+const baseNum = 81;
 
 function newBookObj(...para) {
   //console.log(para)
   let newArticleObject = Mock.mock({    
-    Book_name: '@cword(2, 8)', // 随机生成中文字符串
+    Book_name: '@cword(2, 8)',  
     Author:'@name',
     //Type_id:'@cword(2, 5)',
-    Type_id: "@pick(['ATpye', 'BTpye', 'CTpye', 'DTpye', 'ETpye','FTpye'])", //随机选择一个字母 
-    price: '@natural(2, 10)', // 自然数
+    Type_id: "@pick(['ATpye', 'BTpye', 'CTpye', 'DTpye', 'ETpye','FTpye'])",
+    price: '@natural(2, 10)', 
     Pub_company:'@cword(2, 8)',
     PUB_DATE:'@date',
     Total_num:'@natural(2, 15)',
@@ -26,7 +26,7 @@ function newBookObj(...para) {
 function newBookArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 0; i < baseNum; i++) {
+  for (let i = 1; i < baseNum; i++) {
     let newArticleObject = newBookObj({ Book_id: i });
     tempArray.push(newArticleObject);
   } 
@@ -50,7 +50,7 @@ function newStudentObj(...para) {
     isActive:'@integer(0,2)',
   });
   Object.assign(newStudentObject, para[0]);
-  console.log(newStudentObject)
+  //console.log(newStudentObject)
   return newStudentObject;
 }
 
@@ -58,10 +58,81 @@ function newStudentObj(...para) {
 function newStudentArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 0; i < baseNum; i++) {
-    let newArticleObject = newStudentObj({ User_id: i+1 });
+  for (let i = 1; i < baseNum; i++) {
+    let newArticleObject = newStudentObj({ User_id: i });
     tempArray.push(newArticleObject);
   } 
   return tempArray;
 }
-export {newBookArr, newBookObj,newStudentObj,newStudentArr}
+
+function newRecordObj(...para) {
+  //console.log(para)
+  let newObject = Mock.mock({     
+    Book_name: '@cword(2, 8)', 
+    Author:'@name',
+    Penalty:'@natural(2, 100)', 
+    Borrow_date:'@date', 
+    Exp_return_date:'@date', 
+    Act_return_date:'@date'
+  });
+  Object.assign(newObject, para[0]);
+  //console.log(newObject)
+  return newObject;
+}
+
+//创建数据array
+function newRecordArr() {
+  console.log("newing"); 
+  let tempArray=[];
+  for (let i = 1; i < baseNum; i++) {
+    let newArticleObject = newRecordObj({ Record_id: i,Book_id: i+200 ,User_id: i+1 });
+    tempArray.push(newArticleObject);
+  } 
+  return tempArray;
+}
+
+
+export function newAdminObj(...para) {
+  //console.log(para)
+  let newObject = Mock.mock({   
+    Admin_name:'@name', 
+    Admin_password:'@cword(2, 10)'
+  });
+  Object.assign(newObject, para[0]); 
+  return newObject;
+}
+
+//创建数据array
+ export function newAdminArr() {
+  console.log("newing"); 
+  let tempArray=[];
+  for (let i = 1; i < baseNum; i++) {
+    let newArticleObject = newAdminObj({ Admin_id: i });
+    tempArray.push(newArticleObject);
+  } 
+  return tempArray;
+}
+
+export function newBookTypeObj(...para) {
+  //console.log(para)
+  let newObject = Mock.mock({   
+    Type_name:'@cword(2, 7)',  
+  });
+  Object.assign(newObject, para[0]); 
+  return newObject;
+}
+
+//创建数据array
+ export function newnewBookTypeArr() {
+  console.log("newing"); 
+  let tempArray=[];
+  for (let i = 1; i < 5; i++) {
+    let newArticleObject = newBookTypeObj({ Admin_id: i });
+    tempArray.push(newArticleObject);
+  } 
+  return tempArray;
+}
+
+ 
+
+export {newBookArr, newBookObj,newStudentObj,newStudentArr,newRecordObj,newRecordArr}
