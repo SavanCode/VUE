@@ -1,7 +1,7 @@
 import Mock from "mockjs"; 
 
 let arr = [];
-const baseNum = 81;
+const baseNum = 80;
 
 function newBookObj(...para) {
   //console.log(para)
@@ -26,7 +26,7 @@ function newBookObj(...para) {
 function newBookArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 1; i < baseNum; i++) {
+  for (let i = 0; i < baseNum; i++) {
     let newArticleObject = newBookObj({ Book_id: i });
     tempArray.push(newArticleObject);
   } 
@@ -58,7 +58,7 @@ function newStudentObj(...para) {
 function newStudentArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 1; i < baseNum; i++) {
+  for (let i = 0; i < baseNum; i++) {
     let newArticleObject = newStudentObj({ User_id: i });
     tempArray.push(newArticleObject);
   } 
@@ -84,7 +84,7 @@ function newRecordObj(...para) {
 function newRecordArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 1; i < baseNum; i++) {
+  for (let i = 0; i < baseNum; i++) {
     let newArticleObject = newRecordObj({ Record_id: i,Book_id: i+200 ,User_id: i+1 });
     tempArray.push(newArticleObject);
   } 
@@ -106,7 +106,7 @@ export function newAdminObj(...para) {
  export function newAdminArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 1; i < baseNum; i++) {
+  for (let i = 0; i < baseNum; i++) {
     let newArticleObject = newAdminObj({ Admin_id: i });
     tempArray.push(newArticleObject);
   } 
@@ -123,11 +123,11 @@ export function newBookTypeObj(...para) {
 }
 
 //创建数据array
- export function newnewBookTypeArr() {
+ export function newBookTypeArr() {
   console.log("newing"); 
   let tempArray=[];
-  for (let i = 1; i < 5; i++) {
-    let newArticleObject = newBookTypeObj({ Admin_id: i });
+  for (let i = 0; i < 5; i++) {
+    let newArticleObject = newBookTypeObj({ Type_id: i });
     tempArray.push(newArticleObject);
   } 
   return tempArray;

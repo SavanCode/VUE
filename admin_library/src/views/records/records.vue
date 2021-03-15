@@ -216,6 +216,7 @@
                 },
                 sizeChange(pageSize) {
                     this.page.pageSize = pageSize;
+                    this.getList(this.page);
                 },
                 searchChange(params, done) {
                     this.query = params;

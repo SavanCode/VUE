@@ -24,21 +24,21 @@ export const bookListApi = {
 
 export const bookTypeApi = {
     add: (bookTypeitem) => request({
-        url: 'book_api/book/bookTypeitem/add',
+        url: 'book_api/book/bookType/add',
         method: 'post',
         data: bookTypeitem
     }),
     delete: (id) => request({
-        url: 'book_api/book/bookTypeitem/delete/' + id,
+        url: 'book_api/book/bookType/delete/' + id,
         method: 'post'
     }),
     update: (bookTypeitem) => request({
-        url: 'book_api/book/bookTypeitem/update',
+        url: 'book_api/book/bookType/update',
         method: 'post',
         data: bookTypeitem
     }),
     list: (pageinfo) => request({
-        url: 'book_api/book/bookTypeitem/list',
+        url: 'book_api/book/bookType/list',
         method: 'post',
         data: pageinfo
     })

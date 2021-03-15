@@ -255,8 +255,7 @@
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'warning'
-                    }).then(() => {
-                        //console.log(row.Book_id)
+                    }).then(() => { 
                         return studentListApi.delete(row.User_id);
                     }).then(() => {
                         this.getList(this.page);
@@ -282,6 +281,7 @@
                 },
                 sizeChange(pageSize) {
                     this.page.pageSize = pageSize;
+                    this.getList(this.page);
                 },
                 searchChange(params, done) {
                     this.query = params;

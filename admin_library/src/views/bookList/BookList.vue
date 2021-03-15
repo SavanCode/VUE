@@ -88,7 +88,7 @@
                             span: 12,
                             type: 'tree',
                             dicData: [],
-                           defaultExpandAll: true,
+                            defaultExpandAll: true,
                             rules: [
                                 {
                                     //required: true,

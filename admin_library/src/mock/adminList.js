@@ -1,21 +1,23 @@
 import Mock from 'mockjs' 
 import "./extends";
 import { newAdminArr as newArr, newAdminObj as newObj } from "./extends";
-import moment from 'moment'
 
 let arr = []
  
 Mock.mock('adminList_api/admin/adminList/list', 'post', option =>{
     let total = JSON.parse(option.body).page.size;
-//   let { Type_id } = JSON.parse(option.body);
+    let { Admin_name,Admin_id } = JSON.parse(option.body);
 
   if (arr.length===0) { 
     arr = newArr(total);
   }
 
-//   if (Type_id) {
-//     arr = arr.filter(item => Object.is(item.Type_id,Type_id));
-//   }
+  if (Admin_name) {
+    arr = arr.filter(item =>  item.Admin_name.includes(Admin_name));
+  }
+  if( Admin_id ){
+    arr = arr.filter(item =>  Object.is(item.Admin_id+"",Admin_id));
+  }
 
     return {
       status: 200,
@@ -29,20 +31,16 @@ Mock.mock('adminList_api/admin/adminList/list', 'post', option =>{
   })
 
   Mock.mock("adminList_api/admin/adminList/add", "post", function(option) {
-    // let { $Type_id:Type_id,Book_name, Author, price, Pub_company,PUB_DATE,Total_num,Current_num,Brief } = JSON.parse(
-    //   option.body
-    // );
+    let { Admin_name,Admin_password } = JSON.parse( option.body);
   
-    // var obj = newObj({
-    //   Book_id:arr.length,Type_id,Book_name, Author, price, Pub_company,PUB_DATE,Total_num,Current_num,Brief,
-    //   Buy_date: moment().format("yyyy-MM-dd HH:mm:ss.SSS")
-    // });
+    var obj = newObj({Admin_id: arr.length ,Admin_name,Admin_password });
   
-    // arr.push(obj);
+    arr.push(obj);
     return {
       status: 200,
       message: "获取列表成功！",
-      ok: true
+      ok: true,
+      arr,
     };
   });
 
@@ -60,16 +58,17 @@ Mock.mock("adminList_api/admin/adminList/update", "post", function(option) {
   };
 });
 
-  Mock.mock(/\/adminList\/delete/, "post", function(option) {
-    // const res = /\/bookList\/delete\/(\d+)/.exec(option.url);
-    // console.log("remove id::", res[1]);
-    // arr.splice(res[1], 1);
+Mock.mock(/\/adminList\/delete/, "post", function(option) {
+    const res = /\/adminList\/delete\/(\d+)/.exec(option.url);
+    console.log("remove id::", res[1]);
+    arr.splice(res[1], 1);
+
     return {
-      status: 200,
-      message: "获取列表成功！",
-      ok: true,
-      data:{
+        status: 200,
+        message: "获取列表成功！",
+        ok: true,
+        data:{
         arr
-      }
+        }
     };
-  });
+});
