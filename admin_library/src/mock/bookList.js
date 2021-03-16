@@ -6,11 +6,12 @@ import moment from 'moment'
 let arr = []
  
 Mock.mock('book_api/book/bookList/list', 'post', option =>{
-  let total = JSON.parse(option.body).page.size; 
+  let {size:total,current} = JSON.parse(option.body).page;
+  //console.log("ooooooooooption",option) 
   let { Type_id,Book_id,Book_name,Author } = JSON.parse(option.body);
 
   //搜索清空之后不会刷新 主要原因是这里的获取
-  if (arr.length===0) { 
+  if (arr.length===0 || current) { 
     arr = newArr(total);
   }
 
@@ -61,9 +62,7 @@ Mock.mock('book_api/book/bookList/list', 'post', option =>{
 Mock.mock("book_api/book/bookList/update", "post", function(option) {
   //console.log(JSON.parse(option.body));
   let { $Type_id:Type_id,Book_id,Book_name, Author, price, Pub_company,PUB_DATE,Total_num,Current_num,Brief
-  } = JSON.parse(option.body);
-  //console.log(Book_id) 
-  //console.log(typeof Book_id);
+  } = JSON.parse(option.body); 
   Object.assign(arr[Book_id], {
     Type_id,Book_name, Author, price, Pub_company,PUB_DATE,Total_num,Current_num,Brief
   });

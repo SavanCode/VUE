@@ -167,8 +167,7 @@
                         }
                     }, this.query)).then(res => {
                         const data = res.data;
-                        //console.log(data)
-                        this.page.currentPage=1;
+                        //console.log(data) 
                         this.page.total = data.total;
                         this.listData = data.records;
                     }).catch(() => {

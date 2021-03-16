@@ -7,10 +7,10 @@ let arr = []
  
 Mock.mock('records_api/records/list', 'post', option =>{
   
-  let total = JSON.parse(option.body).page.size; 
+  let {size:total,current} = JSON.parse(option.body).page;
   let { Book_id , Book_name,User_id } = JSON.parse(option.body);
 
-  if (arr.length===0) { 
+  if (arr.length===0|| current) { 
     arr = newArr(total);
   }
 

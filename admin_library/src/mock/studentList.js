@@ -6,10 +6,10 @@ import moment from "moment";
 let arr = [];
 
 Mock.mock("student_api/student/studentList/list", "post", option => {
-  let total = JSON.parse(option.body).page.size;
+  let {size:total,current} = JSON.parse(option.body).page;
   let { Sex, isActive, Username } = JSON.parse(option.body);
 
-  if (arr.length === 0) {
+  if (arr.length === 0|| current) {
     arr = newArr(total);
   }
 

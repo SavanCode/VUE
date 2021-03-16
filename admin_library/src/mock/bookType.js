@@ -5,10 +5,10 @@ import { newBookTypeArr as newArr, newBookTypeObj as newObj } from "./extends";
 let arr = []
  
 Mock.mock('book_api/book/bookType/list', 'post', option =>{
-  let total = JSON.parse(option.body).page.size;
+  let {size:total,current} = JSON.parse(option.body).page;
   let { Type_name } = JSON.parse(option.body);
 
-  if (arr.length===0) { 
+  if (arr.length===0|| current) { 
     arr = newArr(total);
   }
 

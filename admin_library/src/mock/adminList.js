@@ -5,10 +5,10 @@ import { newAdminArr as newArr, newAdminObj as newObj } from "./extends";
 let arr = []
  
 Mock.mock('adminList_api/admin/adminList/list', 'post', option =>{
-    let total = JSON.parse(option.body).page.size;
+  let {size:total,current} = JSON.parse(option.body).page;
     let { Admin_name,Admin_id } = JSON.parse(option.body);
 
-  if (arr.length===0) { 
+  if (arr.length===0|| current) { 
     arr = newArr(total);
   }
 

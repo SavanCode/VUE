@@ -1,37 +1,50 @@
 <template>
     <el-col :span="24">
         <base-card>
-        <el-form :inline="true" class="demo-form-inline">
-        <el-form-item label="审批人"> 
+        <el-form :inline="true" class="searchForm">
+        <el-form-item label="书本编号"> 
             <el-input
           placeholder="请输入书本编号"
-          v-model="Book_id" 
+          v-model="query.Book_id" 
           clearable>
           </el-input> 
           </el-form-item>
-          <el-form-item label="审批人">
+
+          <!-- <el-form-item label="书本类型">
          <el-input
           placeholder="请输入书本类型"
-          v-model="Type_id"
-          clearable></el-input>
-          </el-form-item>
-          <el-form-item label="审批人">
-          <el-input
-          placeholder="请输入书本名称"
-          v-model="Book_name"
-          clearable></el-input>
-          </el-form-item>
-          <el-form-item label="审批人">
-          <el-input
-          placeholder="请输入读者名字"
-          v-model="Author"
+          v-model="query.Type_id"
           clearable>
           </el-input>
-       
+          </el-form-item> -->
+          <el-form-item label="书本类型">
+               <el-select v-model="query.Type_id" placeholder="请选择书本类型">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+          </el-form-item>
+          <el-form-item label="书本名称">
+          <el-input
+          placeholder="请输入书本名称"
+          v-model="query.Book_name"
+          clearable></el-input>
+          </el-form-item>
+          <el-form-item label="作者">
+          <el-input
+          placeholder="请输入作者名字"
+          v-model="query.Author"
+          clearable>
+          </el-input>
       </el-form-item> 
-      </el-form>
-          <el-button @click="resetDateFilter">清除日期过滤器</el-button>
-          <el-button @click="clearFilter">清除所有过滤器</el-button>
+      <div class="searchBtn">
+          <el-button @click="search">搜索</el-button>
+          <el-button @click="clearFilter">清除所有搜索</el-button>
+      </div>
+      </el-form> 
           <el-table
             ref="filterTable"
             :data="listData" 
@@ -52,19 +65,14 @@
             </el-table-column>
             <el-table-column
               prop="Author"
-              label="读者"
+              label="作者"
                >
             </el-table-column>
             <el-table-column
               prop="Type_id"
               label="书本类型"
                >
-            </el-table-column>
-              <!-- <template slot-scope="scope">
-                <el-tag
-                  :type="scope.row.tag === '家' ? 'primary' : 'success'"
-                  disable-transitions>{{scope.row.tag}}</el-tag>
-              </template> -->
+            </el-table-column> 
               <el-table-column
               prop="Pub_company"
               label="出版社" 
@@ -90,8 +98,10 @@
               :current-page="page.currentPage"
               :page-sizes="[10, 20, 30, 50,100]"
               :page-size="page.pageSize"
+              :total="page.total"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="page.total">
+              :page.sync="page.currentPage"
+              :limit.sync="page.pageSize">
             </el-pagination>
           </div>
         </base-card>
@@ -108,35 +118,49 @@ export default {
    data() {
       return {
         listData: [],
-        Book_id:"",
-        Type_id:"",
-        Book_name:"",
-        Author:"",
+        query:{
+          Book_id:"",
+          Type_id:"",
+          Book_name:"",
+          Author:"",
+        },
         page: {
               total: 0,
               pageSize: 20,
               currentPage: 1
-          }
+        },
+         options: [{
+          value: 'default',
+          label: 'default'
+        }],
       }
     },
     created() {
       this.getList();  
+      this.getBookType();
     },
     methods: {
-      resetDateFilter() {
-        this.$refs.filterTable.clearFilter('date');
+      search() {
+        this.getList();
       },
       clearFilter() {
-        this.$refs.filterTable.clearFilter();
-      },
-      formatter(row, column) {
-        return row.address;
+        Object.assign(this.query, {
+          Book_id:"",
+          Type_id:"",
+          Book_name:"",
+          Author:"",
+        });
+        this.getList()
       },
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+        this.page.pageSize=val;
+        //this.getList();
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+        this.page.currentPage=val;
+        //this.getList();
+        console.log(`当前页: ${val}`,this.page.currentPage);
+        this.getList();
       },
       getList() { 
         bookListApi.list(Object.assign({
@@ -147,14 +171,19 @@ export default {
         }, this.query)).then(res => {
             const data = res.data;
             //console.log(data)
-            this.page.currentPage=1;
             this.page.total = data.total;
             this.listData = data.records;
         }).catch(() => {
         }).finally(() => { 
               this.loading = false;//
         }); 
-    }
+    },
+    getBookType() {
+        dictionaryApi.bookTypeDictionary().then(res => {
+            this.options = res.data;
+        }).catch(() => {
+        });
+    },
   }
 }
 </script>
@@ -163,5 +192,12 @@ export default {
 .pageBlock{
     text-align: end;
     margin: 10px 0;
+}
+.searchForm{
+  padding:10px 20px
+}
+.searchBtn{
+      display: flex;
+    justify-content: space-evenly;
 }
 </style>
