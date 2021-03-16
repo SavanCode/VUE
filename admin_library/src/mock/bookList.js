@@ -6,9 +6,10 @@ import moment from 'moment'
 let arr = []
  
 Mock.mock('book_api/book/bookList/list', 'post', option =>{
-  let total = JSON.parse(option.body).page.size;
-  let { Type_id } = JSON.parse(option.body);
+  let total = JSON.parse(option.body).page.size; 
+  let { Type_id,Book_id,Book_name,Author } = JSON.parse(option.body);
 
+  //搜索清空之后不会刷新 主要原因是这里的获取
   if (arr.length===0) { 
     arr = newArr(total);
   }
@@ -16,13 +17,22 @@ Mock.mock('book_api/book/bookList/list', 'post', option =>{
   if (Type_id) {
     arr = arr.filter(item => Object.is(item.Type_id,Type_id));
   }
+  if (Book_id) {
+    arr = arr.filter(item => Object.is(item.Book_id+"",Book_id)||(item.Book_id+"").includes(Book_id));
+  }
+  if (Book_name) {
+    arr = arr.filter(item => item.Book_name.includes(Book_name));
+  }
+  if (Author) {
+    arr = arr.filter(item => item.Author.includes(Author));
+  }
 
     return {
       status: 200,
       ok:true,
       message: '获取商品列表成功！',
       data:{
-        total:20,
+        total:arr.length,
         records:arr.slice(0,total)
       }
     }

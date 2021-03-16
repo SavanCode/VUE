@@ -45,6 +45,7 @@
                             label: '书本编号',
                             prop: 'Book_id',
                             span: 24,
+                            search: true,
                             searchSpan: 12,
                             disabled: true,
                             rules: [
@@ -58,7 +59,7 @@
                             label: '书名',
                             prop: 'Book_name',
                             span: 12,
-                            //search: true,
+                            search: true,
                             searchSpan: 12,
                             //type: 'tree',
                             //dicData: [],
@@ -73,6 +74,8 @@
                         }, {
                             label: '作者',
                             prop: 'Author',
+                            search: true,
+                            searchSpan: 12,
                             span: 12,
                             rules: [
                                 {
@@ -83,9 +86,10 @@
                             ]
                         },{
                             label: '类型',
-                            prop: 'Type_id',
-                            search: true,
+                            prop: 'Type_id', 
                             span: 12,
+                            search: true,
+                            searchSpan: 12,
                             type: 'tree',
                             dicData: [],
                             defaultExpandAll: true,
@@ -133,6 +137,7 @@
                         }
                     ]
                 }, 
+                loading: true,
                 page: {
                     total: 0,
                     pageSize: 20,
@@ -156,6 +161,7 @@
                     }, this.query)).then(res => {
                         const data = res.data;
                         //console.log(data)
+                        this.page.currentPage=1;
                         this.page.total = data.total;
                         this.listData = data.records;
                     }).catch(() => {
@@ -172,8 +178,8 @@
                 listAdd(row, done, loading) {
                     bookListApi.add(row).then(() => {
                         loading();
-                        this.list(this.page);
                         successMessage();
+                        this.list(this.page);
                     }).catch(() => {
                     }).finally(() => {
                         done();
@@ -188,8 +194,8 @@
                         //console.log(row.Book_id)
                         return bookListApi.delete(row.Book_id);
                     }).then(() => {
-                        this.getList(this.page);
                         successMessage();
+                        this.getList(this.page);
                     }).catch(() => {
                     });
                 },
@@ -198,7 +204,8 @@
                         loading();
                         this.getList(this.page);
                         successMessage();
-                    }).catch(() => {
+                    }).catch((error) => {
+                        console.log(error)
                     }).finally(() => {
                         done();
                     });
@@ -209,10 +216,9 @@
                 currentChange(page) { 
                     this.page.currentPage = page;
                 },
-                sizeChange(pageSize) { 
+                sizeChange(pageSize) {  
                     this.page.pageSize = pageSize;
                     this.getList(this.page);
-                    done();
                 },
                 searchChange(params, done) {
                     this.query = params;

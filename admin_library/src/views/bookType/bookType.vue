@@ -93,6 +93,7 @@
                     }, this.query)).then(res => {
                         const data = res.data;
                         //console.log(data)
+                        this.page.currentPage=1;
                         this.page.total = data.total;
                         this.listData = data.records;
                     }).catch(() => {

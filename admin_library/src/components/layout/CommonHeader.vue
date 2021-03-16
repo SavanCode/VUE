@@ -6,10 +6,10 @@
             </el-badge>
         </el-col>
         <el-col :span="4" class="header_item">
-             <p>Hi,{{admin? "管理员：":"用户"}} {{userName}}</p>
+             <p class="username">Hi,{{admin? "管理员：":"用户"}} {{userName}}</p>
         </el-col>
         <el-col :span="2" class="header_item el-dropdown-link">
-            <el-dropdown>
+            <el-dropdown class="dropdown">
              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
               <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item @click.native="handleCommand('profile')" icon="el-icon-user">个人信息</el-dropdown-item>
@@ -30,20 +30,17 @@
         },
         props: { 
           userName: {
-          type: String,
-          default: 'user',
-          required: true
+            type: String,
+            default: 'user',
+            required: true
           },
           admin: {
-          type: Boolean,
-          default: false,
-          required: true
+            type: Boolean,
+            default: false,
+            required: true
           }
         }, 
-        methods: { 
-            collapseMenu() {
-                //this.$store.commit('collapseMenu')
-            },
+        methods: {  
              handleMessage() {
                 this.$message('checking for message');
             },
@@ -69,7 +66,17 @@
   /* margin-right: 40px; */
 }
 .header_item{
-    text-align: end;
+    text-align: center;
     margin-top: 10px;
+}
+.username{
+     display: block; 
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow:ellipsis; 
+}
+.dropdown{ 
+    display: flex;
+    justify-content: center; 
 }
 </style>

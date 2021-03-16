@@ -21,7 +21,7 @@ Mock.mock('book_api/book/bookType/list', 'post', option =>{
       ok:true,
       message: '获取商品列表成功！',
       data:{
-        total:20,
+        total:arr.length,
         records:arr.slice(0,total)
       }
     }

@@ -19,7 +19,7 @@
             >
                 <template slot="isActive" slot-scope="scope">
                     <el-tag v-if="scope.row.isActive==='ONLINE'" type="success" effect="plain">在线</el-tag>
-                    <el-tag v-else-if="scope.row.isActive==='OFFLINE'"  type="info" effect="plain">离线</el-tag>
+                    <el-tag v-else-if="scope.row.isActive==='LOST'"  type="info" effect="plain">挂失</el-tag>
                     <el-tag v-else-if="scope.row.isActive==='DELETED'" type="danger" effect="plain">注销</el-tag>
                     <el-tag v-else type="warning" effect="plain">未知</el-tag>
                 </template>
@@ -122,10 +122,11 @@
                                     required: true,
                                     message: '请输入邮箱',
                                     trigger: 'blur'
-                                }, {
-                                    pattern: /^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$/,
-                                    message: '请输入 正确格式的邮箱'
-                                }
+                                }, 
+                                // {
+                                //     pattern: /^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$/,
+                                //     message: '请输入 正确格式的邮箱'
+                                // }
                             ]
                         },{
                             label: '借书数量',
@@ -217,11 +218,12 @@
                     }, this.query)).then(res => {
                         const data = res.data;
                         //console.log(data)
+                        this.page.currentPage=1;
                         this.page.total = data.total;
                         this.listData = data.records;
                         this.listData.map(item => {
                           item.Sex= item.Sex? "男":"女";
-                          item.isActive = item.isActive ===0 ?  "ONLINE": item.isActive===1 ? "OFFLINE":"DELETED" 
+                          item.isActive = item.isActive ===0 ?  "ONLINE": item.isActive===1 ? "LOST":"DELETED" 
                         })
                     }).catch(() => {
                     }).finally(() => {
@@ -243,8 +245,8 @@
                 listAdd(row, done, loading) {
                     studentListApi.add(row).then(() => {
                         loading();
-                        this.list(this.page);
                         successMessage();
+                        this.list(this.page);
                     }).catch(() => {
                     }).finally(() => {
                         done();
@@ -258,8 +260,8 @@
                     }).then(() => { 
                         return studentListApi.delete(row.User_id);
                     }).then(() => {
-                        this.getList(this.page);
                         successMessage();
+                        this.getList(this.page);
                     }).catch(() => {
                     });
                 },

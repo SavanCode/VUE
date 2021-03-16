@@ -5,7 +5,8 @@ import CommonRouter from "./common/index";
 import { checkTokenValid } from "@/api/user";
 import store from "@/store";
 import { getStore } from "@/util/store";
-Vue.use(Router)
+import { MessageBox } from 'element-ui';
+Vue.use(Router);
 
 const router = new Router({
   scrollBehavior(to, from, savedPosition) {
@@ -25,6 +26,12 @@ const router = new Router({
   routes: []
 });
 
+function backToLogin(){
+  store.dispatch("ClearToken").then(() => {
+    router.push({ path: "/login" });
+  });
+}
+
 
 router.beforeEach((to, from, next) => {
   const meta = to.meta || {};
@@ -32,10 +39,12 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
   }
   if (meta.isAuth !== true || from.name === "login") {
+    //console.log("checking")
     next();
   } else {
     const token = getStore({ name: "token" }), 
-      user = getStore({ name: "user" });
+      user = getStore({ name: "user" }),
+      role = user.isAdmin ? "admin" : "student";
     if (
       "" === token ||
       undefined === token ||
@@ -46,21 +55,33 @@ router.beforeEach((to, from, next) => {
       return;
     };
     console.log(user,token)
+    // check token router内部跳转 检查账户身份
     checkTokenValid(user, token)
       .then(res => {
-        console.log(res)
-        if (res.ok) {
+        //token ok & role ok
+        //console.log(res,to.meta.roles,role)
+        if (res.ok && to.meta.roles.includes(role)) { 
+          console.log("user",token)
           next();
-        } else {
-          throw new Error(res.message);
+        }else{
+          // token ok & role bad & error
+          console.log(res,to.meta.roles,role)
+          MessageBox.confirm('此操作请登录管理员账户, 是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              backToLogin();
+            }).catch((error) => {
+               //backToLogin();
+            });
         }
       })
-      .catch(error => {
-        console.log(error)
-        store.dispatch("ClearToken").then(() => {
-          next({ path: "/login" });
-        });
-      });
+      .catch((err) => {
+        console.log(err)
+        backToLogin();
+    })
+
   }
 });
 

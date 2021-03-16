@@ -168,6 +168,7 @@
                     }, this.query)).then(res => {
                         const data = res.data;
                         //console.log(data)
+                        this.page.currentPage=1;
                         this.page.total = data.total;
                         this.listData = data.records;
                     }).catch(() => {
@@ -242,10 +243,7 @@
                         }, 300);       
                         
                         console.log("add")      
-                    }else if (["edit", "view"].includes(type)) {          
-                        // getNotice(this.form.id).then(res => {            
-                        //     this.form = res.data.data;          
-                        // });  
+                    }else if (["edit", "view"].includes(type)) {        
                         console.log("edit view")            
                     }        
                     done();

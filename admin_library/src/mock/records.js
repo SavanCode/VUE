@@ -6,7 +6,8 @@ import moment from 'moment'
 let arr = []
  
 Mock.mock('records_api/records/list', 'post', option =>{
-  let total = JSON.parse(option.body).page.size;
+  
+  let total = JSON.parse(option.body).page.size; 
   let { Book_id , Book_name,User_id } = JSON.parse(option.body);
 
   if (arr.length===0) { 
@@ -28,7 +29,7 @@ Mock.mock('records_api/records/list', 'post', option =>{
       ok:true,
       message: '获取商品列表成功！',
       data:{
-        total:20,
+        total:arr.length,
         records:arr.slice(0,total)
       }
     }
