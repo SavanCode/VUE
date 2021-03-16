@@ -1,23 +1,35 @@
 <template>
     <el-col :span="24">
         <base-card>
-        <el-input
+        <el-form :inline="true" class="demo-form-inline">
+        <el-form-item label="审批人"> 
+            <el-input
           placeholder="请输入书本编号"
           v-model="Book_id" 
           clearable>
-        </el-input>
+          </el-input> 
+          </el-form-item>
+          <el-form-item label="审批人">
          <el-input
           placeholder="请输入书本类型"
           v-model="Type_id"
           clearable></el-input>
+          </el-form-item>
+          <el-form-item label="审批人">
           <el-input
           placeholder="请输入书本名称"
           v-model="Book_name"
           clearable></el-input>
+          </el-form-item>
+          <el-form-item label="审批人">
           <el-input
           placeholder="请输入读者名字"
           v-model="Author"
-          clearable></el-input>
+          clearable>
+          </el-input>
+       
+      </el-form-item> 
+      </el-form>
           <el-button @click="resetDateFilter">清除日期过滤器</el-button>
           <el-button @click="clearFilter">清除所有过滤器</el-button>
           <el-table
