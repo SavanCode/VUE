@@ -1,3 +1,4 @@
+<!--行内编辑的练习 -->
 <template>
   <el-col :span="24">
     <base-card> 
@@ -13,8 +14,7 @@
             ></el-input>
              <span v-else>{{scope.row.Admin_id}}</span>
           </template> -->
-        </el-table-column>
-
+        </el-table-column> 
         <el-table-column prop="Admin_name" label="姓名"> 
           <template slot-scope="scope">
             <el-input
