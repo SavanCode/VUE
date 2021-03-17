@@ -1,3 +1,4 @@
+<!-- login 样式-->
 <template>
   <div class="login">
     <el-card>
@@ -37,6 +38,10 @@
           >
         </el-form-item>
       </el-form>
+    </el-card>
+    <el-card class="demoInfo">
+      <p>学生账号: s或者S 开头</p>
+      <p>教师账号: t或者T 开头</p>
     </el-card>
   </div>
 </template>
@@ -100,10 +105,11 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  flex: 1;
+.login { 
+  margin-top: 10%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -113,6 +119,10 @@ export default {
 }
 .login-form {
   width: 290px;
+}
+.demoInfo{
+    padding: 0;
+    margin: 30px 0 0 0;
 }
 </style>
 <style lang="scss">

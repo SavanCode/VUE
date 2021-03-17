@@ -1,5 +1,7 @@
 import request from '@/config/axios'
-
+/**
+ * adminList Api 接口
+ */
 export const adminListApi = {
     add: (adminitem) => request({
         url: 'adminList_api/admin/adminList/add',

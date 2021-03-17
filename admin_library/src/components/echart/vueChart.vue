@@ -1,3 +1,4 @@
+<!-- vuechart 的饼状图 -->
 <template>
 <div>
     <p> 这个vuechart不显示</p>

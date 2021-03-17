@@ -1,3 +1,4 @@
+//store的getter
 const getters = {
     token: state => state.login.token,
     user: state => state.login.user

@@ -1,5 +1,7 @@
 import request from '@/config/axios'
-
+/**
+ *  records Api 接口 （借阅记录）
+ */
 export const recordsApi = {
     add: (record) => request({
         url: 'records_api/records/add',

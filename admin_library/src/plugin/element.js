@@ -1,9 +1,13 @@
 import Vue from 'vue'
 
+//引入element ui
 import 'element-ui/lib/theme-chalk/index.css' 
 import ElementUI from 'element-ui' 
 
+//引入baseCard
 import baseCard from '@/components/card/base-card'
+
+//引入Avue
 import Avue from '@smallwei/avue';
 import '@smallwei/avue/lib/index.css';
 
@@ -15,13 +19,14 @@ Vue.use(echarts)
 import myCharts from './myChart.js'
 Vue.use(myCharts)
 
-//vue-echarts
+//引入vue-echarts
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/chart/line'
 Vue.component('v-chart', ECharts)
 
+//全局注册
 Vue.use(ElementUI);
 Vue.use(Avue);
 //Vue.use(Element, {locale});

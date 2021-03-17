@@ -1,5 +1,7 @@
 import Index from '@/views/layout/Layout'
-
+/**
+*对于操作页面的router
+*/
 export default [
     {
         path: '/',

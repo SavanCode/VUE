@@ -1,3 +1,4 @@
+<!-- home页面的饼状图 以及柱状图 -->
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
   <div class="chartArea">

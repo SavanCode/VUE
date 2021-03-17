@@ -1,3 +1,4 @@
+<!-- layout样式 导航栏以及侧边栏引入-->
 <template>
      <el-container style="height: 100%">
         <el-aside width="auto">

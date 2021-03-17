@@ -4,13 +4,13 @@ import store from '@/store';
 import {failMessage} from '@/util/util'
 import {getStore} from "@/util/store";
 
-// //跨域请求，允许保存cookie
-// axios.defaults.withCredentials = true;
+//跨域请求，允许保存cookie
+axios.defaults.withCredentials = true;
 
-// //返回其他状态码
-// axios.defaults.validateStatus = function (status) {
-//     return status >= 200 && status <= 500;
-// };
+//返回其他状态码
+axios.defaults.validateStatus = function (status) {
+    return status >= 200 && status <= 500;
+};
 
 //HTTP Request拦截
 axios.interceptors.request.use(config => {

@@ -1,3 +1,6 @@
+/**
+*对于错误页面的router
+*/
 export default [
     {
         name: 'login',

@@ -1,5 +1,7 @@
 import request from '@/config/axios'
-
+/**
+ * studentList Api 接口
+ */
 export const studentListApi = {
     add: (studentitem) => request({
         url: 'student_api/student/studentList/add',

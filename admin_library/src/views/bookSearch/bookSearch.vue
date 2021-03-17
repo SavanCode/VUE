@@ -1,3 +1,4 @@
+<!-- bookSearch 样式-->
 <template>
     <el-col :span="24">
         <base-card>
@@ -9,14 +10,6 @@
           clearable>
           </el-input> 
           </el-form-item>
-
-          <!-- <el-form-item label="书本类型">
-         <el-input
-          placeholder="请输入书本类型"
-          v-model="query.Type_id"
-          clearable>
-          </el-input>
-          </el-form-item> -->
           <el-form-item label="书本类型">
                <el-select v-model="query.Type_id" placeholder="请选择书本类型">
                 <el-option
@@ -86,7 +79,7 @@
             <el-table-column
               prop="PUB_DATE"
               label="出版时间"
-              type: 'date'
+              type='date'
                >
             </el-table-column>
           </el-table>

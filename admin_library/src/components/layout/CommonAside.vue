@@ -1,4 +1,4 @@
-<!--:collapse-transition="false" -->
+<!-- 左侧边框目录 -->
 <template>
 <div class="aside"> 
   <!-- <div class="toggle-button" @click="toggleCollapse"> <i class="el-icon-s-fold"></i></div> -->

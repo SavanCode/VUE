@@ -1,5 +1,7 @@
 import request from '@/config/axios'
-
+/**
+ * BookList Api 接口
+ */
 export const bookListApi = {
     add: (bookitem) => request({
         url: 'book_api/book/bookList/add',
@@ -21,7 +23,9 @@ export const bookListApi = {
         data: pageinfo
     })
 };
-
+/**
+ * bookType Api 接口
+ */
 export const bookTypeApi = {
     add: (bookTypeitem) => request({
         url: 'book_api/book/bookType/add',

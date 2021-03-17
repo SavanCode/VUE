@@ -7,9 +7,8 @@ import store from './store'
 import 'element-ui/lib/theme-chalk/index.css' 
 //import http from '@/api/config'  //axios
 import './mock'   // mockjs 
-import '@/plugin/element.js'
-
-//Vue.prototype.$http = http
+import '@/plugin/element.js' //引入plaugin
+ 
 Vue.config.productionTip = false
 
 new Vue({

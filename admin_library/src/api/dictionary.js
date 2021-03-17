@@ -1,5 +1,7 @@
 import request from '@/config/axios'
-
+/**
+ * dictionary Api 接口
+ */
 export const dictionaryApi = {
     bookTypeDictionary: () => request({
         url: 'dictionary_api/dictionary/booktype',

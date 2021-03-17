@@ -3,7 +3,8 @@ import Mock from "mockjs";
 let arr = [];
 const baseNum = 80;
 
-function newBookObj(...para) {
+//mock创建数据
+export function newBookObj(...para) {
   //console.log(para)
   let newArticleObject = Mock.mock({    
     Book_name: '@cword(2, 8)',  
@@ -21,9 +22,9 @@ function newBookObj(...para) {
   Object.assign(newArticleObject, para[0]);
   return newArticleObject;
 }
-
-//创建数据array
-function newBookArr() {
+ 
+//mock创建数据
+export function newBookArr() {
   console.log("newing"); 
   let tempArray=[];
   for (let i = 0; i < baseNum; i++) {
@@ -34,7 +35,8 @@ function newBookArr() {
 }
 
 
-function newStudentObj(...para) {
+//mock创建数据
+export function newStudentObj(...para) {
   //console.log(para)
   let newStudentObject = Mock.mock({     
     Username:'@name',
@@ -53,9 +55,9 @@ function newStudentObj(...para) {
   //console.log(newStudentObject)
   return newStudentObject;
 }
-
-//创建数据array
-function newStudentArr() {
+ 
+//mock创建数据
+export function newStudentArr() {
   console.log("newing"); 
   let tempArray=[];
   for (let i = 0; i < baseNum; i++) {
@@ -65,7 +67,8 @@ function newStudentArr() {
   return tempArray;
 }
 
-function newRecordObj(...para) {
+//mock创建数据
+export function newRecordObj(...para) {
   //console.log(para)
   let newObject = Mock.mock({     
     Book_name: '@cword(2, 8)', 
@@ -79,9 +82,9 @@ function newRecordObj(...para) {
   //console.log(newObject)
   return newObject;
 }
-
-//创建数据array
-function newRecordArr() {
+ 
+//mock创建数据
+export function newRecordArr() {
   console.log("newing"); 
   let tempArray=[];
   for (let i = 0; i < baseNum; i++) {
@@ -92,6 +95,7 @@ function newRecordArr() {
 }
 
 
+//mock创建数据
 export function newAdminObj(...para) {
   //console.log(para)
   let newObject = Mock.mock({   
@@ -102,8 +106,8 @@ export function newAdminObj(...para) {
   return newObject;
 }
 
-//创建数据array
- export function newAdminArr() {
+//mock创建数据
+export function newAdminArr() {
   console.log("newing"); 
   let tempArray=[];
   for (let i = 0; i < baseNum; i++) {
@@ -113,6 +117,7 @@ export function newAdminObj(...para) {
   return tempArray;
 }
 
+//mock创建数据
 export function newBookTypeObj(...para) {
   //console.log(para)
   let newObject = Mock.mock({   
@@ -121,9 +126,9 @@ export function newBookTypeObj(...para) {
   Object.assign(newObject, para[0]); 
   return newObject;
 }
-
-//创建数据array
- export function newBookTypeArr() {
+ 
+//mock创建数据
+export function newBookTypeArr() {
   console.log("newing"); 
   let tempArray=[];
   for (let i = 0; i < 5; i++) {
@@ -132,7 +137,4 @@ export function newBookTypeObj(...para) {
   } 
   return tempArray;
 }
-
  
-
-export {newBookArr, newBookObj,newStudentObj,newStudentArr,newRecordObj,newRecordArr}

@@ -5,6 +5,7 @@ import getters from './getters'
 
 Vue.use(Vuex);
 
+//store的设置
 const store = new Vuex.Store({
     modules: {
        login

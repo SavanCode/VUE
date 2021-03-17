@@ -1,3 +1,4 @@
+<!-- 背景边框阴影的卡片样式 -->
 <template>
     <div class="card_base">
         <el-card shadow="hover">

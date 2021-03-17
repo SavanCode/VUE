@@ -1,3 +1,4 @@
+<!-- adminList 样式-->
 <template>
     <el-col :span="24">
         <base-card>

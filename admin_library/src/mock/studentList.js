@@ -5,11 +5,12 @@ import moment from "moment";
 
 let arr = [];
 
+//mock模拟后台返回数据
 Mock.mock("student_api/student/studentList/list", "post", option => {
-  let {size:total,current} = JSON.parse(option.body).page;
+  let { size: total, current } = JSON.parse(option.body).page;
   let { Sex, isActive, Username } = JSON.parse(option.body);
 
-  if (arr.length === 0|| current) {
+  if (arr.length === 0 || current) {
     arr = newArr(total);
   }
 
@@ -29,12 +30,13 @@ Mock.mock("student_api/student/studentList/list", "post", option => {
     ok: true,
     message: "获取商品列表成功！",
     data: {
-      total:arr.length,
+      total: arr.length,
       records: arr.slice(0, total)
     }
   };
 });
 
+//mock模拟后台返回数据
 Mock.mock("student_api/student/studentList/add", "post", function(option) {
   let {
     Username,
@@ -70,6 +72,7 @@ Mock.mock("student_api/student/studentList/add", "post", function(option) {
   };
 });
 
+//mock模拟后台返回数据
 Mock.mock("student_api/student/studentList/update", "post", function(option) {
   console.log(JSON.parse(option.body));
   let {
@@ -99,6 +102,7 @@ Mock.mock("student_api/student/studentList/update", "post", function(option) {
   };
 });
 
+//mock模拟后台返回数据
 Mock.mock(/\/studentList\/delete/, "post", function(option) {
   const res = /\/studentList\/delete\/(\d+)/.exec(option.url);
   console.log("remove id::", res[1]);

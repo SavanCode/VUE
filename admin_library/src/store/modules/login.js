@@ -1,21 +1,20 @@
 import { getStore, removeStore, setStore } from "@/util/store";
 import { cancelToken, generateToken } from "@/api/user";
 
+//store中user的set，remove，get => user & token
 const user = {
     state: { 
       user: getStore({ name: "user" }) || "",
       token: getStore({ name: "token" }) || ""
     },
     actions: {
-      GenerateToken({ commit }, form) {
-        //console.log(form.user)
+      GenerateToken({ commit }, form) { 
         let user = {
           name: form.user.username, 
         }; 
         return new Promise((resolve, reject) => {
           generateToken(user)
-            .then(res => {
-              //console.log("generateToken res.data::", res.data);
+            .then(res => { 
               const data = res.data;
               commit("SET_TOKEN", data.token); 
               commit("SET_USER", data.user);
@@ -26,8 +25,7 @@ const user = {
             });
         });
       },
-      ClearToken({ commit }) {
-        //console.log('ClearToken');
+      ClearToken({ commit }) { 
         return new Promise((resolve, reject) => {
           cancelToken(getStore({ name: "user" }))
             .then(res => {

@@ -1,5 +1,5 @@
+<!-- Home 样式-->
 <template>
-
   <div>
     <!-- this is {{user}} -->
     <avue-carousel :option="marquee"></avue-carousel>
