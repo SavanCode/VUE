@@ -77,6 +77,16 @@ export default [
                     title: '书本查找管理'
                 },
                 component: () => import('@/views/bookSearch/bookSearch')
+            },
+            {
+                name: 'adminList1',
+                path: '/adminList1',
+                meta: {
+                    isAuth: true,
+                    roles: ['admin'],
+                    title: '管理员管理'
+                },
+                component: () => import('@/views/adminList/adminList1')
             } 
         ]
     }
