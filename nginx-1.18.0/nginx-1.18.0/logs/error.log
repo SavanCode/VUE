@@ -1,0 +1,41 @@
+2021/03/19 13:25:48 [error] 23048#20592: *1 CreateFile() "C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2021/03/19 13:26:15 [notice] 8752#8780: signal process started
+2021/03/19 13:26:17 [notice] 5564#2180: signal process started
+2021/03/19 13:26:25 [notice] 16416#11620: signal process started
+2021/03/19 13:26:41 [error] 14984#13788: *4 CreateFile() "C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8880", referrer: "http://localhost:8880/"
+2021/03/19 13:27:54 [notice] 18932#13804: signal process started
+2021/03/19 13:27:55 [notice] 18632#3456: signal process started
+2021/03/19 13:28:55 [notice] 21760#13136: signal process started
+2021/03/19 13:28:56 [notice] 18324#16236: signal process started
+2021/03/19 13:28:56 [notice] 11880#13236: signal process started
+2021/03/19 13:28:57 [notice] 18292#16168: signal process started
+2021/03/19 13:28:59 [error] 9540#21700: *9 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/bookSearch" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /bookSearch HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:29:45 [notice] 13260#14984: signal process started
+2021/03/19 13:30:11 [notice] 17652#13736: signal process started
+2021/03/19 13:30:12 [notice] 16292#15072: signal process started
+2021/03/19 13:30:13 [notice] 6248#2108: signal process started
+2021/03/19 13:32:07 [notice] 4608#592: signal process started
+2021/03/19 13:32:08 [notice] 17652#19596: signal process started
+2021/03/19 13:32:08 [notice] 15072#16292: signal process started
+2021/03/19 13:32:13 [error] 22012#13824: *15 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/bookType" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: admin.library, request: "GET /bookType HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:33:14 [notice] 15724#21008: signal process started
+2021/03/19 13:33:15 [notice] 12972#11544: signal process started
+2021/03/19 13:33:15 [notice] 9448#17752: signal process started
+2021/03/19 13:33:16 [notice] 12488#11820: signal process started
+2021/03/19 13:33:22 [error] 16412#9540: *18 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/records" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /records HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:33:23 [error] 16412#9540: *18 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/records" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /records HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:33:24 [error] 16412#9540: *18 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/records" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /records HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:33:24 [error] 16412#9540: *18 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/records" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /records HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:33:25 [error] 16412#9540: *18 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/records" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /records HTTP/1.1", host: "localhost:8880"
+2021/03/19 13:38:16 [notice] 13512#21632: signal process started
+2021/03/19 15:16:19 [emerg] 22716#3464: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:18:16 [emerg] 18912#23368: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:19:28 [emerg] 23932#14272: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:19:32 [emerg] 18560#18912: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:20:12 [emerg] 7100#14556: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:24:14 [emerg] 17404#17568: invalid number of arguments in "root" directive in C:\Users\xiong\Downloads\nginx-1.18.0\nginx-1.18.0/conf/nginx.conf:47
+2021/03/19 15:26:08 [error] 5276#15608: *2 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8880", referrer: "http://localhost:8880/home"
+2021/03/19 15:35:14 [error] 5276#15608: *5 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/home" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /home HTTP/1.1", host: "localhost:8880"
+2021/03/19 15:35:15 [error] 5276#15608: *5 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/home" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /home HTTP/1.1", host: "localhost:8880"
+2021/03/19 15:35:17 [error] 5276#15608: *5 CreateFile() "C:\Users\xiong\Documents\GitHub\VUE\admin_library\dist/home" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /home HTTP/1.1", host: "localhost:8880"
+2021/03/19 15:37:54 [notice] 6820#7100: signal process started

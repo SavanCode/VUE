@@ -48,7 +48,7 @@ Mock.mock(new RegExp("user_api/auth/token/check"), "post", option => {
     code: 0,
     ok: true,
     data: {
-      //if username存在 是可以的
+      //if username存在 token +refresh token 
     }
   };
 });
